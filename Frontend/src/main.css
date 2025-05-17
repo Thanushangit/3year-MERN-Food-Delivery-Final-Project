@@ -6,9 +6,9 @@
 
 @theme {
 
-  --font-ibm: "IBM Plex Serif", serif;
-  --font-cascadia: "Cascadia Code", sans-serif;
-  --color-primary: #fea115;
+    --font-ibm: "IBM Plex Serif", serif;
+    --font-cascadia: "Cascadia Code", sans-serif;
+    --color-primary: #fea115;
 }
 
 html {
@@ -73,12 +73,13 @@ html {
 }
 
 
-/* Swiper  */
-swiper-container {
-    --swiper-pagination-color: #fa9b0c;
-    /* Active bullet color */
-    --swiper-pagination-bullet-inactive-color: #d1a869;
-    /* Inactive bullets */
-    --swiper-pagination-bullet-inactive-opacity: 1;
+/* Active bullet */
+.swiper-pagination-bullet-active {
+    background-color: #fa9b0c !important;
 }
 
+/* Inactive bullets */
+.swiper-pagination-bullet {
+    background-color: #b4925f !important;
+    opacity: 1;
+}

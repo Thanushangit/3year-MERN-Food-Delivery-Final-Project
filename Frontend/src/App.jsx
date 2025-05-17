@@ -1,9 +1,9 @@
-import CustomerNavbar from './Componets/CustomerNavbar'
+import './main.css';
+import Home from './Pages/Home';
 function App() {
   return (
     <div>
-      <CustomerNavbar/>
-    
+      <Home/>
     </div>
   )
 }
