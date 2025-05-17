@@ -1,0 +1,84 @@
+/* google font link */
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* tailwind css link  */
+@import "tailwindcss";
+
+@theme {
+
+  --font-ibm: "IBM Plex Serif", serif;
+  --font-cascadia: "Cascadia Code", sans-serif;
+  --color-primary: #fea115;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    @apply mx-auto p-3.5;
+}
+
+@keyframes rotatee {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.rotater {
+    animation: rotatee 60s linear infinite;
+    /* run slowly, forever */
+    animation-play-state: running;
+}
+
+.rotater:hover {
+    animation-play-state: paused;
+    /* pause on hover */
+}
+
+
+@keyframes moveY {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-0.7rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+.free-delivery-animation {
+    animation: moveY 2s linear infinite;
+    color: #fea115;
+}
+
+.gallerybtn {
+    color: white;
+    background: linear-gradient(to right, #fea115 50%, red 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+}
+
+.gallerybtn:hover {
+    background-position: left bottom;
+}
+
+
+/* Swiper  */
+swiper-container {
+    --swiper-pagination-color: #fa9b0c;
+    /* Active bullet color */
+    --swiper-pagination-bullet-inactive-color: #d1a869;
+    /* Inactive bullets */
+    --swiper-pagination-bullet-inactive-opacity: 1;
+}
+
