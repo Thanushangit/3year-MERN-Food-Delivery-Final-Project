@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom"
+
 const CustomerNavbar = () => {
     return (
         // navbar-code
@@ -41,41 +43,33 @@ const CustomerNavbar = () => {
                     <ul
                         className="min-h-[100vh] md:min-h-fit flex flex-col md:flex-row items-center justify-center gap-8 font-semibold text-xl"
                     >
-                        <li
-                            id="nav-link"
-                            title="click here"
-                            className="cursor-pointer hover:text-primary duration-200 text-primary"
-                        >
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li
-                            id="nav-link"
-                            title="click here"
-                            className="cursor-pointer hover:text-primary duration-200"
-                        >
-                            <a href="Myorder.html">Myorder</a>
-                        </li>
-                        <li
-                            id="nav-link"
-                            title="click here"
-                            className="cursor-pointer hover:text-primary duration-200"
-                        >
-                            <a href="About.html">About</a>
-                        </li>
-                        <li
-                            id="nav-link"
-                            title="click here"
-                            className="cursor-pointer hover:text-primary duration-200"
-                        >
-                            <a href="Cart.html">Cart</a>
-                        </li>
-                        <li
-                            id="nav-link"
-                            title="click here"
-                            className="cursor-pointer hover:text-primary duration-200"
-                        >
-                            <a href="Login.html">Login</a>
-                        </li>
+
+                        <li title="click here" id="nav-link" ><NavLink to="/" className={({ isActive }) =>
+                            `Nav-Link ${isActive ? "text-primary" : "text-inherit"
+                            }`
+                        }>Home</NavLink></li>
+
+                        <li title="click here" id="nav-link" ><NavLink to="/myorder" className={({ isActive }) =>
+                            `Nav-Link ${isActive ? "text-primary" : "text-inherit"
+                            }`
+                        }>Myorder</NavLink></li>
+
+                        <li title="click here" id="nav-link" ><NavLink to="/about" className={({ isActive }) =>
+                            `Nav-Link ${isActive ? "text-primary" : "text-inherit"
+                            }`
+                        }>About</NavLink></li>
+
+
+                        <li title="click here" id="nav-link" ><NavLink to="/cart" className={({ isActive }) =>
+                            `Nav-Link ${isActive ? "text-primary" : "text-inherit"
+                            }`
+                        }>Cart</NavLink></li>
+
+                        <li title="click here" id="nav-link"  ><NavLink to="authentication" className={({ isActive }) =>
+                            `Nav-Link ${isActive ? "text-primary" : "text-inherit"
+                            }`
+                        }>Login</NavLink></li>
+
                     </ul>
                 </div>
                 {/* menu icon  */}

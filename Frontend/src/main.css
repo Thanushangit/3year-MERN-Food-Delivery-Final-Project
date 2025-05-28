@@ -19,6 +19,10 @@ html {
     @apply mx-auto p-3.5;
 }
 
+.Nav-Link{
+    @apply cursor-pointer hover:text-primary duration-500 transition-all
+}
+
 @keyframes rotatee {
     0% {
         transform: rotate(0deg);

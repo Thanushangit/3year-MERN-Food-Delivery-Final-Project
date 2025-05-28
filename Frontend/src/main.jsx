@@ -1,9 +1,52 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RootLayout from './Layout/RootLayout.jsx';
+import Home from './Pages/Home.jsx';
+import Myorder from './Pages/Myorder.jsx';
+import About from './Pages/About.jsx';
+import Cart from './Pages/Cart.jsx';
+import MainLayout from './Layout/MainLayout.jsx';
+import LoginLayout from './Layout/LoginLayout.jsx';
+import MainErrorPage from './Pages/MainErrorPage.jsx';
+import Login from './Pages/Login.jsx';
+import Register from './Pages/Register.jsx';
+import './main.css';
+
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    errorElement: <MainErrorPage />,
+    children: [
+      {
+        path: '/',
+        element: <MainLayout />,
+        children: [
+          { index: true, element: <Home /> },
+          { path: 'myorder', element: <Myorder /> },
+          { path: 'about', element: <About /> },
+          { path: 'cart', element: <Cart /> },
+        ],
+      },
+      {
+        path: 'authentication',
+        element: <LoginLayout />,
+        children: [
+          { index: true, element: <Login /> },
+          { path: 'register', element: <Register /> },
+        ],
+      },
+    ],
+  },
+]);
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </StrictMode>,
 )
+
+

@@ -2,7 +2,7 @@ import MyorderEmpty from "../Componets/MyorderEmpty";
 import MyorderOntheway from "../Componets/MyorderOntheway";
 import MyorderCanceled from "../Componets/MyorderCanceled";
 import MyorderDeliverd from "../Componets/MyorderDeliverd";
-import CustomerNavbar from "../Componets/CustomerNavbar";
+import CustomerNavbar from '../Componets/Navbar/CustomerNavbar'
 
 const MyOrder = () => {
     return (

@@ -1,5 +1,5 @@
 import AboutWelcomtBtn from "../Componets/AboutWelcomtBtn"
-import CustomerNavbar from "../Componets/CustomerNavbar"
+import CustomerNavbar from '../Componets/Navbar/CustomerNavbar'
 
 const About = () => {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import 'swiper/css/bundle';
-import CustomerNavbar from '../Componets/CustomerNavbar';
+import CustomerNavbar from '../Componets/Navbar/CustomerNavbar'
 import HomeFeaturesCard from '../Componets/HomeFeaturesCard';
 import PopularDishes from '../Componets/PopularDishes';
 import BreakFastFoods from '../Componets/BreakFastFoods';
