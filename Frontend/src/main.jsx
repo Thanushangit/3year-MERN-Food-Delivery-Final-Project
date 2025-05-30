@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './Layout/RootLayout.jsx';
 import Home from './Pages/Home.jsx';
-import Myorder from './Pages/Myorder.jsx';
+import MyOrder from './Pages/MyOrder.jsx';
 import About from './Pages/About.jsx';
 import Cart from './Pages/Cart.jsx';
 import MainLayout from './Layout/MainLayout.jsx';
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
           { index: true, element: <Home /> },
-          { path: 'myorder', element: <Myorder /> },
+          { path: 'myorder', element: <MyOrder /> },
           { path: 'about', element: <About /> },
           { path: 'cart', element: <Cart /> },
         ],
@@ -40,7 +40,10 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+],
+  {
+    basename: "/3year-MERN-Food-Delivery-Final-Project"
+  });
 
 
 createRoot(document.getElementById('root')).render(
