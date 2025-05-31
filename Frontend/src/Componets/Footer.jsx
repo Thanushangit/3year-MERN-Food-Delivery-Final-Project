@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <footer className="w-full bg-[#232736] text-gray-400">
-            <div className="container footer !pb-1 flex flex-col">
+            <div className="mycontainer footer !pb-1 flex flex-col">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-5 items-start md:gap-5">
                     <div>
                         <div className="flex items-center gap-2" title="Welcome 😊">

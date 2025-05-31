@@ -57,7 +57,7 @@ const BreakFastFoodsArray = [
     }
 ]
 
-const BreakFastFoods = () => {
+const BreakFast = () => {
     return (
         <div
             id="breakFastDiv"
@@ -99,4 +99,4 @@ const BreakFastFoods = () => {
     )
 }
 
-export default BreakFastFoods
+export default BreakFast

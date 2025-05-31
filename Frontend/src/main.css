@@ -15,8 +15,8 @@ html {
     scroll-behavior: smooth;
 }
 
-.container {
-    @apply mx-auto p-3.5;
+.mycontainer {
+    @apply py-3.5 px-10 ;
 }
 
 .Nav-Link{

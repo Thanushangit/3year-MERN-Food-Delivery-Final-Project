@@ -55,7 +55,7 @@ const HomePageGallery = () => {
             <h1 className="text-center text-3xl sm:text-4xl font-bold mb-3">
                 Our Gallery
             </h1>
-            <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-0">
+            <div className="mycontainer grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-0">
                 {
                     GalleryContainer.map((gallery) => (
                         <div

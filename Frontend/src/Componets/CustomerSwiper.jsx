@@ -80,7 +80,7 @@ const CustomerSwiper = () => {
     return (
         <section class="my-15 sm:my-25  w-full">
             <h1 class="font-bold text-4xl text-center mb-3">Our Clients Say!!!</h1>
-            <div class="container relative h-full customer_container mt-5 sm:mt-10">
+            <div class="mycontainer relative h-full customer_container mt-5 sm:mt-10">
                 <Swiper
                     ref={swiperRef}
                     modules={[Pagination, Autoplay]}

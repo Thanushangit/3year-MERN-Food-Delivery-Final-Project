@@ -1,62 +1,23 @@
-import React from 'react';
 import 'swiper/css/bundle';
 import CustomerNavbar from '../Componets/Navbar/CustomerNavbar'
-import HomeFeaturesCard from '../Componets/HomeFeaturesCard';
-import PopularDishes from '../Componets/PopularDishes';
-import BreakFastFoods from '../Componets/BreakFastFoods';
-import LunchFoods from '../Componets/LunchFoods';
-import DinnerFoods from '../Componets/DinnerFoods';
+import HomeFeaturesCard from '../Componets/HomePage/HomeFeaturesCard';
+import PopularDishes from '../Componets/HomePage/PopularDishes';
 import HomePageGallery from '../Componets/HomePageGallery';
 import Footer from '../Componets/Footer';
 import CustomerSwiper from '../Componets/CustomerSwiper';
+import HeroSection from '../Componets/HomePage/HeroSection';
+import MobileAppSection from '../Componets/HomePage/MobileAppSection';
+import FoodMenu from '../Componets/HomePage/FoodMenu/FoodMenu';
 
 const Home = () => {
     return (
         <div>
+
             {/* navbar */}
             <CustomerNavbar />
 
             {/* Hero section part */}
-            <section
-                className="w-full min-h-screen relative bg-[url('https://res.cloudinary.com/thanushan/image/upload/v1747015998/flash-offer-bg_pmmrgl.webp')] bg-cover bg-center text-white"
-            >
-                {/* Black Overlay that matches section size */}
-                <div className="absolute inset-0 bg-black/80"></div>
-
-                {/*  Content Layer (on top of black overlay)  */}
-                <div className="relative z-10 flex items-center justify-center min-h-screen">
-                    <div
-                        className="container flex flex-col-reverse md:flex-row items-center gap-5 md:gap-8 mt-15"
-                    >
-                        <div className="hero_text w-full md:w-1/2 flex flex-col gap-y-3">
-                            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                                Enjoy our <br />
-                                Authentic Biriyani
-                            </h1>
-                            <p>
-                                Dive into layers of perfectly spiced rice, tender meat, and rich
-                                tradition. Crafted with passion, served with love. Every bite
-                                tells a story of flavor. 😋
-                            </p>
-                            <a
-                                href=""
-                                className="flex items-center justify-center gap-2 py-3 px-4 outline-0 rounded-md bg-primary cursor-pointer duration-300 hover:bg-emerald-800 font-semibold w-full sm:w-fit text-xl text-center mb-5 shadow-2xl"
-                            >
-                                Order Now
-                                <span><i className="fa-solid fa-arrow-right fa-beat"></i></span>
-                            </a>
-                        </div>
-                        <div className="hero_image w-full md:w-1/2">
-                            <img
-                                className="w-2/3 md:7/12 lg:w-9/12 mx-auto shadow-2xl rotater"
-                                src="https://res.cloudinary.com/thanushan/image/upload/v1747015997/flash-offer-biriyani_rl7fvr.webp"
-                                alt="biriyani"
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <HeroSection />
 
             {/* HomeFeaturesCard  */}
             <HomeFeaturesCard />
@@ -65,81 +26,17 @@ const Home = () => {
             <PopularDishes />
 
             {/* mobile app section  */}
-            <section className="my-10 sm:my-20">
-                <div
-                    className="container flex flex-col-reverse md:flex-row gap-5 md:gap-8 items-center md:justify-between justify-center w-full"
-                >
-                    {/* <!-- text content  --> */}
-                    <div className="mobile_content w-full md:w-2/3 flex flex-col gap-5">
-                        <h2
-                            className="text-2xl md:text-4xl uppercase transform inline-block free-delivery-animation"
-                        >
-                            free delivery!
-                        </h2>
-                        <h1 className="text-3xl md:text-6xl font-bold uppercase">
-                            Download the app now!
-                        </h1>
-                        <p className="text-gray-800 text-lg">
-                            Get your favorite meals delivered fast and fresh - right from your
-                            phone. Order in seconds, track in real-time, and enjoy exclusive
-                            app-only deals
-                        </p>
-                        <div className="flex items-center flex-col md:flex-row gap-5 md:gap-8">
-                            {/* <!-- Play Store --> */}
-                            <div
-                                className="w-full overflow-hidden rounded-lg hover:opacity-90"
-                                title="Go to the Play store"
-                            >
-                                <a
-                                    href="https://play.google.com/store/apps?hl=en"
-                                    target="_blank"
-                                >
-                                    <img
-                                        src="https://res.cloudinary.com/thanushan/image/upload/v1747016024/play-store_szg8iy.webp"
-                                        alt="play store"
-                                        className="object-contain"
-                                        loading="lazy"
-                                    />
-                                </a>
-                            </div>
-
-                            {/* <!-- App Store --> */}
-                            <div
-                                className="w-full overflow-hidden rounded-lg hover:opacity-90"
-                                title="Go to the App store"
-                            >
-                                <a href="https://www.apple.com/app-store/" target="_blank">
-                                    <img
-                                        src="https://res.cloudinary.com/thanushan/image/upload/v1747015973/app-store_rekz7f.webp"
-                                        alt="app store"
-                                        className="w-full object-contain"
-                                        loading="lazy"
-                                    />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* <!-- img content  --> */}
-                    <div className="mobile w-full md:w-1/3 flex justify-center">
-                        <div>
-                            <img
-                                title="Mobile App screen view"
-                                src="https://res.cloudinary.com/thanushan/image/upload/v1747017779/mobile_ss_ezrfx6.webp"
-                                alt="mobile screen shot"
-                                loading="lazy"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <MobileAppSection />
 
             {/* <!-- food menu section  --> */}
             <section id="foodmenu" className="my-10 sm:my-20 w-full">
+                
                 {/* menu card  */}
                 <div className="min-w-full md:min-w-3xl max-w-3xl mx-auto flex flex-col items-center gap-5">
                     <h1 className="font-bold text-3xl md:text-4xl">Food Menu Items</h1>
-                    <div className="container w-full flex items-center my-5 sm:my-8 justify-between gap-4 sm:gap-6 shadow-lg">
+                    <div className="mycontainer w-full flex items-center my-5 sm:my-8 justify-between gap-4 sm:gap-6 shadow-lg">
+
+
                         {/* breakfast button  */}
 
                         <button
@@ -237,17 +134,8 @@ const Home = () => {
                     </div>
                 </div>
 
-                {/* menu items  */}
-                <div className="container my-5 md:my-10">
-
-
-                    <BreakFastFoods />
-
-                    {/* <LunchFoods/> */}
-
-                    {/* <DinnerFoods/> */}
-
-                </div>
+                {/* food menu items  */}
+                <FoodMenu />
 
             </section>
 
@@ -256,7 +144,7 @@ const Home = () => {
 
             <CustomerSwiper />
 
-            
+
 
             {/* Gallery section  */}
             <HomePageGallery />
@@ -268,7 +156,7 @@ const Home = () => {
                 className="newsletter_bg w-full h-[80vh] bg-[url('https://res.cloudinary.com/thanushan/image/upload/v1747016024/newsletter-bg_zvgzxv.webp')] bg-cover bg-bottom my-10 sm:my-20"
             >
                 <div
-                    className="newsletter_text container h-full flex flex-col items-center justify-center gap-6 text-gray-200"
+                    className="newsletter_text mycontainer h-full flex flex-col items-center justify-center gap-6 text-gray-200"
                 >
                     <h1
                         className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-wider"

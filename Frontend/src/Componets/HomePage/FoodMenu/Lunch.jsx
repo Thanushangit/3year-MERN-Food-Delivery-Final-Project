@@ -57,9 +57,9 @@ const LunchFoodsArray=[
     }
 ]
 
-const LunchFoods = () => {
-    return (
-        <div
+const Lunch = () => {
+  return (
+    <div
             id="breakFastDiv"
             className="food_item_container grid relative grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4 lg:gap-x-5 lg:gap-y-5">
             {
@@ -93,7 +93,7 @@ const LunchFoods = () => {
             }
 
         </div>
-    )
+  )
 }
 
-export default LunchFoods
+export default Lunch

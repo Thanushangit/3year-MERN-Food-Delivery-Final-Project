@@ -50,7 +50,7 @@ const DinnerFoodsArray = [
 
 ]
 
-const DinnerFoods = () => {
+const Dinner = () => {
     return (
         <div
             id="breakFastDiv"
@@ -89,4 +89,4 @@ const DinnerFoods = () => {
     )
 }
 
-export default DinnerFoods
+export default Dinner

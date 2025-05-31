@@ -22,7 +22,7 @@ const Features = [
 const HomeFeaturesCard = () => {
     return (
         <section className="w-full my-5 sm:my-10">
-            <div className="container grid grid-cols-1 sm:grid-cols-3 gap-8 mt-5 w-full text-center">
+            <div className="mycontainer grid grid-cols-1 sm:grid-cols-3 gap-8 mt-5  text-center">
 
                 {Features.map((feature) => (
                     <div

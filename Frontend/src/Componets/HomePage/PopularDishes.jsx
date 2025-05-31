@@ -89,7 +89,7 @@ const Dishes = [
 const PopularDishes = () => {
     return (
         <section className="my-10 sm:my-20 bg-[#e9ecef]">
-            <div className="container">
+            <div className="mycontainer">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl mb-5 sm:mb-8 font-bold font-ibm">
                     Populer Dishes
                 </h1>

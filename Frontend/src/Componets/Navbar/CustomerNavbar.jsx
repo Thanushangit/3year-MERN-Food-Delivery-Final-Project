@@ -4,7 +4,7 @@ const CustomerNavbar = () => {
     return (
         // navbar-code
         <header className="bg-[#232736] w-full text-white fixed top-0 left-0 z-50">
-            <nav className="container flex items-center justify-between">
+            <nav className="mycontainer flex items-center justify-between">
                 {/* logo part */}
                 <div className="flex items-center gap-2" title="Welcome 😊">
                     <div>
