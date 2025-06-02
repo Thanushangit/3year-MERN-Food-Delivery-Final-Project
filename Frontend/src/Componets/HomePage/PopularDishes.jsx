@@ -101,8 +101,8 @@ const PopularDishes = () => {
                         {
                             Dishes.map((food) => (
                                 <div
-                                    key={food.id} className="group dishes_item border-1 border-gray-300 hover:shadow-2xl cursor-pointer hover:-translate-y-1 transform transition duration-300 rounded-md overflow-hidden relative"
-                                    title="Taste. Smile. Repeat. 😋"
+                                    key={food.id} title="Taste. Smile. Repeat. 😋" className="group dishes_item border-1 border-gray-300 hover:shadow-2xl cursor-pointer hover:-translate-y-1 transform transition duration-300 rounded-md overflow-hidden relative "
+
                                 >
                                     <div className="h-1/3 w-auto overflow-hidden">
                                         <img
@@ -112,8 +112,8 @@ const PopularDishes = () => {
                                             loading="lazy"
                                         />
                                     </div>
-                                    <div className="p-2 flex flex-col mb-2 h-2/3">
-                                        <div className="flex flex-col relative">
+                                    <div className="p-2 flex flex-col mb-2 md:h-16">
+                                        <div className="flex flex-col relative ">
                                             <h2 className="font-semibold text-lg font-cascadia">{food.title}</h2>
                                             <h5 className="font-bold text-xl text-primary">{food.price}</h5>
                                             <p>{food.description}</p>

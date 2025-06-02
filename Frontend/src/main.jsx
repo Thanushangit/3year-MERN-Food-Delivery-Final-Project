@@ -1,3 +1,4 @@
+import './main.css';
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -11,7 +12,10 @@ import LoginLayout from './Layout/LoginLayout.jsx';
 import MainErrorPage from './Pages/MainErrorPage.jsx';
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
-import './main.css';
+import BreakFast from './Pages/BreakFast.jsx';
+import Lunch from './Pages/Lunch.jsx';
+import Dinner from './Pages/Dinner.jsx';
+import { loadBreakFast, loadDinner, loadLunch } from './FetchLoaders/Fetchingdata.js';
 
 
 const router = createBrowserRouter([
@@ -49,7 +53,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
+  </StrictMode>
 )
 
 
