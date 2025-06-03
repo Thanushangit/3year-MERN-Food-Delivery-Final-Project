@@ -5,7 +5,7 @@ import CustomerNavbar from '../Componets/Navbar/CustomerNavbar'
 import HomeFeaturesCard from '../Componets/HomePage/HomeFeaturesCard';
 import PopularDishes from '../Componets/HomePage/PopularDishes';
 import HomePageGallery from '../Componets/HomePage/HomePageGallery';
-import Footer from '../Componets/Footer';
+import Footer from '../Componets/Footer/Footer'
 import CustomerSwiper from '../Componets/HomePage/CustomerSwiper';
 import HeroSection from '../Componets/HomePage/HeroSection';
 import MobileAppSection from '../Componets/HomePage/MobileAppSection';
