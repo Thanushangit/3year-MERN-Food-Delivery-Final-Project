@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const MyorderDeliverd = () => {
     return (
         <div className="container  w-full mt-5 h-full flex flex-col items-center justify-center text-center space-y-1">
@@ -17,14 +19,10 @@ const MyorderDeliverd = () => {
                 Thank you for your order! Your food has been delivered successfully.
                 We hope you enjoyed your meal and look forward to serving you again soon.
             </p>
-
-            <a
-                href="./Myorder.html"
-                title="Go to my order page"
-                className="w-full md:w-64 sm:py-2 py-3 px-6 mb-2 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-8"
-            >
+            <Link to={"/"} title="Go to my order page" className="w-full md:w-64 sm:py-2 py-3 px-6 mb-2 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-8">
                 Order more
-            </a>
+            </Link>
+
         </div>
 
     );

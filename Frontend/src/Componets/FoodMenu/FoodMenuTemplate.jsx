@@ -1,4 +1,4 @@
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { increment } from '../../Slices/CounterSlice';
 
