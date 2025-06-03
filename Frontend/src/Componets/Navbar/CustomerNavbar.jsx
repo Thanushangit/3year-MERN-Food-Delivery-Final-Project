@@ -1,6 +1,10 @@
+import { useState } from "react"
 import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const CustomerNavbar = () => {
+    const counterValue= useSelector((sta)=>sta.count.count)
+    const [menuStatus, setMenuStatus] = useState(false)
     return (
         // navbar-code
         <header className="bg-[#232736] w-full text-white fixed top-0 left-0 z-50">
@@ -38,10 +42,10 @@ const CustomerNavbar = () => {
                 {/* navigate links */}
                 <div
                     id="slildermenu"
-                    className="absolute md:static md:min-h-fit w-full md:w-fit top-0 left-[-100%] bg-[#232736] min-h-[100vh] duration-300 overflow-hidden"
+                    className={`absolute md:static md:min-h-fit w-full md:w-fit top-0 left-[-100%] bg-[#232736] min-h-[100vh] duration-300 overflow-hidden ${menuStatus?"left-[0]":"left-[-100%]"}`}
                 >
                     <ul
-                        className="min-h-[100vh] md:min-h-fit flex flex-col md:flex-row items-center justify-center gap-8 font-semibold text-xl"
+                        className="min-h-[100vh] md:min-h-fit flex flex-col md:flex-row items-center justify-center gap-8 font-semibold text-xl  md:py-2"
                     >
 
                         <li title="click here" id="nav-link" ><NavLink to="/" className={({ isActive }) =>
@@ -60,10 +64,16 @@ const CustomerNavbar = () => {
                         }>About</NavLink></li>
 
 
-                        <li title="click here" id="nav-link" ><NavLink to="/cart" className={({ isActive }) =>
-                            `Nav-Link ${isActive ? "text-primary" : "text-inherit"
-                            }`
-                        }>Cart</NavLink></li>
+                        <li title="click here" id="nav-link">
+                            <div className="relative">
+                                <NavLink to="/cart" className={({ isActive }) =>
+                                    `Nav-Link ${isActive ? "text-primary" : "text-inherit"
+                                    }`
+                                }>Cart
+                                </NavLink>
+                                <p className={`-top-1 -right-5 h-5 w-5 bg-red-500 rounded-full  p-1 flex items-center justify-center text-sm ${counterValue>0?"absolute":"hidden"}`}>{counterValue}</p>
+                            </div>
+                        </li>
 
                         <li title="click here" id="nav-link"  ><NavLink to="authentication" className={({ isActive }) =>
                             `Nav-Link ${isActive ? "text-primary" : "text-inherit"
@@ -75,8 +85,10 @@ const CustomerNavbar = () => {
                 {/* menu icon  */}
                 <div className="z-50 md:hidden">
                     <i
+                        title="Menu"
                         id="menuicon"
-                        className="ri-menu-fold-line text-2xl cursor-pointer"
+                        className={`text-2xl cursor-pointer ${menuStatus?"ri-close-fill":"ri-menu-fold-line"}`}
+                        onClick={() => setMenuStatus(pre => !pre)}
                     ></i>
                 </div>
             </nav>

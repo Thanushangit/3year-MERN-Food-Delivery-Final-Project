@@ -13,6 +13,8 @@ const Home = () => {
     return (
         <div>
 
+            
+
             {/* navbar */}
             <CustomerNavbar />
 

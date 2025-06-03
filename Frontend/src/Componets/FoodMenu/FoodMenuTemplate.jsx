@@ -1,5 +1,13 @@
 import { ToastContainer, toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { increment } from '../../Slices/CounterSlice';
+
+
 const FoodMenuTemplate = ({ FoodData }) => {
+
+    const dispatch = useDispatch()
+
+
     const notify = (tostFood) => toast.success(
         <div>
             <p><strong>{tostFood}</strong> added successfully!</p>
@@ -13,6 +21,13 @@ const FoodMenuTemplate = ({ FoodData }) => {
             draggable: true,
             progress: undefined,
         });
+
+
+    function ButtonHanler(foodTitle) {
+        notify(foodTitle);
+        dispatch(increment())
+
+    }
 
     return (
         <div
@@ -39,7 +54,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
                             <p>{food.description}</p>
                             <h1 className="text-primary font-semibold">Rs:-{food.price}</h1>
                         </div>
-                        <button onClick={() => notify(food.name)}
+                        <button onClick={() => ButtonHanler(food.name)}
                             title="Order Now"
                             className="w-12 md:w-15 mr-2 lg:mr-1 aspect-square rounded-full flex items-center justify-center bg-primary outline-0 font-bold text-white hover:border-2 hover:border-primary hover:bg-transparent hover:text-green-800 cursor-pointer duration-300 transition ease-in-out"
                         >

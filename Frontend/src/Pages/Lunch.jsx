@@ -15,8 +15,8 @@ const Lunch = () => {
 
   return (
     <div>
-      <h1 className='text-2xl md:text-4xl mb-4'>Lunch</h1>
-      <p className='text-gray-600 mb-6'>Enjoy a hearty Sri Lankan lunch with rice, curries, and flavorful sides to keep you energized.</p>
+      <h1 className='text-2xl md:text-4xl mb-2'>Lunch</h1>
+      <p className='text-gray-600 md:mb-8 mb-4'>Enjoy a hearty Sri Lankan lunch with rice, curries, and flavorful sides to keep you energized.</p>
 
       <FoodMenuTemplate FoodData={FoodData} />
     </div>

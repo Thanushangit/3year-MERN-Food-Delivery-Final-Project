@@ -1,8 +1,11 @@
 import { ToastContainer, toast } from 'react-toastify';
 import { popularDishes } from "../../FetchLoaders/Fetchingdata";
 import { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import {increment} from '../../Slices/CounterSlice'
 
 const PopularDishes = () => {
+    const dispatch=useDispatch()
 
     const [FoodData, setFoodData] = useState([]);
     useEffect(() => {
@@ -23,7 +26,8 @@ const PopularDishes = () => {
         <div>
             <p><strong>{tostFood}</strong> added successfully!</p>
         </div>
-        , {
+        , 
+        {
             position: "top-center",
             autoClose: 2000,
             hideProgressBar: false,
@@ -32,6 +36,13 @@ const PopularDishes = () => {
             draggable: true,
             progress: undefined,
         });
+
+
+        function ButtonHanler(foodTitle){
+            notify(foodTitle);
+            dispatch(increment())
+
+        }
 
     return (
         <section className="my-10 sm:my-20 bg-[#e9ecef]">
@@ -64,7 +75,7 @@ const PopularDishes = () => {
                                             <h5 className="font-bold text-xl text-primary">{food.price}</h5>
                                             <p>{food.description}</p>
 
-                                            <button onClick={() => notify(food.title)}
+                                            <button onClick={() => ButtonHanler(food.title)}
                                                 className="absolute h-7 w-7 md:h-10 md:w-10 top-0 right-0 rounded-full bg-primary outline-0 font-bold text-white hover:border-2 hover:border-primary hover:bg-transparent hover:text-green-800 cursor-pointer duration-300 transition"
                                                 title="Order Now"
                                             >
