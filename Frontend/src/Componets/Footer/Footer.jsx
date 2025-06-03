@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
     return (
         <footer className="w-full bg-[#232736] text-gray-400">
@@ -138,19 +140,18 @@ const Footer = () => {
 
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-5 items-end md:gap-5 justify-between">
                     <div className="text-center md:text-left lg:col-span-3 order-2 md:order-1">
-                        <p>
-                            copyright &copy; 2025. Powered by
+                        <div className="flex items-center gap-x-1">
+                            <p>copyright &copy; 2025. Powered by</p>
                             <span
                                 title="source code"
-                                className="hover:text-gray-200 transition duration-200 hover:underline underline-offset-2"
+                                className="hover:text-gray-200 transition duration-200 hover:underline underline-offset-2 "
                             >
-                                <a
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    href="https://github.com/Thanushangit/Food-delivery.git"
-                                >J'boys.</a>
+                                <Link target="_blank" to={"https://github.com/Thanushangit/Food-delivery.git"}>
+                                    J'boys.
+                                </Link>
+
                             </span>
-                        </p>
+                        </div>
                     </div>
 
                     <div className="order-1 md:order-2 ">
