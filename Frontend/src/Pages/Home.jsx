@@ -1,4 +1,5 @@
 import 'swiper/css/bundle';
+import 'react-toastify/dist/ReactToastify.css';
 import CustomerNavbar from '../Componets/Navbar/CustomerNavbar'
 import HomeFeaturesCard from '../Componets/HomePage/HomeFeaturesCard';
 import PopularDishes from '../Componets/HomePage/PopularDishes';
@@ -13,7 +14,7 @@ const Home = () => {
     return (
         <div>
 
-            
+
 
             {/* navbar */}
             <CustomerNavbar />
@@ -36,7 +37,7 @@ const Home = () => {
 
 
             {/* <!-- food menu section  --> */}
-                <FoodMenuButtons />
+            <FoodMenuButtons />
 
 
             {/* customer swiper section  */}
