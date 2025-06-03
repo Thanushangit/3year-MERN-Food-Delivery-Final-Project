@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { popularDishes } from "../../FetchLoaders/Fetchingdata";
 import { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
@@ -90,17 +90,7 @@ const PopularDishes = () => {
                     </div>
                 </div>
             </div>
-            <ToastContainer
-                position="top-center"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
+           
         </section>
     )
 }

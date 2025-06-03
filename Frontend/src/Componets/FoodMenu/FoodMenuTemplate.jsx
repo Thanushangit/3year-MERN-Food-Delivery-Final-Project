@@ -1,4 +1,4 @@
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { increment } from '../../Slices/CounterSlice';
 
@@ -64,17 +64,6 @@ const FoodMenuTemplate = ({ FoodData }) => {
                 ))
             }
 
-            <ToastContainer
-                position="top-center"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
 
         </div>
     )
