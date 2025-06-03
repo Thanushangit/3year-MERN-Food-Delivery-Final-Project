@@ -1,4 +1,19 @@
+import { ToastContainer, toast } from 'react-toastify';
 const FoodMenuTemplate = ({ FoodData }) => {
+    const notify = (tostFood) => toast.success(
+        <div>
+            <p><strong>{tostFood}</strong> added successfully!</p>
+        </div>
+        , {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
     return (
         <div
             id="breakFastDiv"
@@ -24,7 +39,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
                             <p>{food.description}</p>
                             <h1 className="text-primary font-semibold">Rs:-{food.price}</h1>
                         </div>
-                        <button
+                        <button onClick={() => notify(food.name)}
                             title="Order Now"
                             className="w-12 md:w-15 mr-2 lg:mr-1 aspect-square rounded-full flex items-center justify-center bg-primary outline-0 font-bold text-white hover:border-2 hover:border-primary hover:bg-transparent hover:text-green-800 cursor-pointer duration-300 transition ease-in-out"
                         >
@@ -34,7 +49,17 @@ const FoodMenuTemplate = ({ FoodData }) => {
                 ))
             }
 
-
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
 
         </div>
     )

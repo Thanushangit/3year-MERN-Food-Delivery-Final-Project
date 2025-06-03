@@ -9,7 +9,6 @@ const BreakFast = () => {
     const fetchData = async () => {
       const data = await loadBreakFast();
       setFoodData(data);
-      console.log(data);
     };
     fetchData();
   }, []);
