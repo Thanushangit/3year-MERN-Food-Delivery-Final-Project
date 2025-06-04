@@ -30,9 +30,9 @@ const About = () => {
             <ServicesSection />
 
             {/* Team members Section  */}
-            <section classNameName="my-10 sm:my-30 w-full">
-                <div classNameName="mycontainer flex flex-col items-center justify-center">
-                    <h1 classNameName="font-ibm text-2xl md:text-4xl font-semibold sm:mb-3">
+            <section className="my-10 sm:my-30 w-full">
+                <div className="mycontainer flex flex-col items-center justify-center">
+                    <h1 className="font-ibm text-2xl md:text-4xl font-semibold sm:mb-3">
                         Meet Our Team
                     </h1>
 
@@ -59,25 +59,19 @@ const About = () => {
                             loading="lazy"
                         />
                     </div>
-
                     <div
                         className="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16"
                     >
-                        
-
-                        <BranchCard/>
+                        <BranchCard />
 
                     </div>
                 </div>
             </section>
 
 
-
-
-
             {/* Footer  */}
             <Footer />
-
+            
         </div>
     )
 }

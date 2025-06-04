@@ -26,7 +26,7 @@ const ServicesSection = () => {
                     <div
                         className="py-2 px-4 md:py-4 md:px-6 flex flex-col md:flex-row items-center justify-center gap-x-4 gap-y-2 bg-white rounded text-gray-900"
                     >
-                        <h1 className="text-3xl sm:text-6xl font-bold text-primary">06</h1>
+                        <h1 className="text-3xl sm:text-6xl font-bold text-primary">04</h1>
                         <p className="text-lg text-gray-600 text-center">
                             Best <br />Restaurants
                         </p>

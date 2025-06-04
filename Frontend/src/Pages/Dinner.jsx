@@ -9,7 +9,6 @@ const Dinner = () => {
     const fetchData = async () => {
       const data = await loadDinner();
       setFoodData(data);
-      console.log(data);
     };
     fetchData();
   }, []);

@@ -1,55 +1,55 @@
 [
   {
-    "id": 1,
+    "id": 9,
     "name": "Veg Rice & Curry",
     "description": "Steamed rice with dhal, vegetables, and spicy sambol.",
     "price": 300,
     "image": "https://res.cloudinary.com/thanushan/image/upload/v1747016012/lu-1-_rice-curry_l2fqb5.webp"
   },
   {
-    "id": 2,
+    "id": 10,
     "name": "Chicken Biryani",
     "description": "Flavored rice with chicken, egg, salad, and spicy gravy.",
     "price": 700,
     "image": "https://res.cloudinary.com/thanushan/image/upload/v1747016016/lu-2-_chicken-biriyani_kk5ftn.webp"
   },
   {
-    "id": 3,
+    "id": 11,
     "name": "Egg Fried Rice",
     "description": "Stir-fried rice with egg, vegetables, and spicy sauce.",
     "price": 400,
     "image": "https://res.cloudinary.com/thanushan/image/upload/v1747016018/lu-3-_egg-rice_aehzq8.webp"
   },
   {
-    "id": 4,
+    "id": 12,
     "name": "Fish Rice & Curry",
     "description": "Rice with fish curry, brinjal moju, beans, and sambol.",
     "price": 350,
     "image": "https://res.cloudinary.com/thanushan/image/upload/v1747016019/lu-4-_fish-rice_epawls.webp"
   },
   {
-    "id": 5,
+    "id": 13,
     "name": "Vegetable Biryani",
     "description": "Spiced rice with mixed vegetables, raita, and curry.",
     "price": 500,
     "image": "https://res.cloudinary.com/thanushan/image/upload/v1747016020/lu-5-_rice-curryveg-biryani_uvou9i.webp"
   },
   {
-    "id": 6,
+    "id": 14,
     "name": "Dhal Curry & Rice",
     "description": "Steamed rice with dhal curry, salad, chilies, papadam.",
     "price": 250,
     "image": "https://res.cloudinary.com/thanushan/image/upload/v1747016022/lu-6-dhal-curry_hmveji.webp"
   },
   {
-    "id": 7,
+    "id": 15,
     "name": "Pittu with Sambol",
     "description": "Soft pittu with sambol, coconut milk, curry, and banana.",
     "price": 300,
     "image": "https://res.cloudinary.com/thanushan/image/upload/v1747016023/lu-7-_piitu_nlnlpt.webp"
   },
   {
-    "id": 8,
+    "id": 16,
     "name": "Seafood Fried Rice",
     "description": "Fried rice with prawns, cuttlefish, vegetables, egg, sauce.",
     "price": 800,

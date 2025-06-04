@@ -8,7 +8,6 @@ const Lunch = () => {
     const fetchData = async () => {
       const data = await loadLunch();
       setFoodData(data);
-      console.log(data);
     };
     fetchData();
   }, []);
