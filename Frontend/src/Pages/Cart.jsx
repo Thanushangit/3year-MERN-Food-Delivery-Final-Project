@@ -69,8 +69,8 @@ const Cart = () => {
 
               </tbody>
             </table>
-            {/* confirmation to delete  */}
-            <div className='absolute top-0 right-0 w-full bg-black/20'></div>
+           
+            
           </div>
 
           {/* <!-- summary container  --> */}

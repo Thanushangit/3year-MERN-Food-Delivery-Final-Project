@@ -1,5 +1,6 @@
 import { useState } from "react";
-import {formatSrilankaPrice} from '../../Util/PriceSeperator'
+import { formatSrilankaPrice } from '../../Util/PriceSeperator'
+import Swal from "sweetalert2";
 
 const OrderFoodCard = ({ details, FilterItems }) => {
 
@@ -15,6 +16,30 @@ const OrderFoodCard = ({ details, FilterItems }) => {
         if (singleFoodCount > 1) {
             setSingleFoodCount(pre => pre - 1)
         }
+    }
+
+     {/* confirmation to delete  */}
+
+    function DeleteButtonHandler(id ,title) {
+        Swal.fire({
+            title: `Are you sure you want to delete ${title}`,
+            text: `${title} will be removed from your cart.`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: `"${title}" has been removed.`,
+                    icon: "success"
+                });
+
+                FilterItems(id)
+            }
+        });
     }
 
 
@@ -72,7 +97,7 @@ const OrderFoodCard = ({ details, FilterItems }) => {
             <td className="font-semibold">Rs:-{formatSrilankaPrice(singleFoodCount * price)}</td>
             <td>
 
-                <button title="Remove" onClick={() => FilterItems(id)} className="md:w-8 md:h-8 h-5 w-5 rounded-full flex items-center justify-center font-semibold bg-red-500 text-white hover:bg-red-700 transition duration-200 cursor-pointer">
+                <button title="Remove" onClick={()=>DeleteButtonHandler(id,title)} className="md:w-8 md:h-8 h-5 w-5 rounded-full flex items-center justify-center font-semibold bg-red-500 text-white hover:bg-red-700 transition duration-200 cursor-pointer">
                     <i className="ri-close-line"></i>
                 </button>
 

@@ -1,13 +1,16 @@
 import { toast } from 'react-toastify';
 import { popularDishes } from "../../FetchLoaders/Fetchingdata";
 import { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { increment } from '../../Slices/CounterSlice';
 import { addItem } from '../../Slices/AddItemsSlice';
 import {formatSrilankaPrice} from '../../Util/PriceSeperator'
 
+
+
 const PopularDishes = () => {
     const dispatch = useDispatch();
+     const orderItems = useSelector(sta => sta.addItems)
 
     // this is fetching food data from the db 
     const [FoodData, setFoodData] = useState([]);
@@ -41,6 +44,9 @@ const PopularDishes = () => {
         );
 
     const ButtonHandler = (foodTitle, foodId, foodImage, foodPrice) => {
+
+
+        
         notify(foodTitle);
         dispatch(increment());
 
