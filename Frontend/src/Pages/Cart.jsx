@@ -3,29 +3,29 @@ import EmptyCart from '../Componets/CartPage/EmptyCart'
 import OrderFoodCard from '../Componets/CartPage/OrderFoodCard'
 import { useDispatch } from 'react-redux';
 import { resetCount } from '../Slices/CounterSlice';
+import { useEffect } from 'react';
+import {deleteItem} from '../Slices/AddItemsSlice'
 
 
 const Cart = () => {
   const Dispatch = useDispatch()
   const cartCount = useSelector(sta => sta.count.count)
   const orderItems = useSelector(sta => sta.addItems)
+ 
 
 
-  const FilterItems = (id) => {
-    const updatedItems = orderItems.filter((item) => item.id !== id);
-    // Dispatch(addItem(updatedItems))
-  };
+  useEffect(()=>{
+    return(
+      console.log("add items details",orderItems)
+    )
+  },[orderItems])
 
 
-  if (orderItems.length <= 0) {
-    Dispatch(resetCount())
+  useEffect(() => {
+  if (orderItems.length === 0) {
+    Dispatch(resetCount());
   }
-
-
-
-
-
-
+}, [orderItems, Dispatch]);
 
 
 
@@ -48,7 +48,7 @@ const Cart = () => {
 
           {/* <!-- food details container  --> */}
           <div
-            className="lg:col-span-2 text-left max-h-[60vh] overflow-scroll scroll-smooth"
+            className="lg:col-span-2 text-left max-h-[60vh] overflow-scroll scroll-smooth relative"
           >
             <table className="w-full h-full relative">
               <thead className="sticky top-0 right-0 z-10 bg-gray-50 w-full">
@@ -63,12 +63,14 @@ const Cart = () => {
               <tbody>
                 {
                   orderItems.map((items) => (
-                    <OrderFoodCard key={items.id} details={items} FilterItems={FilterItems} />
+                    <OrderFoodCard key={items.id} details={items} FilterItems={(id) => Dispatch(deleteItem(id))} />
                   ))
                 }
 
               </tbody>
             </table>
+            {/* confirmation to delete  */}
+            <div className='absolute top-0 right-0 w-full bg-black/20'></div>
           </div>
 
           {/* <!-- summary container  --> */}
@@ -117,6 +119,8 @@ const Cart = () => {
 
         </div>
       </div>
+
+      
     </section>
   )
 }

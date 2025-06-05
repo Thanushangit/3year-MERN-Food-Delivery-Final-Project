@@ -9,12 +9,17 @@ const AddItemsSlice=createSlice({
     reducers:{
         addItem(state, action) {
             state.push(action.payload);
-        }
+        },
+        deleteItem(state, action) {
+            const idToDelete = action.payload;
+            return state.filter(item => item.id !== idToDelete);
+            }
+
     }
 
 })
 
 
 
-export const {addItem}=AddItemsSlice.actions;
+export const {addItem,deleteItem}=AddItemsSlice.actions;
 export default AddItemsSlice.reducer
