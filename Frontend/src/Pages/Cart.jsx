@@ -4,28 +4,28 @@ import OrderFoodCard from '../Componets/CartPage/OrderFoodCard'
 import { useDispatch } from 'react-redux';
 import { resetCount } from '../Slices/CounterSlice';
 import { useEffect } from 'react';
-import {deleteItem} from '../Slices/AddItemsSlice'
+import { deleteItem } from '../Slices/AddItemsSlice'
 
 
 const Cart = () => {
   const Dispatch = useDispatch()
   const cartCount = useSelector(sta => sta.count.count)
   const orderItems = useSelector(sta => sta.addItems)
- 
 
-
-  useEffect(()=>{
-    return(
-      console.log("add items details",orderItems)
-    )
-  },[orderItems])
 
 
   useEffect(() => {
-  if (orderItems.length === 0) {
-    Dispatch(resetCount());
-  }
-}, [orderItems, Dispatch]);
+    return (
+      console.log("add items details it come from the cart.js", orderItems)
+    )
+  }, [orderItems])
+
+
+  useEffect(() => {
+    if (orderItems.length === 0) {
+      Dispatch(resetCount());
+    }
+  }, [orderItems, Dispatch]);
 
 
 
@@ -69,8 +69,8 @@ const Cart = () => {
 
               </tbody>
             </table>
-           
-            
+
+
           </div>
 
           {/* <!-- summary container  --> */}
@@ -120,7 +120,7 @@ const Cart = () => {
         </div>
       </div>
 
-      
+
     </section>
   )
 }

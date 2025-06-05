@@ -2,11 +2,14 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { increment } from '../../Slices/CounterSlice';
 import { addItem } from '../../Slices/AddItemsSlice';
+import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 
 const FoodMenuTemplate = ({ FoodData }) => {
 
     const dispatch = useDispatch()
+    const orderItems = useSelector(sta => sta.addItems)
 
 
     const notify = (tostFood) => toast.success(
@@ -24,9 +27,19 @@ const FoodMenuTemplate = ({ FoodData }) => {
         });
 
 
-    function ButtonHandler(foodTitle,foodId,foodImage,foodPrice) {
-        notify(foodTitle);
-        dispatch(increment())
+    function ButtonHandler(foodTitle, foodId, foodImage, foodPrice) {
+
+        const alreadyExists = orderItems.some((item) => item.id === foodId);
+        if (alreadyExists) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `${foodTitle} is already in the cart!`,
+            });
+            return;
+
+        }
+
 
         const item = {
             id: foodId,
@@ -35,7 +48,8 @@ const FoodMenuTemplate = ({ FoodData }) => {
             price: Number(foodPrice)
         };
 
-
+        notify(foodTitle);
+        dispatch(increment())
         dispatch(addItem(item));
 
     }
@@ -65,7 +79,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
                             <p>{food.description}</p>
                             <h1 className="text-primary font-semibold">Rs:-{food.price}</h1>
                         </div>
-                        <button onClick={() => ButtonHandler(food.name,food.id,food.image,food.price)}
+                        <button onClick={() => ButtonHandler(food.name, food.id, food.image, food.price)}
                             title="Order Now"
                             className="w-12 md:w-15 mr-2 lg:mr-1 aspect-square rounded-full flex items-center justify-center bg-primary outline-0 font-bold text-white hover:border-2 hover:border-primary hover:bg-transparent hover:text-green-800 cursor-pointer duration-300 transition ease-in-out"
                         >

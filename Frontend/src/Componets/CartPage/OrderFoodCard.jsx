@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { formatSrilankaPrice } from '../../Util/PriceSeperator'
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { decrement } from "../../Slices/CounterSlice";
+
 
 const OrderFoodCard = ({ details, FilterItems }) => {
+    const dispatch = useDispatch();
+
 
     const { image, title, price, id } = details;
 
@@ -18,9 +23,9 @@ const OrderFoodCard = ({ details, FilterItems }) => {
         }
     }
 
-     {/* confirmation to delete  */}
+    {/* confirmation to delete  */ }
 
-    function DeleteButtonHandler(id ,title) {
+    function DeleteButtonHandler(id, title) {
         Swal.fire({
             title: `Are you sure you want to delete ${title}`,
             text: `${title} will be removed from your cart.`,
@@ -36,7 +41,7 @@ const OrderFoodCard = ({ details, FilterItems }) => {
                     text: `"${title}" has been removed.`,
                     icon: "success"
                 });
-
+                dispatch(decrement())
                 FilterItems(id)
             }
         });
@@ -97,7 +102,7 @@ const OrderFoodCard = ({ details, FilterItems }) => {
             <td className="font-semibold">Rs:-{formatSrilankaPrice(singleFoodCount * price)}</td>
             <td>
 
-                <button title="Remove" onClick={()=>DeleteButtonHandler(id,title)} className="md:w-8 md:h-8 h-5 w-5 rounded-full flex items-center justify-center font-semibold bg-red-500 text-white hover:bg-red-700 transition duration-200 cursor-pointer">
+                <button title="Remove" onClick={() => DeleteButtonHandler(id, title)} className="md:w-8 md:h-8 h-5 w-5 rounded-full flex items-center justify-center font-semibold bg-red-500 text-white hover:bg-red-700 transition duration-200 cursor-pointer">
                     <i className="ri-close-line"></i>
                 </button>
 

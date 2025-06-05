@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { increment } from '../../Slices/CounterSlice';
 import { addItem } from '../../Slices/AddItemsSlice';
-import {formatSrilankaPrice} from '../../Util/PriceSeperator'
+import { formatSrilankaPrice } from '../../Util/PriceSeperator'
+import Swal from 'sweetalert2';
 
 
 
 const PopularDishes = () => {
     const dispatch = useDispatch();
-     const orderItems = useSelector(sta => sta.addItems)
+    const orderItems = useSelector(sta => sta.addItems)
 
     // this is fetching food data from the db 
     const [FoodData, setFoodData] = useState([]);
@@ -27,7 +28,9 @@ const PopularDishes = () => {
         fetchData();
     }, []);
 
-    const notify = (tostFood) =>
+
+    // it for the new food added 
+    const notifyNewItem = (tostFood) =>
         toast.success(
             <div>
                 <p><strong>{tostFood}</strong> added successfully!</p>
@@ -43,12 +46,21 @@ const PopularDishes = () => {
             }
         );
 
+
+
     const ButtonHandler = (foodTitle, foodId, foodImage, foodPrice) => {
+        const alreadyExists = orderItems.some((item) => item.id === foodId);
 
+        if (alreadyExists) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `${foodTitle} is already in the cart!`,
+            });
+            return;
 
-        
-        notify(foodTitle);
-        dispatch(increment());
+        }
+
 
         const item = {
             id: foodId,
@@ -56,10 +68,12 @@ const PopularDishes = () => {
             title: foodTitle,
             price: Number(foodPrice)
         };
-
-
+        notifyNewItem(foodTitle);
+        dispatch(increment());
         dispatch(addItem(item));
+
     };
+
 
     return (
         <section className="my-10 sm:my-20 bg-[#e9ecef]">
@@ -89,7 +103,7 @@ const PopularDishes = () => {
                                             {food.title}
                                         </h2>
                                         <h5 className="font-bold text-xl text-primary">
-                                           Rs:- {formatSrilankaPrice(food.price)} 
+                                            Rs:- {formatSrilankaPrice(food.price)}
                                         </h5>
                                         <p>{food.description}</p>
 
