@@ -31,18 +31,18 @@ const Cart = () => {
 
 
 
-  useEffect(() => {
-    return (
-      console.log("add items details it come from the cart.js", orderItems)
-    )
-  }, [orderItems])
+  // useEffect(() => {
+  //   return (
+  //     console.log("add items details it come from the cart.js", orderItems)
+  //   )
+  // }, [orderItems])
 
 
-  useEffect(() => {
-    return (
-      console.log("items with qty", OrderItemsWithQty)
-    )
-  }, [OrderItemsWithQty])
+  // useEffect(() => {
+  //   return (
+  //     console.log("items with qty", OrderItemsWithQty)
+  //   )
+  // }, [OrderItemsWithQty])
 
 
   useEffect(() => {
@@ -162,7 +162,7 @@ const Cart = () => {
             </div>
             <div className="w-full h-full mt-5">
 
-              <button title="Pay Money" onClick={() => Navigate("confirmation")}
+              <button title="Pay Money" onClick={() => Navigate("confirmation", { state: { total: Total, discount: Discount, delivery: Delivey } })}
                 className="py-3 px-6   bg-green-600 text-white rounded outline-0 cursor-pointer w-full mt-4 text-xl uppercase hover:bg-green-800 transition duration-300">
                 checkout
               </button>

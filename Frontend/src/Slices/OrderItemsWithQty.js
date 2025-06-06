@@ -17,9 +17,12 @@ const OrderItemsWithQty = createSlice({
     deleteItemsWithQty(state, action) {
       const idToDelete = action.payload;
       return state.filter(item => item.id !== idToDelete);
+    },
+    resetOrderItemQty(){
+      return []
     }
   }
 });
 
-export const { addItemsWithQty, deleteItemsWithQty} = OrderItemsWithQty.actions;
+export const { addItemsWithQty, deleteItemsWithQty,resetOrderItemQty} = OrderItemsWithQty.actions;
 export default OrderItemsWithQty.reducer;

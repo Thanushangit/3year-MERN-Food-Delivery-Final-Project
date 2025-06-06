@@ -21,9 +21,10 @@ const OrderFoodCard = ({ details, FilterItems }) => {
 
         const item = {
             id: id,
+            image: image,
             title: title,
             price: Number(price),
-            Qty:singleFoodCount
+            Qty: singleFoodCount
         };
         dispatch(addItemsWithQty(item))
     }, [totalPrice, singleFoodCount, title, id, price, image])

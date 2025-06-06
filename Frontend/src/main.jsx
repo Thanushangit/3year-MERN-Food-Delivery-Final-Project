@@ -32,7 +32,7 @@ const router = createBrowserRouter([
           { index: true, element: <Home /> },
           { path: 'myorder', element: <MyOrder /> },
           { path: 'about', element: <About /> },
-          { path: 'cart', element: <CartLayout/> , 
+          { path: 'cart', element: <CartLayout/>  , 
             children:[
               {index:true, element:<Cart/>},
               {path:'confirmation', element:<Confirmation/>},

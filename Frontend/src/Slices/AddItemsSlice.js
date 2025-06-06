@@ -13,7 +13,10 @@ const AddItemsSlice=createSlice({
         deleteItem(state, action) {
             const idToDelete = action.payload;
             return state.filter(item => item.id !== idToDelete);
-            }
+        },
+        resetAddItems(){
+            return []
+        }
 
     }
 
@@ -21,5 +24,5 @@ const AddItemsSlice=createSlice({
 
 
 
-export const {addItem,deleteItem}=AddItemsSlice.actions;
+export const {addItem,deleteItem,resetAddItems}=AddItemsSlice.actions;
 export default AddItemsSlice.reducer

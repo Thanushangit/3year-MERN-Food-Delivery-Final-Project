@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    orderStatus: "", }  //it pissibel "ontheway", "canceled", "delivered", " "
+    orderStatus: "", }  //it pissibel "placed" "ontheway", "canceled", "delivered", " "
 
 
 const orderStatusSlice = createSlice({

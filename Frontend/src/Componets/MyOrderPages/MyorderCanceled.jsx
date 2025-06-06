@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 const MyorderCanceled = () => {
     return (
         <div className="container w-full h-full flex flex-col items-center justify-center text-center space-y-3">
-            <div className="mb-5 w-44 h-44 rounded-full bg-[#f8f1f2] mx-auto flex items-center justify-center">
+            <div className="mb-5 w-44 h-44 rounded-full bg-[#f8f1f2] mx-auto flex items-center justify-center md:my-5">
                 <div className="w-32 h-32 rounded-full bg-[#e01d48] flex items-center justify-center text-white font-bold text-6xl">
                     <i className="ri-close-line"></i>
                 </div>
             </div>
 
-            <h1 className="text-[#e01d48] text-2xl md:text-3xl font-bold">
+            <h1 className="text-[#e01d48] text-2xl md:text-3xl font-bold ">
                 Your Order Cancelled by Restaurant.
             </h1>
 
