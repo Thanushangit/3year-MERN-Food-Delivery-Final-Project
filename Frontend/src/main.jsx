@@ -1,5 +1,5 @@
 import './main.css';
-import { StrictMode } from 'react'
+// import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -14,6 +14,9 @@ import MainErrorPage from './Pages/MainErrorPage.jsx';
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
 import { store } from './Store/store.js';
+import Confirmation from './Componets/CartPage/Confirmation.jsx';
+import CartLayout from './Layout/CartLayout.jsx';
+import OrderSuccess from './Componets/CartPage/OrderSuccess.jsx';
 
 
 const router = createBrowserRouter([
@@ -29,7 +32,14 @@ const router = createBrowserRouter([
           { index: true, element: <Home /> },
           { path: 'myorder', element: <MyOrder /> },
           { path: 'about', element: <About /> },
-          { path: 'cart', element: <Cart /> },
+          { path: 'cart', element: <CartLayout/> , 
+            children:[
+              {index:true, element:<Cart/>},
+              {path:'confirmation', element:<Confirmation/>},
+              {path:"orderSuccess" , element:<OrderSuccess/>}
+            ]
+           },
+          
         ],
       },
       {
@@ -49,12 +59,12 @@ const router = createBrowserRouter([
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
 
-  </StrictMode>
+  // </StrictMode>
 )
 
 

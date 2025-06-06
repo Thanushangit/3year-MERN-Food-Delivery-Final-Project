@@ -146,7 +146,8 @@ const Footer = () => {
                                 title="source code"
                                 className="hover:text-gray-200 transition duration-200 hover:underline underline-offset-2 "
                             >
-                                <Link target="_blank" to={"https://github.com/Thanushangit/Food-delivery.git"}>
+                                
+                                <Link target="_blank" to={"https://github.com/Thanushangit/3year-MERN-Food-Delivery-Final-Project.git"}>
                                     J'boys.
                                 </Link>
 

@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { formatSrilankaPrice } from '../../Util/PriceSeperator'
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { decrement } from "../../Slices/CounterSlice";
+import { addItemsWithQty } from '../../Slices/OrderItemsWithQty';
+import { deleteItemsWithQty } from "../../Slices/OrderItemsWithQty";
+
+
 
 
 const OrderFoodCard = ({ details, FilterItems }) => {
@@ -11,8 +15,19 @@ const OrderFoodCard = ({ details, FilterItems }) => {
 
     const { image, title, price, id } = details;
     const [singleFoodCount, setSingleFoodCount] = useState(1)
-    
     const totalPrice = price * singleFoodCount;
+
+    useEffect(() => {
+
+        const item = {
+            id: id,
+            title: title,
+            price: Number(price),
+            Qty:singleFoodCount
+        };
+        dispatch(addItemsWithQty(item))
+    }, [totalPrice, singleFoodCount, title, id, price, image])
+
 
     function formatTwoDigit(num) {
         return num < 10 ? `0${num}` : `${num}`;
@@ -77,7 +92,8 @@ const OrderFoodCard = ({ details, FilterItems }) => {
                     icon: "success"
                 });
                 dispatch(decrement())
-                FilterItems(id)
+                FilterItems(id);
+                dispatch(deleteItemsWithQty(id));
             }
         });
     }
