@@ -68,6 +68,7 @@ const Cart = () => {
                 }
 
               </tbody>
+              <h1>Total</h1>
             </table>
 
 

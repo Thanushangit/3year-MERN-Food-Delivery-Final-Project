@@ -10,8 +10,10 @@ const OrderFoodCard = ({ details, FilterItems }) => {
 
 
     const { image, title, price, id } = details;
-
     const [singleFoodCount, setSingleFoodCount] = useState(1)
+    
+    const totalPrice = price * singleFoodCount;
+
     function formatTwoDigit(num) {
         return num < 10 ? `0${num}` : `${num}`;
     }
@@ -20,8 +22,41 @@ const OrderFoodCard = ({ details, FilterItems }) => {
     function Food_Decrease_Handler() {
         if (singleFoodCount > 1) {
             setSingleFoodCount(pre => pre - 1)
+        } else {
+            Swal.fire({
+                title: "Minimum Limit Required!",
+                text: "At least you must select one item.",
+                icon: "warning"
+            });
         }
     }
+
+
+
+    function Food_Increase_Handler() {
+        if (singleFoodCount < 100) {
+            setSingleFoodCount(pre => pre + 1)
+        } else {
+            Swal.fire({
+                title: "Maximum Limit Reached!",
+                text: "One-time maximum order is 100.",
+                icon: "warning"
+            });
+
+        }
+    }
+
+    function HandleInputChange(e) {
+        const value = Number(e.target.value)
+        if (value >= 1 && value <= 100) {
+            setSingleFoodCount(value);
+        }
+    }
+
+
+
+
+
 
     {/* confirmation to delete  */ }
 
@@ -88,10 +123,11 @@ const OrderFoodCard = ({ details, FilterItems }) => {
                         className="md:w-12 w-12 text-center outline-1 rounded-sm md:outline-0 md:outline-gray-50 xl:pl-1.5 xl:ml-1.5"
                         type="number"
                         value={formatTwoDigit(singleFoodCount)}
-                        onChange={(e) => setSingleFoodCount(Number(e.target.value))}
+                        onChange={(e) => HandleInputChange(e)}
                         min={1}
+                        max={100}
                     />
-                    <button onClick={() => setSingleFoodCount(pre => pre + 1)}
+                    <button onClick={() => Food_Increase_Handler()}
                         title="Increase"
                         className="hidden md:flex h-6 w-6 items-center justify-center rounded-full border border-primary cursor-pointer hover:border-green-600 transition duration-150"
                     >
@@ -99,7 +135,7 @@ const OrderFoodCard = ({ details, FilterItems }) => {
                     </button>
                 </div>
             </td>
-            <td className="font-semibold">Rs:-{formatSrilankaPrice(singleFoodCount * price)}</td>
+            <td className="font-semibold">Rs:-{formatSrilankaPrice(totalPrice)}</td>
             <td>
 
                 <button title="Remove" onClick={() => DeleteButtonHandler(id, title)} className="md:w-8 md:h-8 h-5 w-5 rounded-full flex items-center justify-center font-semibold bg-red-500 text-white hover:bg-red-700 transition duration-200 cursor-pointer">
@@ -109,6 +145,7 @@ const OrderFoodCard = ({ details, FilterItems }) => {
             </td>
         </tr>
     )
+
 }
 
 export default OrderFoodCard
