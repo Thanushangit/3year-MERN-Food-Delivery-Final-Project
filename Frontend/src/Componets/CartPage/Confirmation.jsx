@@ -28,6 +28,16 @@ const Confirmation = () => {
     });
 
     const { register, handleSubmit, formState: { errors } } = useForm({
+
+        // in here you can assign the default values from the dp 
+        defaultValues: {
+            FirstName: "",
+            LastName: "",
+            Email: "",
+            MobileNumber: "",
+            DeliveryAddress: ""
+
+        },
         resolver: zodResolver(schema),
     });
 

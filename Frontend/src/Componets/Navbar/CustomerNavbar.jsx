@@ -75,7 +75,7 @@ const CustomerNavbar = () => {
                             </div>
                         </li>
 
-                        <li title="click here" id="nav-link"  ><NavLink to="authentication" className={({ isActive }) =>
+                        <li title="click here" id="nav-link"  ><NavLink to="/authentication/login" className={({ isActive }) =>
                             `Nav-Link ${isActive ? "text-primary" : "text-inherit"
                             }`
                         }>Login</NavLink></li>

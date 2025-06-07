@@ -9,9 +9,13 @@ import Swal from 'sweetalert2';
 
 
 
+
 const PopularDishes = () => {
     const dispatch = useDispatch();
     const orderItems = useSelector(sta => sta.addItems)
+    const loginStatus = useSelector(state => state.loginStatus.status);
+
+
 
     // this is fetching food data from the db 
     const [FoodData, setFoodData] = useState([]);
@@ -51,26 +55,46 @@ const PopularDishes = () => {
     const ButtonHandler = (foodTitle, foodId, foodImage, foodPrice) => {
         const alreadyExists = orderItems.some((item) => item.id === foodId);
 
-        if (alreadyExists) {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: `${foodTitle} is already in the cart!`,
+        if (loginStatus) {
+            if (alreadyExists) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: `${foodTitle} is already in the cart!`,
+                });
+                return;
+
+            }
+
+            const item = {
+                id: foodId,
+                image: foodImage,
+                title: foodTitle,
+                price: Number(foodPrice)
+            };
+            notifyNewItem(foodTitle);
+            dispatch(increment());
+            dispatch(addItem(item));
+
+        } else {
+            toast.error('You must log in to place an order!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                
             });
-            return;
 
         }
 
 
-        const item = {
-            id: foodId,
-            image: foodImage,
-            title: foodTitle,
-            price: Number(foodPrice)
-        };
-        notifyNewItem(foodTitle);
-        dispatch(increment());
-        dispatch(addItem(item));
+
+
+
 
     };
 
