@@ -1,7 +1,23 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"
+import { ToastContainer, toast } from 'react-toastify';
 
 const MainPage = () => {
     const navigate = useNavigate()
+
+    useEffect(() => {
+        toast(' Welcome to Platezy!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            
+        });
+    }, [])
 
     return (
         <section className="mycontainer bg-[#2b2b2b] min-h-screen text-gray-100">
@@ -47,6 +63,19 @@ const MainPage = () => {
                     <button title="click" onClick={() => navigate("/admin")} className="py-2 px-4 md:py-4 md:px-8 rounded transition-all duration-300 cursor-pointer text-xl bg-amber-500  hover:bg-amber-700 ">Admin</button>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+
+            />
         </section>
     )
 }

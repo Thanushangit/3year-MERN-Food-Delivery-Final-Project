@@ -19,6 +19,8 @@ import OrderSuccess from './Componets/CartPage/OrderSuccess.jsx';
 import UserLayout from './Layout/UserLayout.jsx';
 import AdiminLayout from './Layout/AdiminLayout.jsx';
 import MainPage from './Pages/MainPage.jsx'
+import CustomerErrorPage from './Pages/CustomerErrorPage.jsx'
+import AdminErrorPage from './Pages/AdminErrorPage.jsx'
 
 
 const router = createBrowserRouter([
@@ -28,38 +30,62 @@ const router = createBrowserRouter([
     errorElement: <MainErrorPage />,
     children: [
       { index: true, element: <MainPage /> },
-      {path:'user' , element:<UserLayout/>,
-        children:[
-          {element:<MainLayout/>,
-            children:[
-              {index:true,element:<Home/>},
-              {path:"myorder",element:<MyOrder/>},
-              {path:"about", element:<About/>},
-              {path:"cart",element:<CartLayout/>,
-                children:[
-              {index:true, element:<Cart/>},
-               {path:'confirmation', element:<Confirmation/>},
-               {path:"orderSuccess" , element:<OrderSuccess/>}
-             ]
-              }
+
+      {
+        path: 'user',
+        element: <UserLayout />,
+        errorElement: <CustomerErrorPage />, // added
+        children: [
+          {
+            element: <MainLayout />,
+            children: [
+              { index: true, element: <Home /> },
+              { path: 'myorder', element: <MyOrder /> },
+              { path: 'about', element: <About /> },
+              {
+                path: 'cart',
+                element: <CartLayout />,
+                children: [
+                  { index: true, element: <Cart /> },
+                  { path: 'confirmation', element: <Confirmation /> },
+                  { path: 'orderSuccess', element: <OrderSuccess /> }
+                ]
+              },
             ]
           },
-          {path:"authentication" , element:<LoginLayout/>,
-            children:[
-              { path: "login", element: <Login /> },
+          {
+            path: 'authentication',
+            element: <LoginLayout />,
+            children: [
+              { path: 'login', element: <Login /> },
               { path: 'register', element: <Register /> }
             ]
-          }
+          },
+          // Catch-all inside user
+          { path: '*', element: <CustomerErrorPage /> }
         ]
       },
 
-      { path: "admin", element: <AdiminLayout /> }
+      {
+        path: 'admin',
+        element: <AdiminLayout />,
+        errorElement: <AdminErrorPage />,
+
+        //  Catch-all inside admin
+        children: [
+          { path: '*', element: <AdminErrorPage /> }
+        ]
+      },
+
+      //  Catch-all for unmatched root-level routes
+      { path: '*', element: <MainErrorPage /> }
     ]
-  },
+  }
 ],
   {
     basename: "/3year-MERN-Food-Delivery-Final-Project"
   });
+
 
 
 
