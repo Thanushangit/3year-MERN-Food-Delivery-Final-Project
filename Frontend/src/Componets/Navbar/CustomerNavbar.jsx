@@ -1,10 +1,18 @@
 import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { setLoginStatus } from "../../Slices/LoginConfirmation"
+import { resetCount } from "../../Slices/CounterSlice"
+import { resetAddItems } from "../../Slices/AddItemsSlice"
+import Swal from "sweetalert2"
+
 
 const CustomerNavbar = () => {
-    const counterValue= useSelector((sta)=>sta.count.count)
+    const counterValue = useSelector((sta) => sta.count.count)
     const [menuStatus, setMenuStatus] = useState(false)
+    const loginStatus = useSelector(sta => sta.loginStatus.status)
+    const dispatch = useDispatch()
     return (
         // navbar-code
         <header className="bg-[#232736] w-full text-white fixed top-0 left-0 z-50">
@@ -42,7 +50,7 @@ const CustomerNavbar = () => {
                 {/* navigate links */}
                 <div
                     id="slildermenu"
-                    className={`absolute md:static md:min-h-fit w-full md:w-fit top-0 left-[-100%] bg-[#232736] min-h-[100vh] duration-300 overflow-hidden ${menuStatus?"left-[0]":"left-[-100%]"}`}
+                    className={`absolute md:static md:min-h-fit w-full md:w-fit top-0 left-[-100%] bg-[#232736] min-h-[100vh] duration-300 overflow-hidden ${menuStatus ? "left-[0]" : "left-[-100%]"}`}
                 >
                     <ul
                         className="min-h-[100vh] md:min-h-fit flex flex-col md:flex-row items-center justify-center gap-8 font-semibold text-xl  md:py-2"
@@ -71,14 +79,37 @@ const CustomerNavbar = () => {
                                     }`
                                 }>Cart
                                 </NavLink>
-                                <p className={`-top-1 -right-5 h-5 w-5 bg-red-500 rounded-full  p-1 flex items-center justify-center text-sm ${counterValue>0?"absolute":"hidden"}`}>{counterValue}</p>
+                                <p className={`-top-1 -right-5 h-5 w-5 bg-red-500 rounded-full  p-1 flex items-center justify-center text-sm ${counterValue > 0 ? "absolute" : "hidden"}`}>{counterValue}</p>
                             </div>
                         </li>
 
-                        <li title="click here" id="nav-link"  ><NavLink to="/authentication/login" className={({ isActive }) =>
-                            `Nav-Link ${isActive ? "text-primary" : "text-inherit"
-                            }`
-                        }>Login</NavLink></li>
+                        <li title="click here" id="nav-link"  >
+                            {loginStatus ? (
+                                <button className="Nav-Link" onClick={() => {
+                                    dispatch(setLoginStatus(false))
+                                    dispatch(resetCount())
+                                    dispatch(resetAddItems())
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Logout Successful",
+                                        text: "You've been logged out.",
+                                        timer: 3000,
+                                        showConfirmButton: false,
+                                        position: "center"
+                                    });
+                                }}>
+                                    Logout
+                                </button>
+                            ) : (
+                                <NavLink to="/authentication/login" className={
+                                    ({ isActive }) =>
+                                        `Nav-Link ${isActive ? "text-primary" : "text-inherit"
+                                        }`
+                                }>Login</NavLink>
+                            )
+                            }
+
+                        </li>
 
                     </ul>
                 </div>
@@ -87,12 +118,12 @@ const CustomerNavbar = () => {
                     <i
                         title="Menu"
                         id="menuicon"
-                        className={`text-2xl cursor-pointer ${menuStatus?"ri-close-fill":"ri-menu-fold-line"}`}
+                        className={`text-2xl cursor-pointer ${menuStatus ? "ri-close-fill" : "ri-menu-fold-line"}`}
                         onClick={() => setMenuStatus(pre => !pre)}
                     ></i>
                 </div>
             </nav>
-        </header>
+        </header >
 
     )
 }
