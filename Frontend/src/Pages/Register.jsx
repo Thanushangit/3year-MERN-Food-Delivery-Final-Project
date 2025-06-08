@@ -4,73 +4,90 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Swal from 'sweetalert2';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from '../Firebase'
+import { useState } from 'react';
 
 
 
 const Register = () => {
-  const navigate = useNavigate()
-  const schema = z.object({
+  const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+
+  const schema = z.object({
     First_Name: z
       .string()
       .nonempty("The first name is required.")
-      .min(5, "The first name at least contain 5 characters."),
+      .min(5, "The first name must contain at least 5 characters."),
 
     Last_Name: z
       .string()
-      .nonempty("The Last name is required.")
-      .min(5, "The last name at least contain 5 characters."),
+      .nonempty("The last name is required.")
+      .min(5, "The last name must contain at least 5 characters."),
 
-    email: z.string().nonempty("The email is required.")
-      .email("invalid email"),
+    email: z
+      .string()
+      .nonempty("The email is required.")
+      .email("Invalid email."),
 
     password: z
       .string()
-      .nonempty("The password is required")
-      .min(8, { message: "Password must be at least 8 characters long" })
-      .max(20, { message: "Password must not exceed 20 characters" })
-      .regex(/[A-Z]/, { message: "Password must include at least one uppercase letter" })
-      .regex(/[a-z]/, { message: "Password must include at least one lowercase letter" })
-      .regex(/[0-9]/, { message: "Password must include at least one number" })
-      .regex(/[@$!%*?&#]/, { message: "Password must include at least one special character" }),
+      .nonempty("The password is required.")
+      .min(8, { message: "Password must be at least 8 characters long." })
+      .max(20, { message: "Password must not exceed 20 characters." })
+      .regex(/[A-Z]/, { message: "Password must include at least one uppercase letter." })
+      .regex(/[a-z]/, { message: "Password must include at least one lowercase letter." })
+      .regex(/[0-9]/, { message: "Password must include at least one number." })
+      .regex(/[@$!%*?&#]/, { message: "Password must include at least one special character." }),
 
     Mobile_Number: z
       .string()
-      .nonempty("The Mobile Number is required.")
-      .refine(val => /^[0-9]{10}$/.test(val), {
-        message: "Invalid mobile number"
-      })
-    ,
+      .nonempty("The mobile number is required.")
+      .refine(val => /^[0-9]{10}$/.test(val), { message: "Invalid mobile number." }),
 
-    Landline_Number: z.
-      string()
+    Landline_Number: z
+      .string()
       .optional()
-      .refine(val => /^[0-9]{10}$/.test(val), {
-        message: "Invalid mobile number"
+      .or(z.literal("")) // allows empty string
+      .refine(val => val === "" || /^[0-9]{10}$/.test(val), {
+        message: "Invalid landline number.",
       }),
-
 
     Delivery_address: z
       .string()
       .nonempty("The delivery address is required.")
-      .min(15, "The delivery address at least contain 15 characters.")
-      .max(60, "The delivery address not exceeded 60 characters."),
+      .min(15, "The delivery address must contain at least 15 characters.")
+      .max(60, "The delivery address must not exceed 60 characters."),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset
+  } = useForm({
+    resolver: zodResolver(schema),
+  });
 
 
 
-  })
-  const { register, handleSubmit, formState: { errors }, reset } = useForm({
+  async function MyHandler(data) {
+    setLoading(true);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const user = userCredential.user;
 
+      await setDoc(doc(db, "users", user.uid), {
+        First_Name: data.First_Name,
+        Last_Name: data.Last_Name,
+        Mobile_Number: data.Mobile_Number,
+        Landline_Number: data.Landline_Number,
+        Delivery_address: data.Delivery_address,
+        email: data.email,
+      });
 
-    resolver: zodResolver(schema)
-  })
-
-  function MyHandler(data) {
-
-    console.log("This is the registation datatils:-", data);
-
-    const condition = true
-    if (condition)
       Swal.fire({
         position: "center",
         icon: "success",
@@ -79,13 +96,17 @@ const Register = () => {
         showConfirmButton: true,
         timer: 3000
       }).then(() => {
-        navigate("/authentication/login")
-      }).then(() => {
-        reset()
-      })
+        reset();
+        navigate("/authentication/login");
+      });
 
-
+    } catch (error) {
+      alert("Registration Error: " + error.message);
+    } finally {
+      setLoading(false);
+    }
   }
+
   return (
     <section className="bg-[url('https://res.cloudinary.com/thanushan/image/upload/v1747127574/login-bg_zugbou.jpg')] bg-center bg-cover flex flex-col justify-center items-center py-10 min-h-screen">
       <div className="container w-full h-full max-w-4xl flex items-center justify-center">
@@ -159,10 +180,13 @@ const Register = () => {
             <button
               type="submit"
               title="Sign Up"
-              className="md:col-span-2 w-full mx-auto md:max-w-xl py-2 text-center bg-primary cursor-pointer hover:bg-amber-600 duration-300 transition text-white font-semibold rounded mt-5"
+              disabled={loading}
+              className={`md:col-span-2 w-full mx-auto md:max-w-xl py-2 text-center ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary hover:bg-amber-600'
+                } duration-300 transition text-white font-semibold rounded mt-5`}
             >
-              Sign Up
+              {loading ? "Creating your account..." : "Sign Up"}
             </button>
+
           </form>
 
           <p className="text-center whitespace-nowrap text-xs sm:text-sm text-gray-300 mt-2">

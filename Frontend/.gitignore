@@ -25,3 +25,9 @@ SofarDid.txt
 *.sln
 *.sw?
 
+# Environment variables
+.env
+
+# Firebase config 
+src/Firebase.js
+
