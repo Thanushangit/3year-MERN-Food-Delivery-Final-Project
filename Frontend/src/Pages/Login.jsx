@@ -6,27 +6,27 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { setLoginStatus } from '../Slices/LoginConfirmation';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../Firebase'
 
 const Login = () => {
 
   const navigate = useNavigate()
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   const schema = z.object({
     email: z.string().nonempty("The email is required").email(),
     password: z.string().nonempty("The password is required")
   })
 
-  const { register, handleSubmit, formState: { errors } ,reset} = useForm({
+  const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: zodResolver(schema)
   })
 
-  function MySubmitHandler(data) {
-    console.log("This is the user login data:-", data)
+  async function MySubmitHandler(data) {
 
-    const condition = true;
-
-    if (condition) {
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
       Swal.fire({
         icon: "success",
         title: "Login Successful",
@@ -42,19 +42,19 @@ const Login = () => {
         reset();
       })
 
-
-    } else {
+    } catch (err) {
+      console.log("login page error", err)
       Swal.fire({
         icon: "error",
         title: "Login Failed",
         text: "Incorrect username or password. Please try again.",
         timer: 5000,
         showConfirmButton: true,
-      });
+
+      })
 
     }
   }
-
 
 
 
@@ -111,7 +111,7 @@ const Login = () => {
                   type="email"
                   placeholder="Enter your email"
                   id="email"
-                  name="email"
+
                   {...register("email")}
                 />
               </label>
@@ -125,7 +125,7 @@ const Login = () => {
                   type="password"
                   placeholder="Enter your password"
                   id="password"
-                  name="password"
+
                   {...register("password")}
                 />
               </label>

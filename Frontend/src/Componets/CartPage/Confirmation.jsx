@@ -9,11 +9,32 @@ import { resetCount } from '../../Slices/CounterSlice'
 import { resetOrderItemQty } from "../../Slices/OrderItemsWithQty";
 import { setOrderStatus } from '../../Slices/OrderStatusSlice'
 import emailjs from 'emailjs-com';
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from '../../Firebase'
+import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const Confirmation = () => {
+    const [userData, setUserData] = useState(null);
+
+    useEffect(() => {
+        const fetchDetails = async () => {
+            const user = auth.currentUser;
+            if (user) {
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    setUserData(docSnap.data());
+                }
+            }
+        };
+        fetchDetails();
+    }, []);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const orderItemsWithQty = useSelector(sta => sta.addItemsWithQty);
+    const login_status = useSelector(sta => sta.loginStatus.status)
     const location = useLocation();
     const total = location.state?.total;
     const discount = location.state?.discount;
@@ -27,62 +48,81 @@ const Confirmation = () => {
         DeliveryAddress: z.string().nonempty("Address is required").min(15).max(100),
     });
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
 
-        // in here you can assign the default values from the dp 
-        defaultValues: {
-            FirstName: "",
-            LastName: "",
-            Email: "",
-            MobileNumber: "",
-            DeliveryAddress: ""
 
-        },
+
         resolver: zodResolver(schema),
     });
 
-    const onSubmit = (data) => {
-        // Prepare orders array for EmailJS template
-        const orders = orderItemsWithQty.map(item => ({
-            image_url: item.image,
-            name: item.title,
-            units: item.Qty,
-            unit_price: item.price,
-            price: item.price * item.Qty,
-        }));
-
-        const templateParams = {
-            email: data.Email,
-            user_name: `${data.FirstName} ${data.LastName}`,
-            order_id: Math.floor(Math.random() * 1000000),
-            orders,
-            cost: {
-                delivery,
-                discount,
-                total,
-            }
-        };
-
-        emailjs.send(
-            'service_kdj0nvh',
-            'template_k7vmo1k',
-            templateParams,
-            'Cvpw-eL8j_z2d80DN'
-        )
-            .then(response => {
-                console.log('✅ Email sent!', response.status, response.text);
-
-                dispatch(resetAddItems());
-                dispatch(resetCount());
-                dispatch(resetOrderItemQty());
-                dispatch(setOrderStatus("placed"));
-
-                navigate("/cart/orderSuccess", { replace: true });
-            })
-            .catch(error => {
-                console.error('❌ Email send failed...', error);
-                // Optionally show error to user
+    useEffect(() => {
+        if (userData) {
+            reset({
+                FirstName: userData.First_Name,
+                LastName: userData.Last_Name,
+                Email: userData.email,
+                MobileNumber: userData.Mobile_Number,
+                DeliveryAddress: userData.Delivery_address,
             });
+        }
+    }, [userData, reset]);
+
+    const onSubmit = (data) => {
+        if (login_status) {
+            // Prepare orders array for EmailJS template
+            const orders = orderItemsWithQty.map(item => ({
+                image_url: item.image,
+                name: item.title,
+                units: item.Qty,
+                unit_price: item.price,
+                price: item.price * item.Qty,
+            }));
+
+            const templateParams = {
+                email: data.Email,
+                user_name: `${data.FirstName} ${data.LastName}`,
+                order_id: Math.floor(Math.random() * 1000000),
+                orders,
+                cost: {
+                    delivery,
+                    discount,
+                    total,
+                }
+            };
+
+            emailjs.send(
+                'service_kdj0nvh',
+                'template_k7vmo1k',
+                templateParams,
+                'Cvpw-eL8j_z2d80DN'
+            )
+                .then(response => {
+                    console.log('✅ Email sent!', response.status, response.text);
+
+                    dispatch(resetAddItems());
+                    dispatch(resetCount());
+                    dispatch(resetOrderItemQty());
+                    dispatch(setOrderStatus("placed"));
+
+                    navigate("/cart/orderSuccess", { replace: true });
+                })
+                .catch(error => {
+                    console.error('❌ Email send failed...', error);
+                   
+                });
+        } else {
+            Swal.fire({
+                title: "Login Required",
+                text: "Please login first to place your order.",
+                icon: "warning",
+                confirmButtonText: "Go to Login",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/authentication/login"); 
+                }
+            });
+            return;
+        }
     };
 
     return (
