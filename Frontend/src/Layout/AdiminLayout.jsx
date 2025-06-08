@@ -1,14 +1,12 @@
-import { Navigate, Outlet } from "react-router-dom";
-
+import React from 'react'
+import { Outlet } from 'react-router-dom'
 
 const AdiminLayout = () => {
-
-
-  const isAdminAuth = localStorage.getItem("admin-auth");
-  console.log("Admin Auth Status:", isAdminAuth);
-
-
-  return isAdminAuth === "true" ? <Outlet /> : <Navigate to="/admin" replace />;
+  return (
+    <div>
+      <Outlet/>
+    </div>
+  )
 }
 
 export default AdiminLayout
