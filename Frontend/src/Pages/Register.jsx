@@ -96,7 +96,7 @@ const Register = () => {
         timer: 3000
       }).then(() => {
         reset();
-        navigate("/authentication/login");
+        navigate("/user/authentication/login");
       });
 
     } catch (error) {
@@ -140,14 +140,14 @@ const Register = () => {
                   />
                 </svg>
               </div>
-              <Link to="/">
+              <Link to="/user">
                 <h1 className="font-ibm text-2xl sm:text-4xl font-semibold text-gray-300">
                   Plate <span className="text-primary">zy</span>
                 </h1>
               </Link>
             </div>
 
-            <Link to="/" title="Go to home page">
+            <Link to="/user" title="Go to home page">
               <div className="max-w-full">
                 <p className="py-1 px-4 bg-green-500 text-white font-semibold text-md hover:bg-green-700 duration-200 transition w-fit rounded-lg">
                   <i className="ri-home-2-line"></i>
@@ -205,7 +205,7 @@ const Register = () => {
             <Link
               title="Login now"
               className="font-semibold hover:underline underline-offset-2"
-              to="/authentication/login"
+              to="/user/authentication/login"
             >
               Log in here
             </Link>

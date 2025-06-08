@@ -45,7 +45,7 @@ const Login = () => {
         showConfirmButton: false,
         position: "center"
       }).then(() => {
-        navigate("/");
+        navigate("/user",{replace:true});
         dispatch(setLoginStatus(true));
 
       }).then(() => {
@@ -90,7 +90,7 @@ const Login = () => {
                 />
               </svg>
             </div>
-            <Link to="/">
+            <Link to="/user">
               <h1 className="font-ibm text-2xl sm:text-4xl font-semibold text-gray-200">
                 Plate <span className="text-primary">zy</span>
               </h1>
@@ -107,7 +107,7 @@ const Login = () => {
 
         {/* Login Form */}
         <div className="relative w-full md:w-fit flex flex-col p-6 gap-1 bg-[#383333] rounded-2xl">
-          <Link title="Go to home page" to="/">
+          <Link title="Go to home page" to="/user">
             <div className="py-1 px-4 bg-green-500 text-white font-semibold text-md hover:bg-green-700 duration-200 transition w-fit rounded-lg">
               <i className="ri-home-2-line"></i>
             </div>
@@ -189,7 +189,7 @@ const Login = () => {
             <Link
               title="Register now"
               className="font-semibold hover:underline underline-offset-2"
-              to="/authentication/register"
+              to="/user/authentication/register"
             >
               Register for free
             </Link>

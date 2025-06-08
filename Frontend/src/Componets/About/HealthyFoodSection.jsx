@@ -111,7 +111,7 @@ const HealthyFoodSection = () => {
                         }
 
                     </div>
-                    <button onClick={()=>navigate("/")}
+                    <button onClick={()=>navigate("/user")}
                         className="w-full sm:w-56 md:py-5 md:px-4 p-3 mb-5  border-0 bg-primary text-white font-semibold text-xl cursor-pointer mt-15 uppercase rounded duration-300 transition hover:bg-amber-600"
                     >
                         Order your food

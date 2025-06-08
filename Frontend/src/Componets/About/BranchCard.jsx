@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom"
-
 const Branches = [
     {
         image: "https://res.cloudinary.com/thanushan/image/upload/v1747325345/map-restaurant-01_cupo2i.webp",
@@ -37,8 +35,8 @@ const BranchCard = () => {
     return (
         <>
             {
-                Branches.map((Bran) => (
-                    <div title={`${Bran.alt} Branch`} className="flex flex-col items-center gap-1 bg-gray-300">
+                Branches.map((Bran,ind) => (
+                    <div key={ind} title={`${Bran.alt} Branch`} className="flex flex-col items-center gap-1 bg-gray-300">
                         <div className="h-36 w-full overflow-hidden">
                             <img
                                 src={Bran.image}

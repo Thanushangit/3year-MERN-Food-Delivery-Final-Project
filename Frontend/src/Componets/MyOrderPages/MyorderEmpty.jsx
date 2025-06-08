@@ -17,7 +17,7 @@ const MyorderEmpty = () => {
                 You haven't placed any orders yet. Browse our menu and add something tasty to your cart to get started!
             </p>
 
-            <Link  title="Order Food" to="/" className="flex items-center justify-center gap-2 w-full md:w-60 sm:py-2 py-3 px-6 mb-2 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-4">
+            <Link  title="Order Food" to="/user" className="flex items-center justify-center gap-2 w-full md:w-60 sm:py-2 py-3 px-6 mb-20 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-4">
 
             <i className="ri-arrow-left-long-fill"></i>
                 <p>Order Now</p>

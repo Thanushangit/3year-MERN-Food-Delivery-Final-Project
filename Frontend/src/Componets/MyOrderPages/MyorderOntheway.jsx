@@ -20,7 +20,7 @@ const MyorderOntheway = () => {
                 tight and get ready to enjoy a delicious meal prepared just for you.
             </p>
 
-            <Link title="Go to my order page" to={"/"} className="w-full md:w-64 sm:py-2 py-3 px-6 mb-2 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-4">
+            <Link title="Go to my order page" to="/user" className="w-full md:w-64 sm:py-2 py-3 px-6 mb-20 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-4">
                 Order more
             </Link>
 

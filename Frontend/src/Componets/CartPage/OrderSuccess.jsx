@@ -23,7 +23,7 @@ const OrderSuccess = () => {
                 </p>
 
 
-                <Link title="Go to my order page" to={"/myorder"}>
+                <Link title="Go to my order page" to={"/user/myorder"}>
                     <div
                         className="w-full md:w-sm sm:py-2 py-3 px-6 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-14"
                     >
@@ -31,7 +31,7 @@ const OrderSuccess = () => {
                     </div>
                 </Link>
 
-                <Link title="Go to home page" to={"/"} >
+                <Link title="Go to home page" to={"/user"} >
                     <div
                         className="w-full md:w-sm sm:py-2 py-3 px-6 border border-primary text-primary hover:bg-primary hover:text-white duration-300 transition rounded-md mx-auto font-semibold mt-4"
                     >

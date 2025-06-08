@@ -19,7 +19,7 @@ const MyorderDeliverd = () => {
                 Thank you for your order! Your food has been delivered successfully.
                 We hope you enjoyed your meal and look forward to serving you again soon.
             </p>
-            <Link to={"/"} title="Go to my order page" className="w-full md:w-64 sm:py-2 py-3 px-6 mb-2 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-8">
+            <Link to="/user" title="Go to my order page" className="w-full md:w-64 sm:py-2 py-3 px-6 mb-20 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-8">
                 Order more
             </Link>
 

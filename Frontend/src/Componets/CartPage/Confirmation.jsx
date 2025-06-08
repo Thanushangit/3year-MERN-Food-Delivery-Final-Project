@@ -91,7 +91,7 @@ const Confirmation = () => {
                 confirmButtonText: "Go to Login",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate("/authentication/login");
+                    navigate("/user/authentication/login");
                 }
             });
             return;
@@ -137,7 +137,7 @@ const Confirmation = () => {
             dispatch(setOrderStatus("placed"));
 
             // Navigate to success page
-            navigate("/cart/orderSuccess", { replace: true });
+            navigate("/user/cart/orderSuccess", { replace: true });
 
         } catch (error) {
             console.error(' Failed to send email:', error);

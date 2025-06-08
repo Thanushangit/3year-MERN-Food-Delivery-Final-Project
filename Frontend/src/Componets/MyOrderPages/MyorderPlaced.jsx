@@ -23,11 +23,11 @@ const MyorderPlaced = () => {
                 </p>
 
 
-               
 
-                <Link title="Go to home page" to={"/"} >
+
+                <Link title="Go to home page" to="/user" >
                     <div
-                        className="w-full md:w-sm sm:py-2 py-3 px-6 border border-primary text-primary hover:bg-primary hover:text-white duration-300 transition rounded-md mx-auto font-semibold mt-4 md:mt-8"
+                        className="w-full md:w-sm sm:py-2 py-3 px-6 border border-primary text-primary hover:bg-primary hover:text-white duration-300 transition rounded-md mx-auto font-semibold mt-4 md:mt-8 mb-20"
                     >
                         Order More Food
                     </div>

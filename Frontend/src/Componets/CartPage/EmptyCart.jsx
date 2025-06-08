@@ -21,9 +21,9 @@ const EmptyCart = () => {
                 Your cart is empty! Add some delicious food to get started explore our
                 top categories now.
             </p>
-            <Link title="Go home" to={"/"}>
+            <Link title="Go home" to={"/user"}>
             <div
-                className="mt-2 flex items-center gap-2 py-2 px-8 rounded-full bg-primary hover:bg-amber-600 duration-300 transition cursor-pointer text-white text-lg">
+                className="mt-2 flex items-center gap-2 py-2 px-8 rounded-full bg-primary hover:bg-amber-600 duration-300 transition cursor-pointer text-white text-lg mb-20">
                     <i className="ri-arrow-left-long-fill"></i>
                     <p className="uppercase font-semibold">Return to home</p>
                 </div>

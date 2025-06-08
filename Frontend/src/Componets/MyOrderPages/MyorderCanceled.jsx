@@ -17,7 +17,7 @@ const MyorderCanceled = () => {
                 We're sorry! This order was cancelled by the restaurant due to unforeseen circumstances such as item unavailability or operational issues. You have not been charged. Thank you for your understanding!
             </p>
 
-            <Link title="Go to my order page" to={"/"} className="w-full md:w-64 sm:py-2 py-3 px-6 mb-2 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-8">
+            <Link title="Go to my order page" to="/user" className="w-full md:w-64 sm:py-2 py-3 px-6 mb-20 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-8">
             Try again
             </Link>
 

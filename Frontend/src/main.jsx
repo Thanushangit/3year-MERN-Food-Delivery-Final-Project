@@ -16,6 +16,9 @@ import { store } from './Store/store.js';
 import Confirmation from './Componets/CartPage/Confirmation.jsx';
 import CartLayout from './Layout/CartLayout.jsx';
 import OrderSuccess from './Componets/CartPage/OrderSuccess.jsx';
+import UserLayout from './Layout/UserLayout.jsx';
+import AdiminLayout from './Layout/AdiminLayout.jsx';
+import MainPage from './Pages/MainPage.jsx'
 
 
 const router = createBrowserRouter([
@@ -24,32 +27,34 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <MainErrorPage />,
     children: [
-      {
-        path: '/',
-        element: <MainLayout />,
-        children: [
-          { index: true, element: <Home /> },
-          { path: 'myorder', element: <MyOrder /> },
-          { path: 'about', element: <About /> },
-          { path: 'cart', element: <CartLayout/>  , 
+      { index: true, element: <MainPage /> },
+      {path:'user' , element:<UserLayout/>,
+        children:[
+          {element:<MainLayout/>,
             children:[
+              {index:true,element:<Home/>},
+              {path:"myorder",element:<MyOrder/>},
+              {path:"about", element:<About/>},
+              {path:"cart",element:<CartLayout/>,
+                children:[
               {index:true, element:<Cart/>},
-              {path:'confirmation', element:<Confirmation/>},
-              {path:"orderSuccess" , element:<OrderSuccess/>}
+               {path:'confirmation', element:<Confirmation/>},
+               {path:"orderSuccess" , element:<OrderSuccess/>}
+             ]
+              }
             ]
-           },
-          
-        ],
+          },
+          {path:"authentication" , element:<LoginLayout/>,
+            children:[
+              { path: "login", element: <Login /> },
+              { path: 'register', element: <Register /> }
+            ]
+          }
+        ]
       },
-      {
-        path: 'authentication',
-        element: <LoginLayout />,
-        children: [
-          { path: "login", element: <Login /> },
-          { path: 'register', element: <Register /> },
-        ],
-      },
-    ],
+
+      { path: "admin", element: <AdiminLayout /> }
+    ]
   },
 ],
   {
@@ -57,10 +62,10 @@ const router = createBrowserRouter([
   });
 
 
-createRoot(document.getElementById('root')).render(
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-)
 
+createRoot(document.getElementById('root')).render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+)
 

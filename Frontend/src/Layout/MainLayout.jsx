@@ -2,6 +2,7 @@
 import { Outlet } from 'react-router-dom'
 import CustomerNavbar from '../Componets/Navbar/CustomerNavbar'
 
+
 const MainLayout = () => {
   return (
     <div>
