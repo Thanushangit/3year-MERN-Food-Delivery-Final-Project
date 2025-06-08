@@ -56,23 +56,23 @@ const CustomerNavbar = () => {
                         className="min-h-[100vh] md:min-h-fit flex flex-col md:flex-row items-center justify-center gap-8 font-semibold text-xl  md:py-2"
                     >
 
-                        <li title="click here" id="nav-link" ><NavLink to="/user" end className={({ isActive }) =>
+                        <li title="click here" id="nav-link" onClick={() => setMenuStatus(pre => !pre)} ><NavLink to="/user" end className={({ isActive }) =>
                             `Nav-Link ${isActive ? "text-primary" : "text-inherit"
                             }`
                         }>Home</NavLink></li>
 
-                        <li title="click here" id="nav-link" ><NavLink to="/user/myorder" className={({ isActive }) =>
+                        <li title="click here" id="nav-link" onClick={() => setMenuStatus(pre => !pre)} ><NavLink to="/user/myorder" className={({ isActive }) =>
                             `Nav-Link ${isActive ? "text-primary" : "text-inherit"
                             }`
                         }>Myorder</NavLink></li>
 
-                        <li title="click here" id="nav-link" ><NavLink to="/user/about" className={({ isActive }) =>
+                        <li title="click here" id="nav-link" onClick={() => setMenuStatus(pre => !pre)} ><NavLink to="/user/about" className={({ isActive }) =>
                             `Nav-Link ${isActive ? "text-primary" : "text-inherit"
                             }`
                         }>About</NavLink></li>
 
 
-                        <li title="click here" id="nav-link">
+                        <li title="click here" id="nav-link" onClick={() => setMenuStatus(pre => !pre)}>
                             <div className="relative">
                                 <NavLink to="/user/cart" className={({ isActive }) =>
                                     `Nav-Link ${isActive ? "text-primary" : "text-inherit"
@@ -83,7 +83,7 @@ const CustomerNavbar = () => {
                             </div>
                         </li>
 
-                        <li title="click here" id="nav-link"  >
+                        <li title="click here" id="nav-link" onClick={() => setMenuStatus(pre => !pre)} >
                             {loginStatus ? (
                                 <button className="Nav-Link" onClick={() => {
                                     dispatch(setLoginStatus(false))

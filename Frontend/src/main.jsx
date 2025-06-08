@@ -21,6 +21,10 @@ import AdiminLayout from './Layout/AdiminLayout.jsx';
 import MainPage from './Pages/MainPage.jsx'
 import CustomerErrorPage from './Pages/CustomerErrorPage.jsx'
 import AdminErrorPage from './Pages/AdminErrorPage.jsx'
+import AdminLoginPage from './Pages/AdminLoginPage.jsx';
+import AdminDashboard from './Layout/AdminDashboard.jsx';
+import AdminHomePage from './Pages/AdminHomePage.jsx';
+import AdminOrdersPage from './Pages/AdminOrdersPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -70,9 +74,14 @@ const router = createBrowserRouter([
         path: 'admin',
         element: <AdiminLayout />,
         errorElement: <AdminErrorPage />,
-
-        //  Catch-all inside admin
         children: [
+          { index: true, element: <AdminLoginPage /> },
+          { path: "dashboard", element: <AdminDashboard /> ,
+            children:[
+              {index:true, element:<AdminHomePage/>},
+              {path:'orders',element:<AdminOrdersPage/>}
+            ]
+          },
           { path: '*', element: <AdminErrorPage /> }
         ]
       },

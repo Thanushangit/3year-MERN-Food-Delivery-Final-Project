@@ -45,7 +45,7 @@ const Login = () => {
         showConfirmButton: false,
         position: "center"
       }).then(() => {
-        navigate("/user",{replace:true});
+        navigate("/user", { replace: true });
         dispatch(setLoginStatus(true));
 
       }).then(() => {
@@ -122,7 +122,7 @@ const Login = () => {
                   type="email"
                   placeholder="Enter your email"
                   id="email"
-
+                  autoComplete="off"
                   {...register("email")}
                 />
               </label>
@@ -136,7 +136,7 @@ const Login = () => {
                   type="password"
                   placeholder="Enter your password"
                   id="password"
-
+                  autoComplete="off"
                   {...register("password")}
                 />
               </label>
