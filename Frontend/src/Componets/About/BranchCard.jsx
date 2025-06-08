@@ -47,9 +47,10 @@ const BranchCard = () => {
                                 className="object-center object-cover w-full h-full rounded"
                             />
                         </div>
-                        <Link to={Bran.link} target="_blank" title={`visit the ${Bran.alt}`} className="text-3xl text-primary hover:cursor-pointer hover:text-red-600 transition duration-300">
+                        <a href={Bran.link} target="_blank" title={`visit the ${Bran.alt}`} className="text-3xl text-primary hover:cursor-pointer hover:text-red-600 transition duration-300" >
                             <i className="ri-map-pin-line"></i>
-                        </Link>
+                        </a>
+
                         <h1 className="text-center text-lg text-gray-700 p-1">
                             {Bran.address}
                         </h1>

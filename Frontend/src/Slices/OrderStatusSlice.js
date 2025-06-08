@@ -1,10 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-
 const initialState = {
     orderStatus: "", }  //it pissibel "placed" "ontheway", "canceled", "delivered", " "
-
-
+    
 const orderStatusSlice = createSlice({
     name: "orderStatus",
     initialState,

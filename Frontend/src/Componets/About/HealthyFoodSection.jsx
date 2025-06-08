@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 const Buttons = [
     {
         special: true,
@@ -33,7 +35,10 @@ const Buttons = [
     },
 ]
 
+
+
 const HealthyFoodSection = () => {
+    const navigate=useNavigate()
     return (
         <section className="my-10 sm:my-30 w-full bg-gray-100">
             <div
@@ -106,7 +111,7 @@ const HealthyFoodSection = () => {
                         }
 
                     </div>
-                    <button
+                    <button onClick={()=>navigate("/")}
                         className="w-full sm:w-56 md:py-5 md:px-4 p-3 mb-5  border-0 bg-primary text-white font-semibold text-xl cursor-pointer mt-15 uppercase rounded duration-300 transition hover:bg-amber-600"
                     >
                         Order your food

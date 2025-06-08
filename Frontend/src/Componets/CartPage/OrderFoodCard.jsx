@@ -11,8 +11,6 @@ const OrderFoodCard = ({ details, FilterItems }) => {
     const OrderItemsWithQty = useSelector(sta => sta.addItemsWithQty);
     const Qty = OrderItemsWithQty.find(item => item.id === details.id)?.Qty || 1;
     const dispatch = useDispatch();
-
-
     const { image, title, price, id } = details;
     const [singleFoodCount, setSingleFoodCount] = useState(Qty)
     const totalPrice = price * singleFoodCount;
@@ -73,9 +71,6 @@ const OrderFoodCard = ({ details, FilterItems }) => {
             setSingleFoodCount(value);
         }
     }
-
-
-
 
 
 

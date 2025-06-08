@@ -22,7 +22,7 @@ const HeroSection = () => {
                             tells a story of flavor. 😋
                         </p>
                         <a
-                            href=""
+                            href="#PopularDishes"
                             className="flex items-center justify-center gap-2 py-3 px-4 outline-0 rounded-md bg-primary cursor-pointer duration-300 hover:bg-emerald-800 font-semibold w-full sm:w-fit text-xl text-center mb-5 shadow-2xl"
                         >
                             Order Now

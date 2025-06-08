@@ -12,7 +12,6 @@ const FoodMenuTemplate = ({ FoodData }) => {
     const orderItems = useSelector(sta => sta.addItems)
     const loginStatus = useSelector(state => state.loginStatus.status);
 
-
     const notify = (tostFood) => toast.success(
         <div>
             <p><strong>{tostFood}</strong> added successfully!</p>
@@ -39,9 +38,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
                     text: `${foodTitle} is already in the cart!`,
                 });
                 return;
-
             }
-
 
             const item = {
                 id: foodId,

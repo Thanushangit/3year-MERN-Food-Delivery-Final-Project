@@ -8,12 +8,12 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from '../Firebase'
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const schema = z.object({
@@ -72,7 +72,6 @@ const Register = () => {
   });
 
 
-
   async function MyHandler(data) {
     setLoading(true);
     try {
@@ -101,7 +100,19 @@ const Register = () => {
       });
 
     } catch (error) {
-      alert("Registration Error: " + error.message);
+      toast.warn("This email is already registered", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        
+      });
+      console.error("registation error",error.message)
+      
     } finally {
       setLoading(false);
     }

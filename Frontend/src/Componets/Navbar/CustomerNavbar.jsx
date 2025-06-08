@@ -26,7 +26,7 @@ const CustomerNavbar = () => {
                             height="32"
                             viewBox="0 0 24 24"
                         >
-                            {/* Icon from Huge Icons by Hugeicons - undefined */}
+                           
                             <path
 
                                 fill="none"

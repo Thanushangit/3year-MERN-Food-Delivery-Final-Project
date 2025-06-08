@@ -5,8 +5,6 @@ import AddItemReducer from '../Slices/AddItemsSlice';
 import AddItemsWithQtyReducer from '../Slices/OrderItemsWithQty'
 import loginStatusReducer from '../Slices/LoginConfirmation'
 
-
-
 export const store = configureStore({
     devTools:true,
     reducer:{

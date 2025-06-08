@@ -1,5 +1,3 @@
-
-
 const MobileAppSection = () => {
   return (
     <div> <section className="my-10 sm:my-20">

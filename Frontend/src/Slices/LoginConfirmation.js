@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
     status: false
 };
-
 const LoginConfirmation = createSlice({
     name: "login_status",
     initialState,

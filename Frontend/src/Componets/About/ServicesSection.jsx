@@ -1,5 +1,3 @@
-import React from 'react'
-
 const ServicesSection = () => {
     return (
         <section className="my-10 sm:my-30 w-full bg-[#f9f6f2]">

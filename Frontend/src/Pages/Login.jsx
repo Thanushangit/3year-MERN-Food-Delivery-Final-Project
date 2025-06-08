@@ -8,23 +8,33 @@ import { useDispatch } from 'react-redux';
 import { setLoginStatus } from '../Slices/LoginConfirmation';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../Firebase'
+import { useState } from 'react';
 
 const Login = () => {
+
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const schema = z.object({
-    email: z.string().nonempty("The email is required").email(),
-    password: z.string().nonempty("The password is required")
+    email: z.string().nonempty("Enter your email").email("The email not valid."),
+    password: z
+      .string()
+      .nonempty("Enter your password")
+      .min(8, { message: "Invalid password" })
+      .max(20, { message: "Invalid password" })
+      .regex(/[A-Z]/, { message: "Invalid password" })
+      .regex(/[a-z]/, { message: "Invalid password" })
+      .regex(/[0-9]/, { message: "Invalid password" })
+      .regex(/[@$!%*?&#]/, { message: "Invalid password" })
   })
-
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: zodResolver(schema)
   })
 
   async function MySubmitHandler(data) {
-
+    setLoading(true)
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
       Swal.fire({
@@ -53,9 +63,10 @@ const Login = () => {
 
       })
 
+    } finally {
+      setLoading(false)
     }
   }
-
 
 
   return (
@@ -136,9 +147,9 @@ const Login = () => {
               <button
                 type="submit"
                 title="Sign In"
-                className="w-full py-2 px-8 text-center bg-primary cursor-pointer hover:bg-amber-600 duration-300 transition text-white font-semibold rounded mt-5"
+                className={`w-full py-2 px-8 text-center ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-primary cursor-pointer hover:bg-amber-600"}  duration-300 transition text-white font-semibold rounded mt-5`}
               >
-                Sign In
+                {loading ? "Please wait..." : "Sign In"}
               </button>
             </div>
           </form>

@@ -100,7 +100,7 @@ const PopularDishes = () => {
 
 
     return (
-        <section className="my-10 sm:my-20 bg-[#e9ecef]">
+        <section id='PopularDishes' className="my-10 sm:my-20 bg-[#e9ecef]">
             <div className="mycontainer">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl mb-5 sm:mb-8 font-bold font-ibm">
                     Popular Dishes

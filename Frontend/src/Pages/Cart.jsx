@@ -15,35 +15,13 @@ const Cart = () => {
   const cartCount = useSelector(sta => sta.count.count)
   const orderItems = useSelector(sta => sta.addItems)
   const OrderItemsWithQty = useSelector(sta => sta.addItemsWithQty)
-
   const subTotal = OrderItemsWithQty.reduce((acc, item) => {
     return acc + (item.Qty * item.price);
   }, 0);
-
   const Delivey = DeliveryCharge(subTotal);
-
   const Discount = DiscountCharge(subTotal);
-
   const Total = (subTotal + Delivey - Discount)
-
-
   const totalItems = (Count) => (Count < 10 ? `0${Count}` : Count);
-
-
-
-  // useEffect(() => {
-  //   return (
-  //     console.log("add items details it come from the cart.js", orderItems)
-  //   )
-  // }, [orderItems])
-
-
-  // useEffect(() => {
-  //   return (
-  //     console.log("items with qty", OrderItemsWithQty)
-  //   )
-  // }, [OrderItemsWithQty])
-
 
   useEffect(() => {
     if (orderItems.length === 0) {
@@ -54,7 +32,6 @@ const Cart = () => {
 
   function DeliveryCharge(subTotal) {
     if (subTotal < 10000) {
-
       return +(subTotal * 0.10).toFixed(2);
     } else if (subTotal < 30000) {
       return +(subTotal * 0.07).toFixed(2);
@@ -64,7 +41,6 @@ const Cart = () => {
       return +(subTotal * 0.03).toFixed(2);
     }
   }
-
 
   function DiscountCharge(subTotal) {
     if (subTotal < 10000) {
@@ -78,20 +54,13 @@ const Cart = () => {
     }
   }
 
-
-
-
   return (
     <section className="mycontainer  my-10 sm:mt-20">
 
       {/* <!-- empty cart text  --> */}
-
       {cartCount <= 0 && <EmptyCart />}
 
-
-
       {/* <!-- exist items in the cart  --> */}
-
       <div className={`${cartCount > 0 ? "block" : "hidden"}`} >
         <h1 className="text-center font-ibm text-3xl my-3 md:my-5 sm:text-4xl">
           Your Cart
@@ -118,11 +87,8 @@ const Cart = () => {
                     <OrderFoodCard key={items.id} details={items} FilterItems={(id) => Dispatch(deleteItem(id))} />
                   ))
                 }
-
               </tbody>
-
             </table>
-
 
           </div>
 
@@ -142,7 +108,6 @@ const Cart = () => {
                 <div className="flex items-center justify-between">
                   <h1>Subtotal</h1>
                   <p className="font-semibold">{formatSrilankaPrice(subTotal)}</p>
-
                 </div>
                 <div className="flex items-center justify-between">
                   <h1>Delivery</h1>
@@ -161,19 +126,14 @@ const Cart = () => {
               </div>
             </div>
             <div className="w-full h-full mt-5">
-
               <button title="Pay Money" onClick={() => Navigate("confirmation", { state: { total: Total, discount: Discount, delivery: Delivey } })}
                 className="py-3 px-6   bg-green-600 text-white rounded outline-0 cursor-pointer w-full mt-4 text-xl uppercase hover:bg-green-800 transition duration-300">
                 checkout
               </button>
-
             </div>
           </div>
-
         </div>
       </div>
-
-
     </section>
   )
 }

@@ -49,19 +49,17 @@ const MemberCard = () => {
                         {/* <!-- ← social icon → --> */}
                         <div className="flex items-center justify-center gap-5 mt-5">
 
-                            <Link to={"https://www.facebook.com/login"} target="_blank" title="facebook" className="flex items-center justify-center h-10 w-10 p-2 rounded-full bg-gray-300 text-gray-600 text-lg hover:bg-[#1877f7] hover:text-white duration-300 transition-all">
+                            <a href="https://www.facebook.com/login" target="_blank" title="facebook" className="flex items-center justify-center h-10 w-10 p-2 rounded-full bg-gray-300 text-gray-600 text-lg hover:bg-[#1877f7] hover:text-white duration-300 transition-all">
                                 <i className="ri-facebook-fill"></i>
-                            </Link>
+                            </a>
 
-
-                            <Link to={"https://twitter.com/login"} target="_blank" title="twitter" className="flex items-center justify-center h-10 w-10 p-2 rounded-full bg-gray-300 text-gray-600 text-lg hover:bg-[#01a1f7] hover:text-white duration-300 transition-all">
+                            <a href="https://twitter.com/login" target="_blank" title="twitter" className="flex items-center justify-center h-10 w-10 p-2 rounded-full bg-gray-300 text-gray-600 text-lg hover:bg-[#01a1f7] hover:text-white duration-300 transition-all">
                                 <i className="ri-twitter-fill"></i>
-                            </Link>
+                            </a>
 
-
-                            <Link to={"https://www.instagram.com/accounts/login"} target="_blank" title="instagram" className="flex items-center justify-center h-10 w-10 p-2 rounded-full bg-gray-300 text-gray-600 text-lg hover:text-pink-500 duration-300 transition-all">
+                            <a href="https://www.instagram.com/accounts/login" target="_blank" title="instagram" className="flex items-center justify-center h-10 w-10 p-2 rounded-full bg-gray-300 text-gray-600 text-lg hover:text-pink-500 duration-300 transition-all">
                                 <i className="ri-instagram-fill"></i>
-                            </Link>
+                            </a>
 
                         </div>
                     </div>

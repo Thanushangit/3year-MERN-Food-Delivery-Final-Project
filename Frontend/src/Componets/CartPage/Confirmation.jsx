@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
 
 const Confirmation = () => {
     const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -41,17 +42,31 @@ const Confirmation = () => {
     const delivery = location.state?.delivery;
 
     const schema = z.object({
-        FirstName: z.string().nonempty("First Name is required").min(3).max(20),
-        LastName: z.string().nonempty("Last Name is required").min(3).max(20),
-        Email: z.string().nonempty("Email is required").email(),
-        MobileNumber: z.string().nonempty("Mobile Number is required").regex(/^\d{10}$/),
-        DeliveryAddress: z.string().nonempty("Address is required").min(15).max(100),
+        FirstName: z
+            .string()
+            .nonempty("The first name is required.")
+            .min(5, "The first name must contain at least 5 characters."),
+
+        LastName: z
+            .string()
+            .nonempty("The last name is required.")
+            .min(5, "The last name must contain at least 5 characters."),
+        Email: z
+            .string()
+            .nonempty("The email is required.")
+            .email("Invalid email."),
+        MobileNumber: z
+            .string()
+            .nonempty("The mobile number is required.")
+            .refine(val => /^[0-9]{10}$/.test(val), { message: "Invalid mobile number." }),
+        DeliveryAddress: z
+            .string()
+            .nonempty("The delivery address is required.")
+            .min(15, "The delivery address must contain at least 15 characters.")
+            .max(60, "The delivery address must not exceed 60 characters."),
     });
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
-
-
-
         resolver: zodResolver(schema),
     });
 
@@ -67,8 +82,24 @@ const Confirmation = () => {
         }
     }, [userData, reset]);
 
-    const onSubmit = (data) => {
-        if (login_status) {
+    const onSubmit = async (data) => {
+        if (!login_status) {
+            Swal.fire({
+                title: "Login Required",
+                text: "Please login first to place your order.",
+                icon: "warning",
+                confirmButtonText: "Go to Login",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/authentication/login");
+                }
+            });
+            return;
+        }
+
+        setLoading(true);
+
+        try {
             // Prepare orders array for EmailJS template
             const orders = orderItemsWithQty.map(item => ({
                 image_url: item.image,
@@ -90,40 +121,36 @@ const Confirmation = () => {
                 }
             };
 
-            emailjs.send(
+            const response = await emailjs.send(
                 'service_kdj0nvh',
                 'template_k7vmo1k',
                 templateParams,
                 'Cvpw-eL8j_z2d80DN'
-            )
-                .then(response => {
-                    console.log('✅ Email sent!', response.status, response.text);
+            );
 
-                    dispatch(resetAddItems());
-                    dispatch(resetCount());
-                    dispatch(resetOrderItemQty());
-                    dispatch(setOrderStatus("placed"));
+            console.log(' Email sent:', response.status, response.text);
 
-                    navigate("/cart/orderSuccess", { replace: true });
-                })
-                .catch(error => {
-                    console.error('❌ Email send failed...', error);
-                   
-                });
-        } else {
+            // Reset the states
+            dispatch(resetAddItems());
+            dispatch(resetCount());
+            dispatch(resetOrderItemQty());
+            dispatch(setOrderStatus("placed"));
+
+            // Navigate to success page
+            navigate("/cart/orderSuccess", { replace: true });
+
+        } catch (error) {
+            console.error(' Failed to send email:', error);
             Swal.fire({
-                title: "Login Required",
-                text: "Please login first to place your order.",
-                icon: "warning",
-                confirmButtonText: "Go to Login",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    navigate("/authentication/login"); 
-                }
+                title: "Error",
+                text: "Order failed to process. Please try again later.",
+                icon: "error"
             });
-            return;
+        } finally {
+            setLoading(false);
         }
     };
+
 
     return (
         <section className="min-h-screen bg-[url('https://res.cloudinary.com/thanushan/image/upload/v1747127574/login-bg_zugbou.jpg')] bg-center bg-cover flex flex-col justify-center items-center ">
@@ -140,7 +167,7 @@ const Confirmation = () => {
                         <InputField id="FirstName" name="FirstName" label="FirstName" placeholder="Enter your First Name" errors={errors} register={register} />
                         <InputField id="LastName" name="LastName" label="LastName" placeholder="Enter your Last Name" errors={errors} register={register} />
                         <InputField id="MobileNumber" name="MobileNumber" label="Mobile Number" placeholder="Enter your mobile number" type="number" errors={errors} register={register} />
-                        <InputField id="Email" name="Email" label="Email Address" placeholder="Enter your Email address" errors={errors} register={register} />
+                        <InputField id="Email" name="Email" label="Email Address" placeholder="Enter your Email address" errors={errors} register={register} loading={loading} />
 
                         <div className="mb-1 md:col-span-2">
                             <label htmlFor="Delivery-address">
@@ -151,6 +178,7 @@ const Confirmation = () => {
                                     {...register("DeliveryAddress")}
                                     placeholder="Enter your Delivery Address"
                                     className={`outline-0 py-2 px-4 bg-gray-200 rounded w-full resize-none ${errors.DeliveryAddress ? "border border-red-500" : "border-0"}`}
+                                    disabled={loading}
                                 ></textarea>
                                 {errors.DeliveryAddress && <span className='text-red-500 text-sm'> {errors.DeliveryAddress.message}</span>}
                             </label>
@@ -158,10 +186,12 @@ const Confirmation = () => {
 
                         <button
                             title="Confirm"
-                            className="md:col-span-2 w-full mx-auto md:max-w-xl py-2 text-center bg-green-600 cursor-pointer hover:bg-green-800 duration-300 transition text-white font-semibold rounded mt-5"
+                            className={`md:col-span-2 w-full mx-auto md:max-w-xl py-2 text-center ${loading ? "bg-gray-400 cursor-not-allowed" : "cursor-pointer bg-green-600 hover:bg-green-800"} duration-300 transition text-white font-semibold rounded mt-5`}
                             type="submit"
+                            disabled={loading}
                         >
-                            Confirm
+                            {loading ? "Loading..." : "Confirm"}
+
                         </button>
                     </form>
                 </div>
