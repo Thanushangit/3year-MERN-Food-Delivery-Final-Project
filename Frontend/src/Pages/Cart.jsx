@@ -6,7 +6,7 @@ import { resetCount } from '../Slices/CounterSlice';
 import { useEffect } from 'react';
 import { deleteItem } from '../Slices/AddItemsSlice'
 import { formatSrilankaPrice } from '../Util/PriceSeperator';
-import { Outlet, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 
 const Cart = () => {

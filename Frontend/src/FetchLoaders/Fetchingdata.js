@@ -73,3 +73,22 @@ export async function loadDinner() {
     throw err; 
   }
 }
+
+
+
+export async function loadOrderItems() {
+  try {
+    const res = await axios.get("/3year-MERN-Food-Delivery-Final-Project/Data/DBorderData.json"); 
+    return res.data;
+  } catch (err) {
+    console.error("DB order Data fetched Error:");
+    if (err.response) {
+      console.error("Status code:", err.response.status);
+    } else if (err.request) {
+      console.error("No response received:", err.request);
+    } else {
+      console.error("Error message:", err.message);
+    }
+    throw err; 
+  }
+}

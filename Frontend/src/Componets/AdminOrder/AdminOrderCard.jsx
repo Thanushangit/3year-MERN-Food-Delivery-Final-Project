@@ -1,25 +1,33 @@
-const AdminOrderCard = () => {
+import {formatSrilankaPrice} from "../../Util/PriceSeperator"
+
+const AdminOrderCard = (props) => {
+    const{FirstName,LastName,DeliveryAddress,MobileNumber,OrderItems,TotalAmount,createdAt}=props.item;
+
     return (
 
         <tr
             className="border-b border-b-gray-300 text-gray-600 shadow mb-10 text-sm md:text-lg"
         >
-            <td className="px-1 py-3">
-                <p>First-name: sinnarasa</p>
-                <p>Last-name: Thanushan</p>
+            <td className="mx-2">09/06/2025 <br />11.29 a.m</td>
+            <td className="mx-2">66659fc2c90e7b2f88a1a001</td>
+            <td className="px-1 py-3 mx-2">
+                <p>{FirstName} {LastName}</p>
+                
             </td>
-            <td className="px-1 py-3">
-                punnalaikkadduvan north, chunnakam,jaffna punnalaikkadduvan
-                north, chunnakam,jaffna
+            <td className="px-1 py-3 mx-2">
+                {DeliveryAddress}
             </td>
-            <td className="px-1 py-3">0764867457</td>
+            <td className="px-1 py-3">{MobileNumber}</td>
             <td className="px-1 py-3">
-                <p>Pittu-<span>01</span></p>
-                <p>veg rice-<span>05</span></p>
-                <p>kottu rotti chicken-<span>01</span></p>
-                <p>biriyani-<span>01</span></p>
+
+                {
+                    OrderItems.map((food,ind)=>(
+                        <p key={ind}>{food.name}-<span>{food.units}</span></p>
+                    ))
+                }
+                
             </td>
-            <td className="px-1 py-3">Rs:-8546.00</td>
+            <td className="px-1 py-3">Rs:-{formatSrilankaPrice(TotalAmount)}</td>
             <td className="px-1 py-3">
                 <div className="flex flex-col gap-3">
                     <form action="">

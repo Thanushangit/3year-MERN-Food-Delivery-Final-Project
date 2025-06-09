@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux"
 import { setLoginStatus } from "../../Slices/LoginConfirmation"
@@ -8,7 +8,9 @@ import { resetAddItems } from "../../Slices/AddItemsSlice"
 import Swal from "sweetalert2"
 
 
+
 const CustomerNavbar = () => {
+    const navigate = useNavigate()
     const counterValue = useSelector((sta) => sta.count.count)
     const [menuStatus, setMenuStatus] = useState(false)
     const loginStatus = useSelector(sta => sta.loginStatus.status)
@@ -26,7 +28,7 @@ const CustomerNavbar = () => {
                             height="32"
                             viewBox="0 0 24 24"
                         >
-                           
+
                             <path
 
                                 fill="none"
@@ -96,7 +98,9 @@ const CustomerNavbar = () => {
                                         timer: 3000,
                                         showConfirmButton: false,
                                         position: "center"
-                                    });
+                                    }).then(() => {
+                                        navigate('/user')
+                                    })
                                 }}>
                                     Logout
                                 </button>

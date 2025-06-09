@@ -16,10 +16,10 @@ html {
 }
 
 .mycontainer {
-    @apply py-3.5 px-10 ;
+    @apply py-3.5 px-10;
 }
 
-.Nav-Link{
+.Nav-Link {
     @apply cursor-pointer hover:text-primary duration-500 transition-all
 }
 
@@ -86,4 +86,16 @@ html {
 .swiper-pagination-bullet {
     background-color: #b4925f !important;
     opacity: 1;
+}
+
+
+table {
+    table-layout: auto;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    vertical-align: center;
 }

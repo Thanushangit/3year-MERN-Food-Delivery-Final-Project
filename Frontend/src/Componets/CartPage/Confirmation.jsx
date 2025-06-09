@@ -109,6 +109,12 @@ const Confirmation = () => {
                 price: item.price * item.Qty,
             }));
 
+
+            const OrdersDb = orderItemsWithQty.map(item => ({
+                Item: item.title,
+                units: item.Qty,
+            }));
+
             const templateParams = {
                 email: data.Email,
                 user_name: `${data.FirstName} ${data.LastName}`,
@@ -127,6 +133,21 @@ const Confirmation = () => {
                 templateParams,
                 'Cvpw-eL8j_z2d80DN'
             );
+
+            //this data for the send to the db
+
+            const dbData = {
+                FirstName: data.FirstName,
+                LastName: data.LastName,
+                Email: data.Email,
+                MobileNumber: data.MobileNumber,
+                DeliveryAddress: data.DeliveryAddress,
+                TotalAmount: total,
+                OrderItems: OrdersDb,
+                createdAt: new Date(),
+            }
+
+            console.log("This data for the DB:", dbData)
 
             console.log(' Email sent:', response.status, response.text);
 
