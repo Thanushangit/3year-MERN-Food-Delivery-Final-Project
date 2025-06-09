@@ -1,14 +1,28 @@
+import { useState } from "react";
 import { formatSrilankaPrice } from "../../Util/PriceSeperator"
 
 const AdminOrderCard = (props) => {
-    const { FirstName, LastName, DeliveryAddress,Email, MobileNumber, OrderItems, TotalAmount, createdAt } = props.item;
+    const { FirstName, LastName, DeliveryAddress, Email, MobileNumber, OrderItems, TotalAmount, createdAt } = props.item;
+
+    const [orderStatus,setOrderStatus]=useState("placed")
+   
+    const date = new Date(createdAt);
+    const datePart = date.toLocaleDateString("en-GB"); // Gives "09/06/2025"
+    const timeOptions = {
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+    };
+    let timePart = date.toLocaleTimeString("en-US", timeOptions);
+    const formatted = `${datePart} ${timePart}`;
+ 
 
     return (
 
         <tr
-            className="border-b border-b-gray-300 text-gray-600 shadow mb-10 ext-sm md:text-base"
+            className="border-b border-b-gray-300 text-gray-600 shadow mb-10 ext-sm md:text-base hover:bg-gray-100 transition-all duration-300 hover:cursor-pointer"
         >
-            <td className="pl-2">09/06/2025 <br />11.29 a.m</td>
+            <td className="pl-2">{formatted}</td>
             <td className="px-8">66659fc2c90e7b2f88a1a001</td>
             <td className="px-8 py-3 mx-2">
                 <p>{FirstName} {LastName}</p>
@@ -23,7 +37,7 @@ const AdminOrderCard = (props) => {
 
                 {
                     OrderItems.map((food, ind) => (
-                        <p key={ind}>{food.name}-<span>{food.units}</span></p>
+                        <p key={ind} className="my-1 whitespace-nowrap">{food.name}-<span className="mx-2 ">{food.units}</span></p>
                     ))
                 }
 
@@ -34,20 +48,25 @@ const AdminOrderCard = (props) => {
                     <form action="" className="text-center ">
                         <div className="flex items-center gap-2">
                             <input
+                             className="accent-blue-500"
                                 type="radio"
                                 name="order-status"
                                 value="placed"
                                 id="placed"
-                                checked
+                               checked={orderStatus === "placed"}
+                               onChange={(e)=>setOrderStatus(e.target.value)}
                             />
                             <label for="placed">placed</label>
                         </div>
                         <div className="flex items-center gap-2">
                             <input
+                             className="accent-blue-500"
                                 type="radio"
                                 name="order-status"
                                 value="on-the-way"
                                 id="on-the-way"
+                                checked={orderStatus === "on-the-way"}
+                                 onChange={(e)=>setOrderStatus(e.target.value)}
 
                             />
                             <label for="on-the-way whitespace-nowrap">on its way</label>
@@ -55,19 +74,25 @@ const AdminOrderCard = (props) => {
 
                         <div className="flex items-center gap-2">
                             <input
+                             className="accent-blue-500"
                                 type="radio"
                                 name="order-status"
                                 value="canceled"
                                 id="canceled"
+                                checked={orderStatus === "canceled"}
+                                 onChange={(e)=>setOrderStatus(e.target.value)}
                             />
                             <label for="canceled">canceled</label>
                         </div>
                         <div className="flex items-center gap-2">
                             <input
+                             className="accent-blue-500"
                                 type="radio"
                                 name="order-status"
                                 value="delivered"
                                 id="delivered"
+                                checked={orderStatus === "delivered"}
+                                 onChange={(e)=>setOrderStatus(e.target.value)}
                             />
                             <label for="delivered">delivered</label>
                         </div>
