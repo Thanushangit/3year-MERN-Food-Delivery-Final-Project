@@ -4,10 +4,22 @@ import { z } from 'zod';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setAdminLoginStatus } from '../Slices/AdminLogin';
+
+
+
 
 const AdminLoginPage = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
+    const [adminDetails] = useState({
+        email: "",
+        // jboys@gmail.com
+        password: "123"
+        // Jboys2025@
+    })
 
     const schema = z.object({
         email: z.string().nonempty("Enter your email").email("The email not valid."),
@@ -26,41 +38,41 @@ const AdminLoginPage = () => {
         // resolver: zodResolver(schema)
     })
 
-    async function MySubmitHandler() {
-        setLoading(true)
+
+
+    async function MySubmitHandler(data) {
+        setLoading(true);
         try {
-            localStorage.setItem("admin-auth", "true");
-            Swal.fire({
-                icon: "success",
-                title: "Admin Login Successful",
-                text: "Welcome back, Admin. Redirecting to the dashboard...",
-                timer: 4000,
-                showConfirmButton: false,
-                position: "center"
-            }).then(() => {
-
-                navigate("/admin/dashboard", { replace: true });
-
-
-            }).then(() => {
-                reset();
-            })
-
+            if (data.email === adminDetails.email && data.password === adminDetails.password) {
+                dispatch(setAdminLoginStatus(true));
+                Swal.fire({
+                    icon: "success",
+                    title: "Admin Login Successful",
+                    text: "Welcome back, Admin. Redirecting to the dashboard...",
+                    timer: 2000,
+                    showConfirmButton: false,
+                    position: "center"
+                }).then(() => {
+                    navigate("/admin/dashboard", { replace: true });
+                    reset();
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Login Failed",
+                    text: "Incorrect email or password.",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }
         } catch (err) {
-            console.log("login page error", err)
-            Swal.fire({
-                icon: "error",
-                title: "Login Failed",
-                text: "Incorrect username or password. Please try again.",
-                timer: 5000,
-                showConfirmButton: true,
-
-            })
-
+            console.error("admin Login error:", err);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
+
+
     return (
         <section >
             {/* <!-- header part --> */}

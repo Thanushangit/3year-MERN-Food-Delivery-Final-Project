@@ -1,10 +1,15 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import AdminNavbar from "../Componets/Navbar/AdminNavbar";
-import { toast, Bounce } from "react-toastify";
-import { useEffect } from "react";
+import { toast, Bounce,ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
+
+
 
 const AdminDashboard = () => {
-    useEffect(() => {
+    const adminStatus = useSelector(sta => sta.adminStatus.status)
+
+
+    if (adminStatus) {
         toast.success('👋 Welcome, Thanushan!', {
             position: "top-center",
             autoClose: 5000,
@@ -16,12 +21,33 @@ const AdminDashboard = () => {
             theme: "light",
             transition: Bounce,
         });
-    }, []);
+
+    }
+
+
+    if (!adminStatus) {
+        return <Navigate to="/admin" replace />;
+    }
+
+
 
     return (
         <div>
             <AdminNavbar />
             <Outlet />
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick={false}
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+
+            />
         </div>
     );
 };

@@ -4,6 +4,7 @@ import OrderReducer from '../Slices/OrderStatusSlice';
 import AddItemReducer from '../Slices/AddItemsSlice';
 import AddItemsWithQtyReducer from '../Slices/OrderItemsWithQty'
 import loginStatusReducer from '../Slices/LoginConfirmation'
+import setAdminLoginStatusReducer  from '../Slices/AdminLogin';
 
 export const store = configureStore({
     devTools:true,
@@ -12,7 +13,8 @@ export const store = configureStore({
         orderStatus:OrderReducer,
         addItems:AddItemReducer,
         addItemsWithQty:AddItemsWithQtyReducer,
-        loginStatus:loginStatusReducer
+        loginStatus:loginStatusReducer,
+        adminStatus:setAdminLoginStatusReducer,
        
     }
 })

@@ -1,7 +1,8 @@
-import React from 'react'
+
 import { Outlet } from 'react-router-dom'
 
 const AdiminLayout = () => {
+  
   return (
     <div>
       <Outlet/>
@@ -10,12 +11,3 @@ const AdiminLayout = () => {
 }
 
 export default AdiminLayout
-
-
-
-
-
-
-
-
-// you should fixed the logout after never go to the dashboard page

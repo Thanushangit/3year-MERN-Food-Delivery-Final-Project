@@ -1,12 +1,16 @@
 import { useState } from "react"
+import { useDispatch } from "react-redux"
 import { NavLink, useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
+import { setAdminLoginStatus } from '../../Slices/AdminLogin'
+
 const AdminNavbar = () => {
     const [menuStatus, setMenuStatus] = useState(false)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     function ButtonHandler() {
-        localStorage.removeItem("admin-auth");
+        dispatch(setAdminLoginStatus(false))
         Swal.fire({
             icon: "success",
             title: "Admin Logout Successful",
@@ -14,9 +18,11 @@ const AdminNavbar = () => {
             timer: 4000,
             showConfirmButton: false,
             position: "center"
+        }).then(() => {
+         
+            navigate("/",{ replace: true });
+            setMenuStatus(prev => !prev);
         });
-        navigate("/admin", { replace: true })
-        setMenuStatus(pre => !pre)
 
 
 
