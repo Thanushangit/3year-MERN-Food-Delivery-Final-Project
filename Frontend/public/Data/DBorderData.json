@@ -1,15 +1,15 @@
 [
   {
     "_id": "66659fc2c90e7b2f88a1a001",
-    "DeliveryAddress": "123 Main Street",
-    "Email": "user@example.com",
-    "FirstName": "John",
-    "LastName": "Doe",
+    "DeliveryAddress": "punnaliakkdduvan notthe jaddn  ji, jkur nkjhuioie",
+    "Email": "sinnarasaThanu2002@gami.com",
+    "FirstName": "sinnarasa",
+    "LastName": "Thanushan",
     "MobileNumber": "0771234567",
     "OrderItems": [
       { "name": "Pizza", "units": 1 },
-      { "name": "Burger", "units": 2 },
-      { "name": "Sushi", "units": 3 }
+      { "name": "chicken-buriyani", "units": 2 },
+      { "name": "veg-kottu-rotti-with chinckj", "units": 3 }
     ],
     "OrderStatus":"placed",
     "TotalAmount": 12442.5,

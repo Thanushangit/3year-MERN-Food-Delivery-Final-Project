@@ -13,22 +13,24 @@ const AdminOrdersPage = () => {
         fetchData();
     }, []);
 
-    console.log("this db dat", DBdata)
+
 
     return (
-        <section className="my-15 sm:my-20 relative ">
-            <div className="mycontainer text-left overflow-x-scroll overflow-y-auto scroll-smooth max-h-[500px]">
-                <table className="w-full table-auto border-collapse">
-                    <thead>
-                        <tr className="bg-gray-100 text-left text-sm md:text-base">
-                            <th className="px-4 py-2">Date</th>
+        <section className="mt-15 sm:mt-20 ">
+            <div className="mycontainer text-left overflow-x-scroll overflow-y-auto scroll-smooth max-h-[500px] ">
+                <table className="w-full table-auto border-collapse relative">
+                    <thead className="sticky -top-5 right-0 z-10">
+                        <tr className="bg-gray-100 text-sm md:text-base">
+                            <th className="px-4 py-2 ">Date</th>
                             <th className="px-4 py-2">Order ID</th>
                             <th className="px-4 py-2">Customer</th>
                             <th className="px-4 py-2">Address</th>
+                             <th className="px-4 py-2">Email</th>
                             <th className="px-4 py-2">Phone</th>
                             <th className="px-4 py-2">Items</th>
                             <th className="px-4 py-2">Total</th>
                             <th className="px-4 py-2">Status</th>
+                            <th className="px-4 py-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -36,9 +36,9 @@ const MainPage = () => {
             </header>
             <div className="flex flex-col items-center justify-center gap-y-5 w-full h-full ">
                 <div className="w-32 h-32 md:w-64 md:h-64 mt-5 flex items-center justify-center ">
-                    <img src="https://res.cloudinary.com/thanushan/image/upload/v1749391677/unknown_user_a8c70v.png" alt="unknown" />
+                    <img src="https://res.cloudinary.com/thanushan/image/upload/v1749458305/unknown_user_think_ervcmm.webp" alt="unknown" className="scale-125"/>
                 </div>
-                <h1 className="text-3xl md:text-5xl">Please select your role</h1>
+                <h1 className="text-3xl md:text-5xl text-center">Please select your role</h1>
                 <div className="flex items-center justify-center w-full gap-5 md:gap-10  md:max-w-lg md:mt-5">
 
                     <Link title="click" to={'/user'} className="py-2 px-4 md:py-4 md:px-8 rounded transition-all duration-300 cursor-pointer bg-green-500 text-xl hover:bg-green-700">Customer</Link>
