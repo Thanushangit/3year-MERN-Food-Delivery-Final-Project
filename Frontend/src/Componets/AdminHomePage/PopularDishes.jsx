@@ -1,9 +1,26 @@
+
 import { formatSrilankaPrice } from "../../Util/PriceSeperator";
 import DeleteButton from "./DeleteButton";
-import EditButton from "./EditButton";
+
+
 
 const PopularDishes = (props) => {
-    const{id,img,title,price,description}=props.item;
+    const { id, img, title, price, description } = props.item;
+    const setShowDetailsStatus = props.setShowDetailsStatus;
+    const setShowDetails = props.setShowDetails;
+
+    function ButtonHandler(id, img, title, price, description) {
+        setShowDetailsStatus(true),
+            setShowDetails({
+                showid: {id},
+                showimg: {img},
+                showtitle:{title},
+                showprice: {price},
+                showdescription: {description}
+            })
+    }
+
+
     return (
         <div
             class="dishes_item group border-1 border-gray-300 hover:shadow-2xl cursor-pointer hover:-translate-y-1 transform transition duration-300 rounded-md overflow-hidden relative"
@@ -31,12 +48,23 @@ const PopularDishes = (props) => {
                 class="absolute top-0 left-0 w-full h-full bg-black/50 z-10 hidden group-hover:flex items-center justify-center transition-all duration-300"
             >
                 <div class="flex items-center justify-center gap-5 w-full">
-                    
-                    <DeleteButton/>
 
-                    <EditButton/>
+                    <button
+                        onClick={() => ButtonHandler(id, img, title, price, description)}
+                        title="Edit the item"
+                        class="sm:w-12 w-8 sm:h-12 h-8 rounded-full bg-green-500 flex items-center justify-center text-gray-100 hover:cursor-pointer sm:text-xl text-md hover:bg-green-700"
+                    >
+                        <i class="ri-edit-2-line"></i>
+                    </button>
+
+                    <DeleteButton />
+
+
                 </div>
             </div>
+            {/* {showDetails && <SingleFoodDetails id={id} img={img} title={title} price={price} description={description}/>} */}
+
+
         </div>
     )
 }

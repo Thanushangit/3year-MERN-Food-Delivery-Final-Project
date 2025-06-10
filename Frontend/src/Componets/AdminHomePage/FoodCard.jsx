@@ -1,9 +1,8 @@
 import React from 'react'
 import DeleteButton from './DeleteButton'
-import EditButton from './EditButton'
 import { formatSrilankaPrice } from '../../Util/PriceSeperator';
 
-const FoodCard = ({props}) => {
+const FoodCard = (props) => {
     const{id,name,description,price,image}=props.item;
     return (
         <div
@@ -33,7 +32,7 @@ const FoodCard = ({props}) => {
 
                     <DeleteButton />
 
-                    <EditButton />
+                   
 
 
                 </div>

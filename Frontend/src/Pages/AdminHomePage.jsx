@@ -6,12 +6,23 @@ import { loadLunch } from '../FetchLoaders/Fetchingdata'
 import { loadDinner } from '../FetchLoaders/Fetchingdata'
 import AddNewButton from '../Componets/AdminHomePage/AddNewButton';
 import FoodCard from '../Componets/AdminHomePage/FoodCard';
+import SingleFoodDetails from '../Componets/AdminHomePage/SingleFoodDetails';
 
 const AdminHomePage = () => {
   const [popular, setPopular] = useState([]);
   const [breakfast, setBreakfast] = useState([]);
   const [lunch, setLunch] = useState([]);
   const [dinner, setDinner] = useState([]);
+
+  const [showDetailsStatus, setShowDetailsStatus] = useState(false);
+  const [showDetails, setShowDetails] = useState({
+    showid: "",
+    showimg: "",
+    showtitle: "",
+    showprice: "",
+    showdescription: ""
+  })
+
 
   // it for the popularDishes 
   useEffect(() => {
@@ -20,7 +31,10 @@ const AdminHomePage = () => {
       setPopular(data);
     };
     fetchData();
+
   }, []);
+
+
 
 
   // it for the breakfast 
@@ -31,6 +45,8 @@ const AdminHomePage = () => {
     };
     fetchData();
   }, []);
+
+
 
 
   // it for the lunch 
@@ -56,7 +72,7 @@ const AdminHomePage = () => {
 
 
   return (
-    <div>
+    <div className='relative'>
       {/* <!-- Populer Dishes --> */}
 
       <section className="my-15 sm:my-15 bg-[#e9ecef]">
@@ -73,7 +89,7 @@ const AdminHomePage = () => {
 
               {
                 popular.map((item) => (
-                  <PopularDishes item={item} key={item.id} />
+                  <PopularDishes item={item} key={item.id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
                 ))
               }
 
@@ -100,9 +116,10 @@ const AdminHomePage = () => {
           >
             {
               breakfast.map((item) => (
-                <FoodCard item={item} key={item.id}/>
+                <FoodCard item={item} key={item.id} />
               ))
             }
+
 
           </div>
           <AddNewButton />
@@ -158,6 +175,10 @@ const AdminHomePage = () => {
           <AddNewButton />
         </div>
       </section> */}
+
+      {showDetailsStatus && <SingleFoodDetails showid={showDetails.showid} showimg={showDetails.showimg} showtitle={showDetails.showtitle} showprice={showDetails.showprice} showdescription={showDetails.showdescription} setShowDetailsStatus={setShowDetailsStatus} />}
+
+    
 
     </div>
   )

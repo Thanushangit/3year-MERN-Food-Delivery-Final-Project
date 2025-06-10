@@ -20,7 +20,7 @@ const AdminOrderCard = (props) => {
     return (
 
         <tr
-            className="border-b border-b-gray-300 text-gray-600 shadow mb-10 ext-sm md:text-base hover:bg-gray-100 transition-all duration-300 hover:cursor-pointer"
+            className="border-b border-b-gray-300 text-gray-600 shadow mb-10 ext-sm md:text-base hover:bg-gray-200 hover:text-gray-900  transition-all duration-200 hover:cursor-pointer"
         >
             <td className="pl-2">{formatted}</td>
             <td className="px-8">66659fc2c90e7b2f88a1a001</td>

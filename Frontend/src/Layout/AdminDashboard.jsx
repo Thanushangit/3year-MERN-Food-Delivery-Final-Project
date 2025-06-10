@@ -2,6 +2,7 @@ import { Outlet, Navigate } from "react-router-dom";
 import AdminNavbar from "../Componets/Navbar/AdminNavbar";
 import { toast, Bounce,ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
+import AdminFooter from "../Componets/Footer/AdminFooter";
 
 
 
@@ -35,6 +36,7 @@ const AdminDashboard = () => {
         <div>
             <AdminNavbar />
             <Outlet />
+            <AdminFooter/>
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
