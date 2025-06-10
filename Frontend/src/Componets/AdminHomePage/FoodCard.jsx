@@ -3,7 +3,21 @@ import DeleteButton from './DeleteButton'
 import { formatSrilankaPrice } from '../../Util/PriceSeperator';
 
 const FoodCard = (props) => {
-    const{id,name,description,price,image}=props.item;
+    const { id, name, description, price, image } = props.item;
+    const setShowDetailsStatus = props.setShowDetailsStatus;
+    const setShowDetails = props.setShowDetails;
+
+    function ButtonHandler(id, img, title, price, description) {
+setShowDetailsStatus(true),
+            setShowDetails({
+                showid: {id},
+                showimg: {img},
+                showtitle:{title},
+                showprice: {price},
+                showdescription: {description}
+            })
+    }
+
     return (
         <div
             class="food_item flex relative group items-center overflow-hidden rounded border-b-2 border-r-2 border-gray-300/80 group-hover:shadow-md"
@@ -30,9 +44,19 @@ const FoodCard = (props) => {
             >
                 <div class="flex items-center justify-center gap-5 w-full">
 
-                    <DeleteButton />
 
-                   
+                    <button
+                        onClick={() => ButtonHandler(id, image, name, price, description)}
+                        title="Edit the item"
+                        class="sm:w-12 w-8 sm:h-12 h-8 rounded-full bg-green-500 flex items-center justify-center text-gray-100 hover:cursor-pointer sm:text-xl text-md hover:bg-green-700"
+                    >
+                        <i class="ri-edit-2-line"></i>
+                    </button>
+
+
+                    <DeleteButton id={id} title={name} />
+
+
 
 
                 </div>

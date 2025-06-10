@@ -105,3 +105,10 @@ th
     text-align: center;
     vertical-align: center;
 }
+
+
+.custom-delete-button {
+    background-color: red !important;  
+    color: white !important;          
+               
+}

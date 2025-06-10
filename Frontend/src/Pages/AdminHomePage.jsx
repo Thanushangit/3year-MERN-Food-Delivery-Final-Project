@@ -103,7 +103,7 @@ const AdminHomePage = () => {
 
       {/* <!-- ← breakfast section → --> */}
 
-      {/* <section className="my-15 sm:my-35 bg-[#e9ecef]">
+      <section className="my-15 sm:my-35 bg-[#e9ecef]">
         <div className="mycontainer my-5 md:my-10">
           <h1
             className="text-2xl md:text-3xl lg:text-4xl my-8 sm:mb-8 font-bold font-ibm"
@@ -116,7 +116,7 @@ const AdminHomePage = () => {
           >
             {
               breakfast.map((item) => (
-                <FoodCard item={item} key={item.id} />
+                <FoodCard item={item} key={item.id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
               ))
             }
 
@@ -124,12 +124,12 @@ const AdminHomePage = () => {
           </div>
           <AddNewButton />
         </div>
-      </section> */}
+      </section>
 
 
       {/* <!-- ← lunch section → --> */}
 
-      {/* <section className="my-15 sm:my-35 bg-[#e9ecef]">
+      <section className="my-15 sm:my-35 bg-[#e9ecef]">
         <div className="mycontainer my-5 md:my-10">
           <h1
             className="text-2xl md:text-3xl lg:text-4xl my-8 sm:mb-8 font-bold font-ibm"
@@ -140,21 +140,21 @@ const AdminHomePage = () => {
             id="lunchDiv"
             className="food_item_container grid relative grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4 lg:gap-x-5 lg:gap-y-5"
           >
-             {
+            {
               lunch.map((item) => (
-                <FoodCard item={item} key={item.id}/>
+                <FoodCard item={item} key={item.id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
               ))
             }
-            
+
           </div>
           <AddNewButton />
         </div>
-      </section> */}
+      </section>
 
 
       {/* <!-- ← dinner section → --> */}
 
-      {/* <section className="my-15 sm:my-35 bg-[#e9ecef]">
+      <section className="mt-15 sm:mt-35 bg-[#e9ecef]">
         <div className="mycontainer my-5 md:my-10">
           <h1
             className="text-2xl md:text-3xl lg:text-4xl my-8 sm:mb-8 font-bold font-ibm"
@@ -165,20 +165,20 @@ const AdminHomePage = () => {
             id="dinnerDiv"
             className="food_item_container grid relative grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4 lg:gap-x-5 lg:gap-y-5"
           >
-             {
+            {
               dinner.map((item) => (
-                <FoodCard item={item} key={item.id}/>
+                <FoodCard item={item} key={item.id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
               ))
             }
-            
+
           </div>
           <AddNewButton />
         </div>
-      </section> */}
+      </section>
 
       {showDetailsStatus && <SingleFoodDetails showid={showDetails.showid} showimg={showDetails.showimg} showtitle={showDetails.showtitle} showprice={showDetails.showprice} showdescription={showDetails.showdescription} setShowDetailsStatus={setShowDetailsStatus} />}
 
-    
+
 
     </div>
   )

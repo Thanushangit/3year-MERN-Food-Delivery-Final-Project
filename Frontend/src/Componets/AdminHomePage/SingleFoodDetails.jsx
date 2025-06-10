@@ -1,31 +1,55 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useRef, useState } from "react";
+import Swal from "sweetalert2";
 
-const SingleFoodDetails = ({ showid, showimg, showtitle, showprice, showdescription,setShowDetailsStatus }) => {
-   
-   
+const SingleFoodDetails = ({
+    showid,
+    showimg = "",
+    showtitle = "",
+    showprice = "",
+    showdescription = "",
+    action = "Edit",
+    setShowDetailsStatus
+}) => {
+    const [loading, setLoading] = useState(false);
+    const modalRef = useRef();
+
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, []);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setShowDetailsStatus(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     const schema = z.object({
-        img: z
-            .string()
-            .nonempty("URL is required.")
-            .url("Invalid URL."),
-        name: z
-            .string()
+        img: z.string().nonempty("URL is required.").url("Invalid URL."),
+        name: z.string()
             .nonempty("Name is required.")
             .regex(/^[a-zA-Z0-9 _-]+$/, "Invalid name.")
             .min(3, "Invalid name.")
             .max(50, "Invalid name."),
-        price: z
-            .string()
+        price: z.string()
             .nonempty("Price is required.")
             .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
                 message: "Invalid price",
             })
             .transform((val) => Number(val)),
         specialNote: z.string().optional(),
-        description: z
-            .string()
+        description: z.string()
             .nonempty("Description is required.")
             .min(5, "Invalid Description.")
             .max(100, "Invalid Description."),
@@ -40,7 +64,7 @@ const SingleFoodDetails = ({ showid, showimg, showtitle, showprice, showdescript
         defaultValues: {
             img: showimg.img,
             name: showtitle.title,
-            price: String(showprice.price), // convert to string
+            price: String(showprice.price),
             description: showdescription.description,
             specialNote: ""
         },
@@ -50,19 +74,48 @@ const SingleFoodDetails = ({ showid, showimg, showtitle, showprice, showdescript
     const imageUrl = watch("img");
 
     function MyHandler(data) {
-        console.log("This single food form details:", data);
-       
+        setLoading(true);
+
+        Swal.fire({
+            title: "Do you want to save the changes?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log("This single food form details:", data);
+                setTimeout(() => {
+                    Swal.fire("Updated successfully!", "", "success").then(() => {
+                        setShowDetailsStatus(false);
+                    });
+
+                    setLoading(false);
+                }, 2000);
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+                setLoading(false);
+            } else {
+                setLoading(false);
+            }
+        }).catch((err) => {
+            Swal.fire({
+                title: "Updating failed",
+                text: "Please try again later.",
+                icon: "error"
+            });
+            console.error("edited error", err);
+            setLoading(false);
+        });
     }
 
     return (
-        <section className="absolute top-0 right-0 w-full h-full bg-black/40 z-50 flex flex-col items-center justify-center backdrop-blur-sm">
-            <div className="relative mycontainer flex flex-col items-center justify-center bg-gray-200 rounded-sm p-6 w-full max-w-2xl">
-
-                {/* Close Button */}
+        <section className="fixed top-32 md:top-0 right-0 w-full min-h-screen max-h-screen bg-black/40 z-50 flex flex-col items-center justify-center backdrop-blur-sm">
+            <div ref={modalRef} className="relative mycontainer flex flex-col items-center justify-center bg-gray-200 rounded-sm p-6 w-full max-w-2xl">
 
                 <button
-                    onClick={()=>setShowDetailsStatus()}
-                    className="absolute top-2 right-3  text-4xl text-gray-600 hover:text-red-500 cursor-pointer"
+                    onClick={() => setShowDetailsStatus(false)}
+                    className="absolute top-2 right-3 text-4xl text-gray-600 hover:text-red-500 cursor-pointer"
                     title="Close"
                 >
                     &times;
@@ -90,7 +143,7 @@ const SingleFoodDetails = ({ showid, showimg, showtitle, showprice, showdescript
                         </label>
                         <input
                             id="Food-Image"
-                            className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md ${errors.img?"border border-red-500":"border-0"}`}
+                            className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md ${errors.img ? "border border-red-500" : "border-0"}`}
                             {...register("img")}
                         />
                         {errors.img && (
@@ -104,7 +157,7 @@ const SingleFoodDetails = ({ showid, showimg, showtitle, showprice, showdescript
                         </label>
                         <input
                             id="Food-Name"
-                            className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md ${errors.name?"border border-red-500":"border-0"}`}
+                            className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md ${errors.name ? "border border-red-500" : "border-0"}`}
                             {...register("name")}
                         />
                         {errors.name && (
@@ -118,7 +171,7 @@ const SingleFoodDetails = ({ showid, showimg, showtitle, showprice, showdescript
                         </label>
                         <input
                             id="Food-Price"
-                             className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md ${errors.price?"border border-red-500":"border-0"}`}
+                            className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md ${errors.price ? "border border-red-500" : "border-0"}`}
                             {...register("price")}
                         />
                         {errors.price && (
@@ -132,7 +185,7 @@ const SingleFoodDetails = ({ showid, showimg, showtitle, showprice, showdescript
                         </label>
                         <input
                             id="Special-Note"
-                            className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md ${errors.specialNote?"border border-red-500":"border-0"}`}
+                            className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md ${errors.specialNote ? "border border-red-500" : "border-0"}`}
                             {...register("specialNote")}
                         />
                         {errors.specialNote && (
@@ -146,7 +199,7 @@ const SingleFoodDetails = ({ showid, showimg, showtitle, showprice, showdescript
                         </label>
                         <textarea
                             id="Food-Description"
-                            className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md resize-none ${errors.description?"border border-red-500":"border-0"}`}
+                            className={`p-2 outline-0 rounded bg-gray-300 w-full shadow-md resize-none ${errors.description ? "border border-red-500" : "border-0"}`}
                             rows={4}
                             {...register("description")}
                         />
@@ -157,11 +210,11 @@ const SingleFoodDetails = ({ showid, showimg, showtitle, showprice, showdescript
 
                     <div className="md:col-span-2 flex items-center justify-center">
                         <button
-                            title="Done"
+                            title={action}
                             type="submit"
-                            className="w-full sm:w-sm py-3 px-5 bg-primary rounded outline-0 text-white font-semibold text-xl cursor-pointer transition duration-300 hover:bg-yellow-600"
+                            className={`w-full sm:w-sm py-3 px-5 ${loading ? "bg-gray-500 cursor-not-allowed" : "bg-primary hover:bg-yellow-600 cursor-pointer"} rounded outline-0 text-white font-semibold text-xl transition duration-300`}
                         >
-                            Done
+                            {loading ? "Loading..." : action}
                         </button>
                     </div>
                 </form>
