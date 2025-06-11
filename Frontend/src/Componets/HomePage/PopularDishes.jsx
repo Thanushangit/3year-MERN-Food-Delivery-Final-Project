@@ -107,7 +107,7 @@ const PopularDishes = () => {
                 </h1>
                 <div className="grid grid-rows-1 w-full">
                     <div className="grid grid-cols-2 md:grid-cols-3 mb-5 lg:grid-cols-4 xl:grid-cols-6 gap-2 md:gap-x-5 gap-y-7 md:gap-y-10">
-                        {FoodData.map((food) => (
+                        {Array.isArray(FoodData) && FoodData.length > 0 && FoodData.map((food) => (
                             <div
                                 key={food.id}
                                 title="Taste. Smile. Repeat. 😋"

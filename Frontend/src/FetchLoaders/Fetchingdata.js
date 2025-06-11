@@ -3,8 +3,9 @@ import axios from "axios";
 
 export async function popularDishes() {
   try {
-    const res = await axios.get("/3year-MERN-Food-Delivery-Final-Project/Data/PopularDishes.json"); 
-    return res.data;
+    const res = await axios.get("http://localhost:3000/api/allpopular"); 
+    console.log("fetched data",res.data)
+    return res.data.message;
   } catch (err) {
     console.error("Popular Dishes Data fetched Error  ")
     if (err.response) {
@@ -22,8 +23,8 @@ export async function popularDishes() {
 
 export async function loadBreakFast() {
   try {
-    const res = await axios.get("/3year-MERN-Food-Delivery-Final-Project/Data/BreakFast.json"); 
-    return res.data;
+    const res = await axios.get("http://localhost:3000/api/allbreakfast"); 
+    return res.data.message;
   } catch (err) {
     console.error("Breakfast Data fetched Error:");
     if (err.response) {
@@ -41,8 +42,8 @@ export async function loadBreakFast() {
 
 export async function loadLunch() {
   try {
-    const res = await axios.get("/3year-MERN-Food-Delivery-Final-Project/Data/Lunch.json"); 
-    return res.data;
+    const res = await axios.get("http://localhost:3000/api/AllLunch"); 
+    return res.data.message;
   } catch (err) {
     console.error("lunch Data fetched Error:");
     if (err.response) {
@@ -59,8 +60,8 @@ export async function loadLunch() {
 
 export async function loadDinner() {
   try {
-    const res = await axios.get("/3year-MERN-Food-Delivery-Final-Project/Data/Dinner.json"); 
-    return res.data;
+    const res = await axios.get("http://localhost:3000/api/alldinner"); 
+    return res.data.message;
   } catch (err) {
     console.error("Dinner Data fetched Error:");
     if (err.response) {
@@ -78,8 +79,8 @@ export async function loadDinner() {
 
 export async function loadOrderItems() {
   try {
-    const res = await axios.get("/3year-MERN-Food-Delivery-Final-Project/Data/DBorderData.json"); 
-    return res.data;
+    const res = await axios.get("http://localhost:3000/order/allcustomerOrder"); 
+    return res.data.message;
   } catch (err) {
     console.error("DB order Data fetched Error:");
     if (err.response) {

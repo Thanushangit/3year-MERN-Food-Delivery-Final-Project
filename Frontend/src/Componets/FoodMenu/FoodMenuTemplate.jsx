@@ -51,7 +51,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
             dispatch(increment())
             dispatch(addItem(item));
 
-        }else{
+        } else {
             toast.error('You must log in to place an order!', {
                 position: "top-center",
                 autoClose: 5000,
@@ -61,7 +61,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                
+
             });
         }
     }
@@ -73,7 +73,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
             id="breakFastDiv"
             className="food_item_container grid relative grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-4 lg:gap-x-5 lg:gap-y-5">
 
-            {
+            {Array.isArray(FoodData) && FoodData.length > 0 &&
                 FoodData.map((food) => (
                     <div
                         key={food.id} className="relative food_item flex items-center overflow-hidden rounded border-b-2 border-r-2 border-gray-300/80 hover:shadow-md"
