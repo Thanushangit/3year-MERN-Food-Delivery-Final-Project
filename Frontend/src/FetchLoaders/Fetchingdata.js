@@ -4,7 +4,6 @@ import axios from "axios";
 export async function popularDishes() {
   try {
     const res = await axios.get("http://localhost:3000/api/allpopular"); 
-    console.log("fetched data",res.data)
     return res.data.message;
   } catch (err) {
     console.error("Popular Dishes Data fetched Error  ")

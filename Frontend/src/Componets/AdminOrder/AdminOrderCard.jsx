@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { formatSrilankaPrice } from "../../Util/PriceSeperator"
+import axios from "axios";
+import Swal from "sweetalert2";
 
-const AdminOrderCard = (props) => {
-    const { FirstName, LastName, DeliveryAddress, Email, MobileNumber, OrderItems, TotalAmount, createdAt } = props.item;
+const AdminOrderCard = ({ item, onDelete }) => {
 
-    const [orderStatus,setOrderStatus]=useState("placed")
-   
-    const date = new Date(createdAt);
+    const [orderStatus, setOrderStatus] = useState("placed")
+    const date = new Date(item.createdAt);
     const datePart = date.toLocaleDateString("en-GB"); // Gives "09/06/2025"
     const timeOptions = {
         hour: "numeric",
@@ -15,7 +15,37 @@ const AdminOrderCard = (props) => {
     };
     let timePart = date.toLocaleTimeString("en-US", timeOptions);
     const formatted = `${datePart} ${timePart}`;
- 
+
+
+
+    // delete for the particular order 
+
+    async function ButtonHandler(id) {
+        try {
+
+            Swal.fire({
+                title: `Are you sure you want to delete "${id}"?`,
+                icon: "warning",
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: "Delete",
+                cancelButtonText: "Cancel",
+                customClass: {
+                    confirmButton: "custom-delete-button"
+                }
+            }).then(async(result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Deleted!", `The "${id}" has been deleted successfully.`);
+                    await axios.delete(`http://localhost:3000/order/deletecustomerOrder/${id}`);
+                    onDelete(id)
+                }
+            });
+        }
+        catch (err) {
+            console.error("Error deleting item:", err);
+        }
+    }
+
 
     return (
 
@@ -23,50 +53,50 @@ const AdminOrderCard = (props) => {
             className="border-b border-b-gray-300 text-gray-600 shadow mb-10 ext-sm md:text-base hover:bg-gray-200 hover:text-gray-900  transition-all duration-200 hover:cursor-pointer"
         >
             <td className="pl-2">{formatted}</td>
-            <td className="px-8">66659fc2c90e7b2f88a1a001</td>
+            <td className="px-8">{item._id}</td>
             <td className="px-8 py-3 mx-2">
-                <p>{FirstName} {LastName}</p>
+                <p>{item.FirstName} {item.LastName}</p>
 
             </td>
             <td className="px-8 py-3 mx-2">
-                {DeliveryAddress}
+                {item.DeliveryAddress}
             </td>
-            <td className="px-8">{Email}</td>
-            <td className="px-8 py-3">{MobileNumber}</td>
+            <td className="px-8">{item.Email}</td>
+            <td className="px-8 py-3">{item.MobileNumber}</td>
             <td className="px-8 py-3">
 
                 {
-                    OrderItems.map((food, ind) => (
+                    item.OrderItems.map((food, ind) => (
                         <p key={ind} className="my-1 whitespace-nowrap">{food.name}-<span className="mx-2 ">{food.units}</span></p>
                     ))
                 }
 
             </td>
-            <td className="px-8 py-3">Rs:-{formatSrilankaPrice(TotalAmount)}</td>
+            <td className="px-8 py-3">Rs:-{formatSrilankaPrice(item.TotalAmount)}</td>
             <td className="px-8 py-3 w-32">
                 <div className="flex flex-col gap-3 w-32 ">
                     <form action="" className="text-center ">
                         <div className="flex items-center gap-2">
                             <input
-                             className="accent-blue-500"
+                                className="accent-blue-500"
                                 type="radio"
                                 name="order-status"
                                 value="placed"
                                 id="placed"
-                               checked={orderStatus === "placed"}
-                               onChange={(e)=>setOrderStatus(e.target.value)}
+                                checked={orderStatus === "placed"}
+                                onChange={(e) => setOrderStatus(e.target.value)}
                             />
                             <label for="placed">placed</label>
                         </div>
                         <div className="flex items-center gap-2">
                             <input
-                             className="accent-blue-500"
+                                className="accent-blue-500"
                                 type="radio"
                                 name="order-status"
                                 value="on-the-way"
                                 id="on-the-way"
                                 checked={orderStatus === "on-the-way"}
-                                 onChange={(e)=>setOrderStatus(e.target.value)}
+                                onChange={(e) => setOrderStatus(e.target.value)}
 
                             />
                             <label for="on-the-way whitespace-nowrap">on its way</label>
@@ -74,25 +104,25 @@ const AdminOrderCard = (props) => {
 
                         <div className="flex items-center gap-2">
                             <input
-                             className="accent-blue-500"
+                                className="accent-blue-500"
                                 type="radio"
                                 name="order-status"
                                 value="canceled"
                                 id="canceled"
                                 checked={orderStatus === "canceled"}
-                                 onChange={(e)=>setOrderStatus(e.target.value)}
+                                onChange={(e) => setOrderStatus(e.target.value)}
                             />
                             <label for="canceled">canceled</label>
                         </div>
                         <div className="flex items-center gap-2">
                             <input
-                             className="accent-blue-500"
+                                className="accent-blue-500"
                                 type="radio"
                                 name="order-status"
                                 value="delivered"
                                 id="delivered"
                                 checked={orderStatus === "delivered"}
-                                 onChange={(e)=>setOrderStatus(e.target.value)}
+                                onChange={(e) => setOrderStatus(e.target.value)}
                             />
                             <label for="delivered">delivered</label>
                         </div>
@@ -102,6 +132,7 @@ const AdminOrderCard = (props) => {
             <td className="pr-2 py-3">
                 <div className="flex items-center justify-center">
                     <button
+                        onClick={() => ButtonHandler(item._id)}
                         className="py-2 px-6 bg-red-500 text-white font-semibold cursor-pointer transistion duration-300 hover:bg-red-700 rounded"
                     >
                         Remove
