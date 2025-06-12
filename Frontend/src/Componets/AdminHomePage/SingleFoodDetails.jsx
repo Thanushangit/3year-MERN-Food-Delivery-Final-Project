@@ -13,12 +13,10 @@ const SingleFoodDetails = ({
     showdescription = "",
     action = "Edit",
     setShowDetailsStatus,
-   category,
+    category,
 }) => {
 
-    useEffect(()=>(
-        console.log("the category",category)
-    ))
+   
     const [loading, setLoading] = useState(false);
     const modalRef = useRef();
 
@@ -83,7 +81,6 @@ const SingleFoodDetails = ({
 
     async function MyHandler(data) {
         setLoading(true);
-
         Swal.fire({
             title: "Do you want to save the changes?",
             showDenyButton: true,
@@ -93,63 +90,62 @@ const SingleFoodDetails = ({
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const upid = String(showid._id)
 
+                    const upid = String(showid._id)
+                   
                     switch (category) {
                         case "popular":
-                            
-                                await axios.put(`http://localhost:3000/api/updatepopular/${upid}`, {
-                                    img: data.img,
-                                    title: data.name,
-                                    price: data.price,
-                                    description: data.description
-                                });
 
-                                break;
-                            
+                            await axios.put(`http://localhost:3000/api/updatepopular/${showid._id}`, {
+                                img: data.img,
+                                title: data.name,
+                                price: data.price,
+                                description: data.description
+                            });
+
+                            break;
+
 
                         case "breakfast":
-                            
-                                await axios.put(`http://localhost:3000/api/updatebreakfast/${upid}`, {
-                                    img: data.img,
-                                    title: data.name,
-                                    price: data.price,
-                                    description: data.description
-                                });
+
+                            await axios.put(`http://localhost:3000/api/updatebreakfast/${upid}`, {
+                                img: data.img,
+                                title: data.name,
+                                price: data.price,
+                                description: data.description
+                            });
                             break;
 
                         case "lunch":
-                            
-                                await axios.put(`http://localhost:3000/api/updatelunch/${upid}`, {
-                                    img: data.img,
-                                    title: data.name,
-                                    price: data.price,
-                                    description: data.description
-                                });
+
+                            await axios.put(`http://localhost:3000/api/updatelunch/${upid}`, {
+                                img: data.img,
+                                title: data.name,
+                                price: data.price,
+                                description: data.description
+                            });
                             break;
 
                         case "dinner":
-                            
-                                await axios.put(`http://localhost:3000/api/updatedinner/${upid}`, {
-                                    img: data.img,
-                                    title: data.name,
-                                    price: data.price,
-                                    description: data.description
-                                });
+
+                            await axios.put(`http://localhost:3000/api/updatedinner/${upid}`, {
+                                img: data.img,
+                                title: data.name,
+                                price: data.price,
+                                description: data.description
+                            });
                             break;
 
                         default:
                             return;
                     }
 
-
-
                     setTimeout(() => {
                         Swal.fire("Updated successfully!", "", "success").then(() => {
                             setShowDetailsStatus(false);
                         });
                         setLoading(false);
-                    }, 2000);
+                    }, 500);
                 } catch (err) {
                     Swal.fire({
                         title: "Updating failed",

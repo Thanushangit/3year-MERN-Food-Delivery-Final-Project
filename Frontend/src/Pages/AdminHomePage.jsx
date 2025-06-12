@@ -6,6 +6,9 @@ import { loadLunch } from '../FetchLoaders/Fetchingdata'
 import { loadDinner } from '../FetchLoaders/Fetchingdata'
 import AddNewButton from '../Componets/AdminHomePage/AddNewButton';
 import FoodCard from '../Componets/AdminHomePage/FoodCard';
+import BreakFastFoodCard from '../Componets/AdminHomePage/BreakFastFoodCard'
+import LunchFoodCard from '../Componets/AdminHomePage/LunchFoodCard'
+import DinnerFoodCard from '../Componets/AdminHomePage/DinnerFoodCard'
 import SingleFoodDetails from '../Componets/AdminHomePage/SingleFoodDetails';
 
 const AdminHomePage = () => {
@@ -21,7 +24,7 @@ const AdminHomePage = () => {
     showtitle: "",
     showprice: "",
     showdescription: "",
-    category:""
+    category: ""
   })
 
 
@@ -133,7 +136,8 @@ const AdminHomePage = () => {
           >
             {
               breakfast.map((item) => (
-                <FoodCard item={item} key={item._id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
+                <BreakFastFoodCard item={item} key={item._id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
+
               ))
             }
 
@@ -159,7 +163,8 @@ const AdminHomePage = () => {
           >
             {
               lunch.map((item) => (
-                <FoodCard item={item} key={item._id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
+                <LunchFoodCard item={item} key={item._id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
+
               ))
             }
 
@@ -184,7 +189,7 @@ const AdminHomePage = () => {
           >
             {
               dinner.map((item) => (
-                <FoodCard item={item} key={item.id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
+                <DinnerFoodCard item={item} key={item.id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
               ))
             }
 
