@@ -27,8 +27,8 @@ exports.getAllpopular = async (req, res, next) => {
 
 exports.upDatepopular = async (req, res, next) => {
   try {
-    const Food = await Food.findById(req.params.id);
-    if (!Food) {
+    const food = await Food.findById(req.params.id);
+    if (!food) {
       return res.status(400).json({ message: "Food Not Found" });
     }
     const data = await Food.findByIdAndUpdate(req.params.id, req.body);
@@ -42,8 +42,8 @@ exports.upDatepopular = async (req, res, next) => {
 
 exports.deletepopular = async (req, res, next) => {
   try {
-    const Food = await Food.findById(req.params.id);
-    if (!Food) {
+    const food = await Food.findById(req.params.id);
+    if (!food) {
       return res.status(400).json({ message: "Food Not Found" });
     }
     const data = await Food.findByIdAndDelete(req.params.id);
