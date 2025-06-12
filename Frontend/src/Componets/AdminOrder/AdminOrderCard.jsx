@@ -5,7 +5,8 @@ import Swal from "sweetalert2";
 
 const AdminOrderCard = ({ item, onDelete }) => {
 
-    const [orderStatus, setOrderStatus] = useState("placed")
+    const [orderStatus, setOrderStatus] = useState("placed");
+
     const date = new Date(item.createdAt);
     const datePart = date.toLocaleDateString("en-GB"); // Gives "09/06/2025"
     const timeOptions = {
@@ -19,7 +20,6 @@ const AdminOrderCard = ({ item, onDelete }) => {
 
 
     // delete for the particular order 
-
     async function ButtonHandler(id) {
         try {
 
@@ -33,7 +33,7 @@ const AdminOrderCard = ({ item, onDelete }) => {
                 customClass: {
                     confirmButton: "custom-delete-button"
                 }
-            }).then(async(result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
                     Swal.fire("Deleted!", `The "${id}" has been deleted successfully.`);
                     await axios.delete(`http://localhost:3000/order/deletecustomerOrder/${id}`);
@@ -43,6 +43,25 @@ const AdminOrderCard = ({ item, onDelete }) => {
         }
         catch (err) {
             console.error("Error deleting item:", err);
+        }
+    }
+
+
+    // it for the chnge the orderStatus
+    async function OrderstatusHandler(e, id) {
+        try {
+            const value = e.target.value
+            setOrderStatus(value)
+            await axios.put(`http://localhost:3000/order/updatecustomerOrder/${id}`,
+                { OrderStatus: value }
+                
+            );
+            
+            console.log("id and value:",value,id)
+
+        }
+        catch (err) {
+            console.error("Error changing the orderStatus item:", err);
         }
     }
 
@@ -75,56 +94,57 @@ const AdminOrderCard = ({ item, onDelete }) => {
             <td className="px-8 py-3">Rs:-{formatSrilankaPrice(item.TotalAmount)}</td>
             <td className="px-8 py-3 w-32">
                 <div className="flex flex-col gap-3 w-32 ">
-                    <form action="" className="text-center ">
+                    <form action="" className="text-center">
                         <div className="flex items-center gap-2">
                             <input
                                 className="accent-blue-500"
                                 type="radio"
-                                name="order-status"
+                                name={`order-status-${item._id}`} // make unique name if used in loop
                                 value="placed"
-                                id="placed"
+                                id={`placed-${item._id}`}
                                 checked={orderStatus === "placed"}
-                                onChange={(e) => setOrderStatus(e.target.value)}
+                                onChange={(e) => OrderstatusHandler(e, item._id)}
                             />
-                            <label for="placed">placed</label>
+                            <label htmlFor={`placed-${item._id}`}>Placed</label>
                         </div>
+
                         <div className="flex items-center gap-2">
                             <input
                                 className="accent-blue-500"
                                 type="radio"
-                                name="order-status"
+                                name={`order-status-${item._id}`}
                                 value="on-the-way"
-                                id="on-the-way"
+                                id={`on-the-way-${item._id}`}
                                 checked={orderStatus === "on-the-way"}
-                                onChange={(e) => setOrderStatus(e.target.value)}
-
+                                onChange={(e) => OrderstatusHandler(e, item._id)}
                             />
-                            <label for="on-the-way whitespace-nowrap">on its way</label>
+                            <label htmlFor={`on-the-way-${item._id}`}>On its way</label>
                         </div>
 
                         <div className="flex items-center gap-2">
                             <input
                                 className="accent-blue-500"
                                 type="radio"
-                                name="order-status"
+                                name={`order-status-${item._id}`}
                                 value="canceled"
-                                id="canceled"
+                                id={`canceled-${item._id}`}
                                 checked={orderStatus === "canceled"}
-                                onChange={(e) => setOrderStatus(e.target.value)}
+                                onChange={(e) => OrderstatusHandler(e, item._id)}
                             />
-                            <label for="canceled">canceled</label>
+                            <label htmlFor={`canceled-${item._id}`}>Canceled</label>
                         </div>
+
                         <div className="flex items-center gap-2">
                             <input
                                 className="accent-blue-500"
                                 type="radio"
-                                name="order-status"
+                                name={`order-status-${item._id}`}
                                 value="delivered"
-                                id="delivered"
+                                id={`delivered-${item._id}`}
                                 checked={orderStatus === "delivered"}
-                                onChange={(e) => setOrderStatus(e.target.value)}
+                                onChange={(e) => OrderstatusHandler(e, item._id)}
                             />
-                            <label for="delivered">delivered</label>
+                            <label htmlFor={`delivered-${item._id}`}>Delivered</label>
                         </div>
                     </form>
                 </div>

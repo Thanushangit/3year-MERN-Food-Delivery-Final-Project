@@ -10,13 +10,20 @@ import { resetOrderItemQty } from "../../Slices/OrderItemsWithQty";
 import { setOrderStatus } from '../../Slices/OrderStatusSlice'
 import emailjs from 'emailjs-com';
 import { doc, getDoc } from "firebase/firestore";
-import { auth, db } from '../../Firebase'
+import { db } from '../../Firebase'
 import { useEffect, useState } from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Confirmation = () => {
+    const auth = getAuth();
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(false);
+
+
+
+
 
     useEffect(() => {
         const fetchDetails = async () => {
@@ -25,17 +32,22 @@ const Confirmation = () => {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    setUserData(docSnap.data());
+                    // ✅ Add the UID to the user data
+                    setUserData({
+                        uid: user.uid, // Firebase UID
+                        ...docSnap.data(), // Other data from Firestore
+                    });
                 }
             }
         };
         fetchDetails();
     }, []);
 
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const orderItemsWithQty = useSelector(sta => sta.addItemsWithQty);
-    const login_status = useSelector(sta => sta.loginStatus.status)
+    const login_status = useSelector(sta => sta.loginStatus.status);
     const location = useLocation();
     const total = location.state?.total;
     const discount = location.state?.discount;
@@ -101,38 +113,39 @@ const Confirmation = () => {
 
         try {
             // Prepare orders array for EmailJS template
-            const orders = orderItemsWithQty.map(item => ({
-                image_url: item.image,
-                name: item.title,
-                units: item.Qty,
-                unit_price: item.price,
-                price: item.price * item.Qty,
-            }));
+            // const orders = orderItemsWithQty.map(item => ({
+            //     image_url: item.image,
+            //     name: item.title,
+            //     units: item.Qty,
+            //     unit_price: item.price,
+            //     price: item.price * item.Qty,
+            // }));
 
 
             const OrdersDb = orderItemsWithQty.map(item => ({
-                Item: item.title,
+                name: item.title,
                 units: item.Qty,
             }));
 
-            const templateParams = {
-                email: data.Email,
-                user_name: `${data.FirstName} ${data.LastName}`,
-                order_id: Math.floor(Math.random() * 1000000),
-                orders,
-                cost: {
-                    delivery,
-                    discount,
-                    total,
-                }
-            };
 
-            const response = await emailjs.send(
-                'service_kdj0nvh',
-                'template_k7vmo1k',
-                templateParams,
-                'Cvpw-eL8j_z2d80DN'
-            );
+            // const templateParams = {
+            //     email: data.Email,
+            //     user_name: `${data.FirstName} ${data.LastName}`,
+            //     order_id: Math.floor(Math.random() * 1000000),
+            //     orders,
+            //     cost: {
+            //         delivery,
+            //         discount,
+            //         total,
+            //     }
+            // };
+
+            // const response = await emailjs.send(
+            //     'service_kdj0nvh',
+            //     'template_k7vmo1k',
+            //     templateParams,
+            //     'Cvpw-eL8j_z2d80DN'
+            // );
 
             //this data for the send to the db
 
@@ -144,12 +157,26 @@ const Confirmation = () => {
                 DeliveryAddress: data.DeliveryAddress,
                 TotalAmount: total,
                 OrderItems: OrdersDb,
+                FirebaseUID: userData.uid,
                 createdAt: new Date(),
+
             }
+            await axios.post(`http://localhost:3000/order/customerOrder/new`, {
+                FirstName: data.FirstName,
+                LastName: data.LastName,
+                Email: data.Email,
+                MobileNumber: data.MobileNumber,
+                DeliveryAddress: data.DeliveryAddress,
+                TotalAmount: total,
+                OrderStatus: "placed",
+                OrderItems: OrdersDb,
+                FirebaseUID: userData.uid,
+                createdAt: new Date(),
+            });
 
             console.log("This data for the DB:", dbData)
 
-            console.log(' Email sent:', response.status, response.text);
+            // console.log(' Email sent:', response.status, response.text);
 
             // Reset the states
             dispatch(resetAddItems());

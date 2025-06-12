@@ -84,7 +84,7 @@ const Cart = () => {
               <tbody>
                 {
                   orderItems.map((items) => (
-                    <OrderFoodCard key={items.id} details={items} FilterItems={(id) => Dispatch(deleteItem(id))} />
+                    <OrderFoodCard key={items._id} details={items} FilterItems={(id) => Dispatch(deleteItem(id))} />
                   ))
                 }
               </tbody>
