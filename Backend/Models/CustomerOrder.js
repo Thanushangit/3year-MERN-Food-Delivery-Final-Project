@@ -42,6 +42,12 @@ const CustomerOrder = new mongoose.Schema({
 
     ],
 
+    FirebaseUID: {
+    type: String,
+    required: [true, "please enter firebaseID"],
+    trim: true,
+  },
+
   TotalAmount: {
     type: Number,
     default: true,

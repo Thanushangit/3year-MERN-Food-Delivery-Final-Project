@@ -6,9 +6,11 @@ const lunch=require('./Routes/lunchroutes')
 const dinner=require('./Routes/dinnerroutes')
 const popular=require('./Routes/popularroutes')
 const Order=require('./Routes/customerOrder')
+const cors=require("cors")
 
 const app=express();
 app.use(express.json());
+app.use(cors());
 app.use('/api',breakfast);
 app.use('/api',lunch);
 app.use('/api',dinner);
