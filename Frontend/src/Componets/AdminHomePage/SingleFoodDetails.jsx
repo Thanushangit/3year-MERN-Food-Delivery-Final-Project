@@ -3,6 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef, useState } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const SingleFoodDetails = ({
     showid,
@@ -11,8 +12,13 @@ const SingleFoodDetails = ({
     showprice = "",
     showdescription = "",
     action = "Edit",
-    setShowDetailsStatus
+    setShowDetailsStatus,
+   category,
 }) => {
+
+    useEffect(()=>(
+        console.log("the category",category)
+    ))
     const [loading, setLoading] = useState(false);
     const modalRef = useRef();
 
@@ -73,7 +79,9 @@ const SingleFoodDetails = ({
 
     const imageUrl = watch("img");
 
-    function MyHandler(data) {
+
+
+    async function MyHandler(data) {
         setLoading(true);
 
         Swal.fire({
@@ -82,30 +90,81 @@ const SingleFoodDetails = ({
             showCancelButton: true,
             confirmButtonText: "Save",
             denyButtonText: `Don't save`
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                console.log("This single food form details:", data);
-                setTimeout(() => {
-                    Swal.fire("Updated successfully!", "", "success").then(() => {
-                        setShowDetailsStatus(false);
-                    });
+                try {
+                    const upid = String(showid._id)
 
+                    switch (category) {
+                        case "popular":
+                            
+                                await axios.put(`http://localhost:3000/api/updatepopular/${upid}`, {
+                                    img: data.img,
+                                    title: data.name,
+                                    price: data.price,
+                                    description: data.description
+                                });
+
+                                break;
+                            
+
+                        case "breakfast":
+                            
+                                await axios.put(`http://localhost:3000/api/updatebreakfast/${upid}`, {
+                                    img: data.img,
+                                    title: data.name,
+                                    price: data.price,
+                                    description: data.description
+                                });
+                            break;
+
+                        case "lunch":
+                            
+                                await axios.put(`http://localhost:3000/api/updatelunch/${upid}`, {
+                                    img: data.img,
+                                    title: data.name,
+                                    price: data.price,
+                                    description: data.description
+                                });
+                            break;
+
+                        case "dinner":
+                            
+                                await axios.put(`http://localhost:3000/api/updatedinner/${upid}`, {
+                                    img: data.img,
+                                    title: data.name,
+                                    price: data.price,
+                                    description: data.description
+                                });
+                            break;
+
+                        default:
+                            return;
+                    }
+
+
+
+                    setTimeout(() => {
+                        Swal.fire("Updated successfully!", "", "success").then(() => {
+                            setShowDetailsStatus(false);
+                        });
+                        setLoading(false);
+                    }, 2000);
+                } catch (err) {
+                    Swal.fire({
+                        title: "Updating failed",
+                        text: "Please try again later.",
+                        icon: "error"
+                    });
+                    console.error("edited error", err);
                     setLoading(false);
-                }, 2000);
+                }
             } else if (result.isDenied) {
                 Swal.fire("Changes are not saved", "", "info");
                 setLoading(false);
             } else {
                 setLoading(false);
             }
-        }).catch((err) => {
-            Swal.fire({
-                title: "Updating failed",
-                text: "Please try again later.",
-                icon: "error"
-            });
-            console.error("edited error", err);
-            setLoading(false);
         });
     }
 

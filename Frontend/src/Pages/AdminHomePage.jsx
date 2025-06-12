@@ -20,7 +20,8 @@ const AdminHomePage = () => {
     showimg: "",
     showtitle: "",
     showprice: "",
-    showdescription: ""
+    showdescription: "",
+    category:""
   })
 
 
@@ -30,11 +31,14 @@ const AdminHomePage = () => {
       const data = await popularDishes();
       setPopular(data);
     };
+
     fetchData();
 
+    const interval = setInterval(fetchData, 500);
+
+    return () => clearInterval(interval);
+
   }, []);
-
-
 
 
   // it for the breakfast 
@@ -44,9 +48,11 @@ const AdminHomePage = () => {
       setBreakfast(data);
     };
     fetchData();
+
+    const interval = setInterval(fetchData, 500);
+
+    return () => clearInterval(interval);
   }, []);
-
-
 
 
   // it for the lunch 
@@ -56,8 +62,11 @@ const AdminHomePage = () => {
       setLunch(data);
     };
     fetchData();
-  }, []);
 
+    const interval = setInterval(fetchData, 500);
+
+    return () => clearInterval(interval);
+  }, []);
 
 
   // it for the dinner
@@ -67,11 +76,15 @@ const AdminHomePage = () => {
       setDinner(data);
     };
     fetchData();
+
+    const interval = setInterval(fetchData, 500);
+
+    return () => clearInterval(interval);
   }, []);
 
 
 
- 
+
 
 
 
@@ -93,7 +106,7 @@ const AdminHomePage = () => {
 
               {
                 popular.map((item) => (
-                  <PopularDishes item={item} key={item.id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
+                  <PopularDishes item={item} key={item._id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
                 ))
               }
 
@@ -120,7 +133,7 @@ const AdminHomePage = () => {
           >
             {
               breakfast.map((item) => (
-                <FoodCard item={item} key={item.id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
+                <FoodCard item={item} key={item._id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
               ))
             }
 
@@ -146,7 +159,7 @@ const AdminHomePage = () => {
           >
             {
               lunch.map((item) => (
-                <FoodCard item={item} key={item.id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
+                <FoodCard item={item} key={item._id} setShowDetailsStatus={setShowDetailsStatus} setShowDetails={setShowDetails} />
               ))
             }
 
@@ -180,7 +193,7 @@ const AdminHomePage = () => {
         </div>
       </section>
 
-      {showDetailsStatus && <SingleFoodDetails showid={showDetails.showid} showimg={showDetails.showimg} showtitle={showDetails.showtitle} showprice={showDetails.showprice} showdescription={showDetails.showdescription} setShowDetailsStatus={setShowDetailsStatus} />}
+      {showDetailsStatus && <SingleFoodDetails category={showDetails.category} showid={showDetails.showid} showimg={showDetails.showimg} showtitle={showDetails.showtitle} showprice={showDetails.showprice} showdescription={showDetails.showdescription} setShowDetailsStatus={setShowDetailsStatus} />}
 
 
 

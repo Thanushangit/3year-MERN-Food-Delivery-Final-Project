@@ -1,22 +1,26 @@
 
+
 import { formatSrilankaPrice } from "../../Util/PriceSeperator";
 import DeleteButton from "./DeleteButton";
 
 
 
 const PopularDishes = (props) => {
-    const { id, img, title, price, description } = props.item;
+    const { _id, img, title, price, description } = props.item;
+  
     const setShowDetailsStatus = props.setShowDetailsStatus;
     const setShowDetails = props.setShowDetails;
 
-    function ButtonHandler(id, img, title, price, description) {
+    function ButtonHandler(_id, img, title, price, description) {
         setShowDetailsStatus(true),
             setShowDetails({
-                showid: {id},
+                showid: {_id},
                 showimg: {img},
                 showtitle:{title},
                 showprice: {price},
-                showdescription: {description}
+                showdescription: {description},
+                category:"popular"
+                
             })
     }
 
@@ -50,14 +54,14 @@ const PopularDishes = (props) => {
                 <div class="flex items-center justify-center gap-5 w-full">
 
                     <button
-                        onClick={() => ButtonHandler(id, img, title, price, description)}
+                        onClick={() => ButtonHandler(_id, img, title, price, description)}
                         title="Edit the item"
                         class="sm:w-12 w-8 sm:h-12 h-8 rounded-full bg-green-500 flex items-center justify-center text-gray-100 hover:cursor-pointer sm:text-xl text-md hover:bg-green-700"
                     >
                         <i class="ri-edit-2-line"></i>
                     </button>
 
-                    <DeleteButton id={id} title={title} />
+                    <DeleteButton id={_id} title={title} />
 
 
                 </div>
