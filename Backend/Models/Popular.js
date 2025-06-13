@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const popular = new mongoose.Schema({
-  title: {
+  name: {
     type: String,
     required: [true, "please enter food name"],
     trim: true,

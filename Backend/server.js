@@ -19,13 +19,14 @@ const server = http.createServer(app); // Use HTTP server for socket.io
 const io = new Server(server, {
     cors: {
         origin: "http://localhost:5173", // Replace with your frontend URL
-        methods: ["GET", "POST"]
+        methods: ["GET", "POST", "PUT", "DELETE"]
     }
 });
 
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.set("io", io);
 
 // Routes
 app.use('/api', breakfast);
@@ -65,3 +66,4 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT, () => {
     console.log(`Server is listening on port ${process.env.PORT}`);
 });
+

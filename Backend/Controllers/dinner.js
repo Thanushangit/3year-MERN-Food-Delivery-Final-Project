@@ -1,21 +1,25 @@
 const Food = require("../Models/Dinner");
 
-
-exports.addDinner = async (req, res, next) => {
+// Add new dinner item
+exports.addDinner = async (req, res) => {
   try {
     const data = await Food.create(req.body);
+
+    const io = req.app.get("io");
+    io.emit("dinnerAdded", data); 
+
     res.status(200).json({ message: data });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-
-exports.getAllDinner = async (req, res, next) => {
+// Get all dinner items
+exports.getAllDinner = async (req, res) => {
   try {
     const data = await Food.find();
-    if (!data) {
-      return res.status(400).json({ message: "Food Not Found" });
+    if (!data || data.length === 0) {
+      return res.status(404).json({ message: "Food Not Found" });
     }
     res.status(200).json({ message: data });
   } catch (error) {
@@ -23,34 +27,36 @@ exports.getAllDinner = async (req, res, next) => {
   }
 };
 
-
-
-exports.upDateDinner = async (req, res, next) => {
+// Update a dinner item
+exports.upDateDinner = async (req, res) => {
   try {
-    const food = await Food.findById(req.params.id);
-    if (!food) {
-      return res.status(400).json({ message: "Food Not Found" });
+    const updated = await Food.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updated) {
+      return res.status(404).json({ message: "Food Not Found" });
     }
-    const data = await Food.findByIdAndUpdate(req.params.id, req.body);
-    res.status(200).json({ message: data });
+
+    const io = req.app.get("io");
+    io.emit("dinnerUpdated", updated);
+
+    res.status(200).json({ message: updated });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-
-
-exports.deleteDinner = async (req, res, next) => {
+// Delete a dinner item
+exports.deleteDinner = async (req, res) => {
   try {
-    const food = await Food.findById(req.params.id);
-    if (!food) {
-      return res.status(400).json({ message: "Food Not Found" });
+    const deleted = await Food.findByIdAndDelete(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Food Not Found" });
     }
-    const data = await Food.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: data });
+
+    const io = req.app.get("io");
+    io.emit("dinnerDeleted", deleted._id); 
+
+    res.status(200).json({ message: deleted });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
-

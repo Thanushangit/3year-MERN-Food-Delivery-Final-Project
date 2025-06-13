@@ -1,10 +1,14 @@
 const Food = require("../Models/CustomerOrder");
 
-
-exports.addCustomerOrder = async (req, res, next) => {
+// Add a new customer order
+exports.addCustomerOrder = async (req, res) => {
   try {
     console.log("Payload received:", req.body);
     const data = await Food.create(req.body);
+
+    const io = req.app.get("io");
+    io.emit("orderAdded", data); 
+
     res.status(200).json({ message: data });
   } catch (error) {
     console.error("Error saving order:", error);
@@ -12,12 +16,12 @@ exports.addCustomerOrder = async (req, res, next) => {
   }
 };
 
-
-exports.getAllCustomerOrder = async (req, res, next) => {
+// Get all customer orders
+exports.getAllCustomerOrder = async (req, res) => {
   try {
     const data = await Food.find();
-    if (!data) {
-      return res.status(400).json({ message: "Food Not Found" });
+    if (!data || data.length === 0) {
+      return res.status(404).json({ message: "Food Not Found" });
     }
     res.status(200).json({ message: data });
   } catch (error) {
@@ -25,44 +29,46 @@ exports.getAllCustomerOrder = async (req, res, next) => {
   }
 };
 
-
-
-exports.upDateCustomerOrder = async (req, res, next) => {
+// Update a customer order
+exports.upDateCustomerOrder = async (req, res) => {
   try {
-    const food = await Food.findById(req.params.id);
-    if (!food) {
-      return res.status(400).json({ message: "Food Not Found" });
+    const updated = await Food.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updated) {
+      return res.status(404).json({ message: "Food Not Found" });
     }
-    const data = await Food.findByIdAndUpdate(req.params.id, req.body);
-    res.status(200).json({ message: data });
+
+    const io = req.app.get("io");
+    io.emit("orderUpdated", updated); 
+
+    res.status(200).json({ message: updated });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-
-
-exports.deleteCustomerOrder = async (req, res, next) => {
+// Delete a customer order
+exports.deleteCustomerOrder = async (req, res) => {
   try {
-    const food = await Food.findById(req.params.id);
-    if (!food) {
-      return res.status(400).json({ message: "Food Not Found" });
+    const deleted = await Food.findByIdAndDelete(req.params.id);
+    if (!deleted) {
+      return res.status(404).json({ message: "Food Not Found" });
     }
-    const data = await Food.findByIdAndDelete(req.params.id);
-    res.status(200).json({ message: data });
+
+    const io = req.app.get("io");
+    io.emit("orderDeleted", deleted._id); 
+
+    res.status(200).json({ message: deleted });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-
-
-exports.getOrderByFirebaseUID = async (req, res, next) => {
+// Get order by Firebase UID (latest one)
+exports.getOrderByFirebaseUID = async (req, res) => {
   try {
     const firebaseUID = req.params.uid;
 
-    const order = await Food.findOne({ FirebaseUID: firebaseUID }) // Get latest
-      .sort({ createdAt: -1 });
+    const order = await Food.findOne({ FirebaseUID: firebaseUID }).sort({ createdAt: -1 });
 
     if (!order) {
       return res.status(404).json({ message: "Order not found for this user" });
@@ -73,5 +79,3 @@ exports.getOrderByFirebaseUID = async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-
