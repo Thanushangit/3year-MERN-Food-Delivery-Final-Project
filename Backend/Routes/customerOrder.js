@@ -1,5 +1,5 @@
 const express=require('express');
-const { addCustomerOrder, getAllCustomerOrder, upDateCustomerOrder, deleteCustomerOrder, getOrderByFirebaseUID } = require('../Controllers/customerOrder');
+const { addCustomerOrder, getAllCustomerOrder, upDateCustomerOrder, deleteCustomerOrder, getOrderByFirebaseUID, getAllOrderByFirebaseUID } = require('../Controllers/customerOrder');
 const router=express.Router();
 
 // http://localhost:3000/order/customerOrder/new
@@ -12,4 +12,8 @@ router.put('/updatecustomerOrder/:id',upDateCustomerOrder);
 router.delete('/deletecustomerOrder/:id',deleteCustomerOrder);  
 // http://localhost:3000/order/getSingleorder/:uid
 router.get('/getSingleorder/:uid', getOrderByFirebaseUID);
+
+// http://localhost:3000/order/getAllorderByuid/:uid
+router.get('/getAllorderByuid/:uid', getAllOrderByFirebaseUID);
 module.exports=router;
+
