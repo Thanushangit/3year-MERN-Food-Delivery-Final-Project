@@ -55,7 +55,7 @@ setShowDetailsStatus(true),
                     </button>
 
 
-                    <DeleteButton id={_id} title={name} />
+                    <DeleteButton id={_id} title={name} category="dinner" />
 
 
 

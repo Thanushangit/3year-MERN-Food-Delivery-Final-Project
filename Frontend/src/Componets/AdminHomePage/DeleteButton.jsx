@@ -1,9 +1,11 @@
+import axios from "axios";
 import Swal from "sweetalert2"
 
-const DeleteButton = ({ id, title }) => {
+const DeleteButton = ({ id, title, category }) => {
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         try {
+
             Swal.fire({
                 title: `Are you sure you want to delete "${title}"?`,
                 icon: "warning",
@@ -14,10 +16,36 @@ const DeleteButton = ({ id, title }) => {
                 customClass: {
                     confirmButton: "custom-delete-button"
                 }
-            }).then((result) => {
+            }).then(async(result) => {
                 if (result.isConfirmed) {
                     Swal.fire("Deleted!", `The "${title}" has been deleted successfully.`);
-                    // in here you can add delete api for the db 
+
+                    switch (category) {
+                        case "popular":
+
+                            await axios.delete(`http://localhost:3000/api/deletepopular/${id}`);
+
+                            break;
+
+
+                        case "breakfast":
+
+                            await axios.delete(`http://localhost:3000/api/deletebreakfast/${id}`);
+                            break;
+
+                        case "lunch":
+
+                            await axios.delete(`http://localhost:3000/api/deletelunch/${id}`);
+                            break;
+
+                        case "dinner":
+
+                            await axios.delete(`http://localhost:3000/api/deletedinner/${id}`);
+                            break;
+
+                        default:
+                            return;
+                    }
                 }
             });
 

@@ -43,7 +43,7 @@ const SingleFoodDetails = ({
         img: z.string().nonempty("URL is required.").url("Invalid URL."),
         name: z.string()
             .nonempty("Name is required.")
-            .regex(/^[a-zA-Z0-9 _-]+$/, "Invalid name.")
+           .regex(/^[a-zA-Z0-9 _&-]+$/, "Invalid name.") 
             .min(3, "Invalid name.")
             .max(50, "Invalid name."),
         price: z.string()
@@ -145,7 +145,7 @@ const SingleFoodDetails = ({
                             setShowDetailsStatus(false);
                         });
                         setLoading(false);
-                    }, 500);
+                    }, 200);
                 } catch (err) {
                     Swal.fire({
                         title: "Updating failed",

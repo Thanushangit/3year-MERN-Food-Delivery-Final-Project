@@ -61,7 +61,7 @@ const PopularDishes = (props) => {
                         <i class="ri-edit-2-line"></i>
                     </button>
 
-                    <DeleteButton id={_id} title={title} />
+                    <DeleteButton id={_id} title={title} category="popular" />
 
 
                 </div>
