@@ -9,7 +9,7 @@ router.post('/breakfast/new',addBreakfast);
 router.get('/allbreakfast',getAllBreakfast);  
 // http://localhost:3000/api/updatebreakfast/:id
 router.put('/updatebreakfast/:id',upDateBreakfast);
-http://localhost:3000/api/deletebreakfast/:id
+// http://localhost:3000/api/deletebreakfast/:id
 router.delete('/deletebreakfast/:id',deleteBreakfast);  
 
 module.exports=router;

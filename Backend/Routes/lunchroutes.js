@@ -9,6 +9,6 @@ router.post('/lunch/new',addLunch);
 router.get('/AllLunch',getAllLunch);  
 // http://localhost:3000/api/updatelunch/:id
 router.put('/updatelunch/:id',upDateLunch);
-http://localhost:3000/api/deletelunch/:id
+// http://localhost:3000/api/deletelunch/:id
 router.delete('/deletelunch/:id',deleteLunch);  
 module.exports=router;
