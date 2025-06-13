@@ -14,7 +14,7 @@ const popular = new mongoose.Schema({
     type: String,
     required: [true, "please enter food description"],
   },
- image: {
+ img: {
         type: String,
         required: true,
       },
