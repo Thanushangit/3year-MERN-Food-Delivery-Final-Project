@@ -6,17 +6,17 @@ import DeleteButton from "./DeleteButton";
 
 
 const PopularDishes = (props) => {
-    const { _id, img, title, price, description } = props.item;
+    const { _id, img, name, price, description } = props.item;
   
     const setShowDetailsStatus = props.setShowDetailsStatus;
     const setShowDetails = props.setShowDetails;
 
-    function ButtonHandler(_id, img, title, price, description) {
+    function ButtonHandler(_id, img, name, price, description) {
         setShowDetailsStatus(true),
             setShowDetails({
                 showid: {_id},
                 showimg: {img},
-                showtitle:{title},
+                showtitle:{name},
                 showprice: {price},
                 showdescription: {description},
                 category:"popular"
@@ -34,14 +34,14 @@ const PopularDishes = (props) => {
                 <img
                     class="h-full w-full object-cover transform hover:scale-110 duration-500 transition"
                     src={img}
-                    alt={title}
+                    alt={name}
                     loading="lazy"
                 />
             </div>
 
             <div class="p-2 flex flex-col mb-2 h-2/3">
                 <div class="flex flex-col">
-                    <h2 class="font-semibold text-lg font-cascadia">{title}</h2>
+                    <h2 class="font-semibold text-lg font-cascadia">{name}</h2>
                     <h5 class="font-bold text-xl text-primary">RS:-{formatSrilankaPrice(price)}</h5>
                     <p>
                         {description}
@@ -54,14 +54,14 @@ const PopularDishes = (props) => {
                 <div class="flex items-center justify-center gap-5 w-full">
 
                     <button
-                        onClick={() => ButtonHandler(_id, img, title, price, description)}
+                        onClick={() => ButtonHandler(_id, img, name, price, description)}
                         title="Edit the item"
                         class="sm:w-12 w-8 sm:h-12 h-8 rounded-full bg-green-500 flex items-center justify-center text-gray-100 hover:cursor-pointer sm:text-xl text-md hover:bg-green-700"
                     >
                         <i class="ri-edit-2-line"></i>
                     </button>
 
-                    <DeleteButton id={_id} title={title} category="popular" />
+                    <DeleteButton id={_id} title={name} category="popular" />
 
 
                 </div>

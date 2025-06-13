@@ -13,8 +13,13 @@ import AddBreakFastFood from '../Componets/AdminHomePage/AddBreakFastFood';
 import AddLunch from '../Componets/AdminHomePage/AddLunch';
 import AddDinner from '../Componets/AdminHomePage/AddDinner';
 import AddFoodForm from '../Componets/AdminHomePage/AddFoodForm';
+import socket from '../socket'
+
+
 
 const AdminHomePage = () => {
+
+
   const [popular, setPopular] = useState([]);
   const [breakfast, setBreakfast] = useState([]);
   const [lunch, setLunch] = useState([]);
@@ -42,11 +47,29 @@ const AdminHomePage = () => {
 
     fetchData();
 
-    const interval = setInterval(fetchData, 500);
+    socket.on("popularAdded", () => {
+      fetchData();
+    });
 
-    return () => clearInterval(interval);
+    socket.on("popularUpdated", () => {
+      fetchData();
+    });
+
+    socket.on("popularDeleted", () => {
+      fetchData();
+    });
+
+    // Clean up listeners
+    return () => {
+      socket.off("popularAdded");
+      socket.off("popularUpdated");
+      socket.off("popularDeleted");
+    };
+
+
 
   }, []);
+
 
 
   // it for the breakfast 
@@ -57,9 +80,25 @@ const AdminHomePage = () => {
     };
     fetchData();
 
-    const interval = setInterval(fetchData, 500);
+    socket.on("breakfastAdded", () => {
+      fetchData();
+    });
 
-    return () => clearInterval(interval);
+    socket.on("breakfastUpdated", () => {
+      fetchData();
+    });
+
+    socket.on("breakfastDeleted", () => {
+      fetchData();
+    });
+
+    // Clean up listeners
+    return () => {
+      socket.off("breakfastAdded");
+      socket.off("breakfastUpdated");
+      socket.off("breakfastDeleted");
+    };
+
   }, []);
 
 
@@ -71,9 +110,25 @@ const AdminHomePage = () => {
     };
     fetchData();
 
-    const interval = setInterval(fetchData, 500);
+    socket.on("lunchAdded", () => {
+      fetchData();
+    });
 
-    return () => clearInterval(interval);
+    socket.on("lunchUpdated", () => {
+      fetchData();
+    });
+
+    socket.on("lunchDeleted", () => {
+      fetchData();
+    });
+
+    // Clean up listeners
+    return () => {
+      socket.off("lunchAdded");
+      socket.off("lunchUpdated");
+      socket.off("lunchDeleted");
+    };
+
   }, []);
 
 
@@ -85,9 +140,26 @@ const AdminHomePage = () => {
     };
     fetchData();
 
-    const interval = setInterval(fetchData, 500);
+     socket.on("dinnerAdded", () => {
+      fetchData();
+    });
 
-    return () => clearInterval(interval);
+    socket.on("dinnerUpdated", () => {
+      fetchData();
+    });
+
+    socket.on("dinnerDeleted", () => {
+      fetchData();
+    });
+
+    // Clean up listeners
+    return () => {
+      socket.off("dinnerAdded");
+      socket.off("dinnerUpdated");
+      socket.off("dinnerDeleted");
+    };
+
+
   }, []);
 
 

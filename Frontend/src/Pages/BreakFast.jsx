@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { loadBreakFast } from '../FetchLoaders/Fetchingdata';
 import FoodMenuTemplate from '../Componets/FoodMenu/FoodMenuTemplate';
+import socket from '../socket'
 
 const BreakFast = () => {
   const [FoodData, setFoodData] = useState([]);
@@ -11,6 +12,26 @@ const BreakFast = () => {
       setFoodData(data);
     };
     fetchData();
+
+    socket.on("breakfastAdded", () => {
+      fetchData();
+    });
+
+    socket.on("breakfastUpdated", () => {
+      fetchData();
+    });
+
+    socket.on("breakfastDeleted", () => {
+      fetchData();
+    });
+
+    // Clean up listeners
+    return () => {
+      socket.off("breakfastAdded");
+      socket.off("breakfastUpdated");
+      socket.off("breakfastDeleted");
+    };
+
   }, []);
 
   return (

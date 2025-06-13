@@ -7,12 +7,12 @@ const FoodCard = (props) => {
     const setShowDetailsStatus = props.setShowDetailsStatus;
     const setShowDetails = props.setShowDetails;
 
-    function ButtonHandler(_id, img, title, price, description) {
+    function ButtonHandler(_id, img, name, price, description) {
 setShowDetailsStatus(true),
             setShowDetails({
                 showid: {_id},
                 showimg: {img},
-                showtitle:{title},
+                showtitle:{name},
                 showprice: {price},
                 showdescription: {description},
                 category:"breakfast"

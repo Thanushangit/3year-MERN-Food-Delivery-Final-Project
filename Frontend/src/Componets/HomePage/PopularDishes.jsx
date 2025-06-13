@@ -6,6 +6,7 @@ import { increment } from '../../Slices/CounterSlice';
 import { addItem } from '../../Slices/AddItemsSlice';
 import { formatSrilankaPrice } from '../../Util/PriceSeperator'
 import Swal from 'sweetalert2';
+import socket from '../../socket'
 
 
 
@@ -30,6 +31,26 @@ const PopularDishes = () => {
             }
         };
         fetchData();
+
+        socket.on("popularAdded", () => {
+            fetchData();
+        });
+
+        socket.on("popularUpdated", () => {
+            fetchData();
+        });
+
+        socket.on("popularDeleted", () => {
+            fetchData();
+        });
+
+        // Clean up listeners
+        return () => {
+            socket.off("popularAdded");
+            socket.off("popularUpdated");
+            socket.off("popularDeleted");
+        };
+
     }, []);
 
 
@@ -86,7 +107,7 @@ const PopularDishes = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                
+
             });
 
         }
@@ -117,14 +138,14 @@ const PopularDishes = () => {
                                     <img
                                         className="h-full w-full object-cover transform group-hover:scale-110 duration-500 transition"
                                         src={food.img}
-                                        alt={food.title}
+                                        alt={food.name}
                                         loading="lazy"
                                     />
                                 </div>
                                 <div className="p-2 flex flex-col mb-2 md:h-16">
                                     <div className="flex flex-col relative">
                                         <h2 className="font-semibold text-lg font-cascadia">
-                                            {food.title}
+                                            {food.name}
                                         </h2>
                                         <h5 className="font-bold text-xl text-primary">
                                             Rs:- {formatSrilankaPrice(food.price)}
@@ -133,7 +154,7 @@ const PopularDishes = () => {
 
                                         <button
                                             onClick={() =>
-                                                ButtonHandler(food.title, food.id, food.img, food.price)
+                                                ButtonHandler(food.name, food.id, food.img, food.price)
                                             }
                                             className="absolute h-7 w-7 md:h-10 md:w-10 top-0 right-0 rounded-full bg-primary outline-0 font-bold text-white hover:border-2 hover:border-primary hover:bg-transparent hover:text-green-800 cursor-pointer duration-300 transition"
                                             title="Order Now"

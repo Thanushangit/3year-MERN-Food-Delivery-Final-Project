@@ -16,7 +16,7 @@ const SingleFoodDetails = ({
     category,
 }) => {
 
-   
+
     const [loading, setLoading] = useState(false);
     const modalRef = useRef();
 
@@ -43,7 +43,7 @@ const SingleFoodDetails = ({
         img: z.string().nonempty("URL is required.").url("Invalid URL."),
         name: z.string()
             .nonempty("Name is required.")
-           .regex(/^[a-zA-Z0-9 _&-]+$/, "Invalid name.") 
+            .regex(/^[a-zA-Z0-9 _&-]+$/, "Invalid name.")
             .min(3, "Invalid name.")
             .max(50, "Invalid name."),
         price: z.string()
@@ -67,7 +67,7 @@ const SingleFoodDetails = ({
     } = useForm({
         defaultValues: {
             img: showimg.img,
-            name: showtitle.title,
+            name: showtitle.name,
             price: String(showprice.price),
             description: showdescription.description,
             specialNote: ""
@@ -92,13 +92,13 @@ const SingleFoodDetails = ({
                 try {
 
                     const upid = String(showid._id)
-                   
+
                     switch (category) {
                         case "popular":
 
                             await axios.put(`http://localhost:3000/api/updatepopular/${showid._id}`, {
                                 img: data.img,
-                                title: data.name,
+                                name: data.name,
                                 price: data.price,
                                 description: data.description
                             });
@@ -110,7 +110,7 @@ const SingleFoodDetails = ({
 
                             await axios.put(`http://localhost:3000/api/updatebreakfast/${upid}`, {
                                 img: data.img,
-                                title: data.name,
+                                name: data.name,
                                 price: data.price,
                                 description: data.description
                             });
@@ -120,7 +120,7 @@ const SingleFoodDetails = ({
 
                             await axios.put(`http://localhost:3000/api/updatelunch/${upid}`, {
                                 img: data.img,
-                                title: data.name,
+                                name: data.name,
                                 price: data.price,
                                 description: data.description
                             });
@@ -130,7 +130,7 @@ const SingleFoodDetails = ({
 
                             await axios.put(`http://localhost:3000/api/updatedinner/${upid}`, {
                                 img: data.img,
-                                title: data.name,
+                                name: data.name,
                                 price: data.price,
                                 description: data.description
                             });

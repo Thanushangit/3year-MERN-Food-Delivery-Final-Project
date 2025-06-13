@@ -1,13 +1,13 @@
 import axios from "axios";
 import Swal from "sweetalert2"
 
-const DeleteButton = ({ id, title, category }) => {
+const DeleteButton = ({ id, name, category }) => {
 
     const handleDelete = async () => {
         try {
 
             Swal.fire({
-                title: `Are you sure you want to delete "${title}"?`,
+                title: `Are you sure you want to delete "${name}"?`,
                 icon: "warning",
                 showDenyButton: false,
                 showCancelButton: true,
@@ -18,7 +18,7 @@ const DeleteButton = ({ id, title, category }) => {
                 }
             }).then(async(result) => {
                 if (result.isConfirmed) {
-                    Swal.fire("Deleted!", `The "${title}" has been deleted successfully.`);
+                    Swal.fire("Deleted!", `The "${name}" has been deleted successfully.`);
 
                     switch (category) {
                         case "popular":
@@ -51,7 +51,7 @@ const DeleteButton = ({ id, title, category }) => {
 
         } catch (err) {
             Swal.fire({
-                title: `${title} Deleted fail!`,
+                title: `${name} Deleted fail!`,
                 text: "Try again.",
                 icon: "error",
                 draggable: true

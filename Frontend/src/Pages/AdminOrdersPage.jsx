@@ -3,22 +3,39 @@ import AdminOrderCard from "../Componets/AdminOrder/AdminOrderCard"
 import { loadOrderItems } from '../FetchLoaders/Fetchingdata'
 import OrderEmpty from "../Componets/AdminOrder/OrderEmpty";
 import { Link } from "react-router-dom";
+import socket from '../socket'
 
 const AdminOrdersPage = () => {
     const [DBdata, setDBdata] = useState([])
 
 
-   useEffect(() => {
-    const fetchData = async () => {
-        const data = await loadOrderItems();
-        setDBdata(data);
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await loadOrderItems();
+            setDBdata(data);
+        };
 
-    fetchData();
+        fetchData();
 
-    const interval = setInterval(fetchData, 500); 
-    return () => clearInterval(interval);
-}, []);
+        socket.on("orderAdded", () => {
+            fetchData();
+        });
+
+        socket.on("orderUpdated", () => {
+            fetchData();
+        });
+
+        socket.on("orderDeleted", () => {
+            fetchData();
+        });
+
+        // Clean up listeners
+        return () => {
+            socket.off("orderAdded");
+            socket.off("orderUpdated");
+            socket.off("orderDeleted");
+        };
+    }, []);
 
 
 

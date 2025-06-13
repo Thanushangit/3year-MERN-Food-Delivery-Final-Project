@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { loadDinner } from '../FetchLoaders/Fetchingdata';
 import FoodMenuTemplate from '../Componets/FoodMenu/FoodMenuTemplate';
+import socket from '../socket'
 
 const Dinner = () => {
   const [FoodData, setFoodData] = useState([]);
@@ -11,6 +12,25 @@ const Dinner = () => {
       setFoodData(data);
     };
     fetchData();
+    socket.on("dinnerAdded", () => {
+      fetchData();
+    });
+
+    socket.on("dinnerUpdated", () => {
+      fetchData();
+    });
+
+    socket.on("dinnerDeleted", () => {
+      fetchData();
+    });
+
+    // Clean up listeners
+    return () => {
+      socket.off("dinnerAdded");
+      socket.off("dinnerUpdated");
+      socket.off("dinnerDeleted");
+    };
+    
   }, []);
 
   return (

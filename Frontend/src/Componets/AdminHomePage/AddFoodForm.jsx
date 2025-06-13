@@ -83,7 +83,7 @@ const AddFoodForm = ({ AddFoodCategory, setAddFoodFormStatus }) => {
 
                             await axios.post(`http://localhost:3000/api/popular/new`, {
                                 img: data.img,
-                                title: data.title,
+                                name: data.title,
                                 price: data.price,
                                 description: data.description
                             });
