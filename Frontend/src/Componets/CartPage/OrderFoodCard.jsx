@@ -9,9 +9,9 @@ import { deleteItemsWithQty } from "../../Slices/OrderItemsWithQty";
 
 const OrderFoodCard = ({ details, FilterItems }) => {
     const OrderItemsWithQty = useSelector(sta => sta.addItemsWithQty);
-    const Qty = OrderItemsWithQty.find(item => item.id === details.id)?.Qty || 1;
+    const Qty = OrderItemsWithQty.find(item => item._id === details._id)?.Qty || 1;
     const dispatch = useDispatch();
-    const { image, title, price, id } = details;
+    const { image, title, price, _id } = details;
     const [singleFoodCount, setSingleFoodCount] = useState(Qty)
     const totalPrice = price * singleFoodCount;
 
@@ -23,14 +23,14 @@ const OrderFoodCard = ({ details, FilterItems }) => {
     useEffect(() => {
 
         const item = {
-            id: id,
+            _id: _id,
             image: image,
             title: title,
             price: Number(price),
             Qty: singleFoodCount
         };
         dispatch(addItemsWithQty(item))
-    }, [totalPrice, singleFoodCount, title, id, price, image, singleFoodCount])
+    }, [totalPrice, singleFoodCount, title, _id, price, image, singleFoodCount])
 
 
     function formatTwoDigit(num) {
@@ -93,8 +93,8 @@ const OrderFoodCard = ({ details, FilterItems }) => {
                     icon: "success"
                 });
                 dispatch(decrement())
-                FilterItems(id);
-                dispatch(deleteItemsWithQty(id));
+                FilterItems(_id);
+                dispatch(deleteItemsWithQty(_id));
             }
         });
     }
@@ -155,7 +155,7 @@ const OrderFoodCard = ({ details, FilterItems }) => {
             <td className="font-semibold">Rs:-{formatSrilankaPrice(totalPrice)}</td>
             <td>
 
-                <button title="Remove" onClick={() => DeleteButtonHandler(id, title)} className="md:w-8 md:h-8 h-5 w-5 rounded-full flex items-center justify-center font-semibold bg-red-500 text-white hover:bg-red-700 transition duration-200 cursor-pointer">
+                <button title="Remove" onClick={() => DeleteButtonHandler(_id, title)} className="md:w-8 md:h-8 h-5 w-5 rounded-full flex items-center justify-center font-semibold bg-red-500 text-white hover:bg-red-700 transition duration-200 cursor-pointer">
                     <i className="ri-close-line"></i>
                 </button>
 

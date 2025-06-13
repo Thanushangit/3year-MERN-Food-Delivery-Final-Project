@@ -1,8 +1,9 @@
 import { Outlet, Navigate } from "react-router-dom";
 import AdminNavbar from "../Componets/Navbar/AdminNavbar";
-import { toast, Bounce,ToastContainer } from "react-toastify";
+import { toast, Bounce, ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 import AdminFooter from "../Componets/Footer/AdminFooter";
+import { useEffect } from "react";
 
 
 
@@ -10,20 +11,21 @@ const AdminDashboard = () => {
     const adminStatus = useSelector(sta => sta.adminStatus.status)
 
 
-    if (adminStatus) {
-        toast.success('👋 Welcome, Thanushan!', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Bounce,
-        });
-
-    }
+    useEffect(() => {
+        if (adminStatus) {
+            toast.success(`👋 Welcome, J'boys!`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        }
+    }, [adminStatus]);
 
 
     if (!adminStatus) {
@@ -36,7 +38,7 @@ const AdminDashboard = () => {
         <div>
             <AdminNavbar />
             <Outlet />
-            <AdminFooter/>
+            <AdminFooter />
             <ToastContainer
                 position="top-right"
                 autoClose={5000}

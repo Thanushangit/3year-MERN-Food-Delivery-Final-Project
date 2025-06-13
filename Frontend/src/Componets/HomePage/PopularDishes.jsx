@@ -74,7 +74,7 @@ const PopularDishes = () => {
 
 
     const ButtonHandler = (foodTitle, foodId, foodImage, foodPrice) => {
-        const alreadyExists = orderItems.some((item) => item.id === foodId);
+        const alreadyExists = orderItems.some((item) => item._id === foodId);
 
         if (loginStatus) {
             if (alreadyExists) {
@@ -88,7 +88,7 @@ const PopularDishes = () => {
             }
 
             const item = {
-                id: foodId,
+                _id: foodId,
                 image: foodImage,
                 title: foodTitle,
                 price: Number(foodPrice)
@@ -130,7 +130,7 @@ const PopularDishes = () => {
                     <div className="grid grid-cols-2 md:grid-cols-3 mb-5 lg:grid-cols-4 xl:grid-cols-6 gap-2 md:gap-x-5 gap-y-7 md:gap-y-10">
                         {Array.isArray(FoodData) && FoodData.length > 0 && FoodData.map((food) => (
                             <div
-                                key={food.id}
+                                key={food._id}
                                 title="Taste. Smile. Repeat. 😋"
                                 className="group dishes_item border-1 border-gray-300 hover:shadow-2xl cursor-pointer hover:-translate-y-1 transform transition duration-300 rounded-md overflow-hidden relative"
                             >
@@ -154,7 +154,7 @@ const PopularDishes = () => {
 
                                         <button
                                             onClick={() =>
-                                                ButtonHandler(food.name, food.id, food.img, food.price)
+                                                ButtonHandler(food.name, food._id, food.img, food.price)
                                             }
                                             className="absolute h-7 w-7 md:h-10 md:w-10 top-0 right-0 rounded-full bg-primary outline-0 font-bold text-white hover:border-2 hover:border-primary hover:bg-transparent hover:text-green-800 cursor-pointer duration-300 transition"
                                             title="Order Now"

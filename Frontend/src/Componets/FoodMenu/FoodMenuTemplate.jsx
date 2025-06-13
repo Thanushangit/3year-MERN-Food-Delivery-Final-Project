@@ -30,7 +30,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
     function ButtonHandler(foodTitle, foodId, foodImage, foodPrice) {
 
         if (loginStatus) {
-            const alreadyExists = orderItems.some((item) => item.id === foodId);
+            const alreadyExists = orderItems.some((item) => item._id === foodId);
             if (alreadyExists) {
                 Swal.fire({
                     icon: "error",
@@ -41,7 +41,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
             }
 
             const item = {
-                id: foodId,
+                _id: foodId,
                 image: foodImage,
                 title: foodTitle,
                 price: Number(foodPrice)
@@ -76,7 +76,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
             {Array.isArray(FoodData) && FoodData.length > 0 &&
                 FoodData.map((food) => (
                     <div
-                        key={food.id} className="relative food_item flex items-center overflow-hidden rounded border-b-2 border-r-2 border-gray-300/80 hover:shadow-md"
+                        key={food._id} className="relative food_item flex items-center overflow-hidden rounded border-b-2 border-r-2 border-gray-300/80 hover:shadow-md"
                     >
                         <div className="h-25 w-40">
                             <img
@@ -93,7 +93,7 @@ const FoodMenuTemplate = ({ FoodData }) => {
                             <p>{food.description}</p>
                             <h1 className="text-primary font-semibold">Rs:-{food.price}</h1>
                         </div>
-                        <button onClick={() => ButtonHandler(food.name, food.id, food.image, food.price)}
+                        <button onClick={() => ButtonHandler(food.name, food._id, food.image, food.price)}
                             title="Order Now"
                             className="w-12 md:w-15 mr-2 lg:mr-1 aspect-square rounded-full flex items-center justify-center bg-primary outline-0 font-bold text-white hover:border-2 hover:border-primary hover:bg-transparent hover:text-green-800 cursor-pointer duration-300 transition ease-in-out"
                         >

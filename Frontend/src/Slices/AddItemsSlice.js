@@ -9,7 +9,7 @@ const AddItemsSlice=createSlice({
         },
         deleteItem(state, action) {
             const idToDelete = action.payload;
-            return state.filter(item => item.id !== idToDelete);
+            return state.filter(item => item._id !== idToDelete);
         },
         resetAddItems(){
             return []

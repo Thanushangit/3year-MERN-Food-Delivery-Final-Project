@@ -1,4 +1,4 @@
-const InputField = ({ id, name, label, placeholder, errors, type = "text",star=true, register ,loading}) => {
+const InputField = ({ id, name, label, placeholder, errors, type = "text",star=true, register ,loading,autoComplete="off"}) => {
     return (
         <div className="mb-1">
 
@@ -10,6 +10,7 @@ const InputField = ({ id, name, label, placeholder, errors, type = "text",star=t
                     type={type}
                     placeholder={placeholder}
                     id={id}
+                    autoComplete={autoComplete}
                     name={name}
                     {...register(name)}
                     disabled={loading}

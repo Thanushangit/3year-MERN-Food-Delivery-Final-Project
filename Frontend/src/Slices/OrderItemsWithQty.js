@@ -5,7 +5,7 @@ const OrderItemsWithQty = createSlice({
   initialState,
   reducers: {
     addItemsWithQty(state, action) {
-      const index = state.findIndex(item => item.id === action.payload.id);
+      const index = state.findIndex(item => item._id === action.payload._id);
       if (index !== -1) {
         state[index].Qty = action.payload.Qty;
       } else {
@@ -14,7 +14,7 @@ const OrderItemsWithQty = createSlice({
     },
     deleteItemsWithQty(state, action) {
       const idToDelete = action.payload;
-      return state.filter(item => item.id !== idToDelete);
+      return state.filter(item => item._id !== idToDelete);
     },
     resetOrderItemQty(){
       return []

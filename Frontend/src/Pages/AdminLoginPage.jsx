@@ -111,7 +111,7 @@ const AdminLoginPage = () => {
             <section
                 className="min-h-screen w-screen bg-[url('https://res.cloudinary.com/thanushan/image/upload/v1747127574/login-bg_zugbou.jpg')] bg-center bg-cover flex flex-col justify-center items-center"
             >
-                <div className="container max-w-4xl">
+                <div className="container max-w-2xl">
                     {/* <!-- for the login details input form  --> */}
                     <div
                         className="relative w-full flex flex-col p-6 gap-1 bg-[#383333] rounded-2xl"
@@ -142,7 +142,7 @@ const AdminLoginPage = () => {
                                         className={`outline-0 py-2 px-4 bg-gray-200 rounded w-full ${errors.password ? "shadow-sm shadow-red-500" : ""} `}
                                         type="password"
                                         placeholder="Enter your password"
-                                        autoComplete="off"
+                                        autoComplete="new-password"
                                         id="password"
                                         {...register('password')}
                                     />

@@ -6,6 +6,8 @@ import { setLoginStatus } from "../../Slices/LoginConfirmation"
 import { resetCount } from "../../Slices/CounterSlice"
 import { resetAddItems } from "../../Slices/AddItemsSlice"
 import Swal from "sweetalert2"
+import { signOut } from "firebase/auth";
+import { auth } from '../../Firebase'
 
 
 
@@ -88,9 +90,12 @@ const CustomerNavbar = () => {
                         <li title="click here" id="nav-link" onClick={() => setMenuStatus(pre => !pre)} >
                             {loginStatus ? (
                                 <button className="Nav-Link" onClick={() => {
-                                    dispatch(setLoginStatus(false))
-                                    dispatch(resetCount())
-                                    dispatch(resetAddItems())
+
+                                    signOut(auth).then(() => {
+                                        dispatch(setLoginStatus(false))
+                                        dispatch(resetCount())
+                                        dispatch(resetAddItems())
+                                    });
                                     Swal.fire({
                                         icon: "success",
                                         title: "Logout Successful",

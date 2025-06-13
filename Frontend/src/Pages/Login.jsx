@@ -12,6 +12,8 @@ import { useState } from 'react';
 
 const Login = () => {
 
+
+
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
@@ -37,6 +39,7 @@ const Login = () => {
     setLoading(true)
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
+
       Swal.fire({
         icon: "success",
         title: "Login Successful",
@@ -47,8 +50,6 @@ const Login = () => {
       }).then(() => {
         navigate("/user", { replace: true });
         dispatch(setLoginStatus(true));
-
-      }).then(() => {
         reset();
       })
 
@@ -136,7 +137,7 @@ const Login = () => {
                   type="password"
                   placeholder="Enter your password"
                   id="password"
-                  autoComplete="off"
+                  autoComplete="new-password"
                   {...register("password")}
                 />
               </label>

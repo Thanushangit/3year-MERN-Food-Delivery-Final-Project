@@ -164,7 +164,7 @@ const Register = () => {
             <InputField id="First-Name" name="First_Name" label="First-Name" placeholder="Enter your First Name" errors={errors} register={register} />
             <InputField id="Last-Name" name="Last_Name" label="Last-Name" placeholder="Enter your Last-Name" errors={errors} register={register} />
             <InputField id="email" name="email" label="Email" type='email' placeholder="Enter your email" errors={errors} register={register} />
-            <InputField id="password" name="password" label="Password" type='password' placeholder="Enter your password" errors={errors} register={register} />
+            <InputField id="password" name="password" autoComplete="new-password" label="Password" type='password' placeholder="Enter your password" errors={errors} register={register} />
             <InputField id="Mobile-Number" name="Mobile_Number" label="Mobile-Number" type='number' placeholder="Enter your Mobile-Number" errors={errors} register={register} />
             <InputField id="Landline-Number" name="Landline_Number" label="Landline Number" star={false} type='number' placeholder="Enter your Landline Number" errors={errors} register={register} />
 

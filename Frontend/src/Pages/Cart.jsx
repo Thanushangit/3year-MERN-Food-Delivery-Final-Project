@@ -2,11 +2,9 @@ import { useSelector } from 'react-redux'
 import EmptyCart from '../Componets/CartPage/EmptyCart'
 import OrderFoodCard from '../Componets/CartPage/OrderFoodCard'
 import { useDispatch } from 'react-redux';
-import { resetCount } from '../Slices/CounterSlice';
-import { useEffect } from 'react';
 import { deleteItem } from '../Slices/AddItemsSlice'
 import { formatSrilankaPrice } from '../Util/PriceSeperator';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const Cart = () => {
@@ -23,13 +21,7 @@ const Cart = () => {
   const Total = (subTotal + Delivey - Discount)
   const totalItems = (Count) => (Count < 10 ? `0${Count}` : Count);
 
-  useEffect(() => {
-    if (orderItems.length === 0) {
-      Dispatch(resetCount());
-    }
-  }, [orderItems, Dispatch]);
-
-
+  
   function DeliveryCharge(subTotal) {
     if (subTotal < 10000) {
       return +(subTotal * 0.10).toFixed(2);
@@ -84,7 +76,7 @@ const Cart = () => {
               <tbody>
                 {
                   orderItems.map((items) => (
-                    <OrderFoodCard key={items._id} details={items} FilterItems={(id) => Dispatch(deleteItem(id))} />
+                    <OrderFoodCard key={items._id} details={items} FilterItems={(_id) => Dispatch(deleteItem(_id))} />
                   ))
                 }
               </tbody>
