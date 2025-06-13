@@ -4,12 +4,15 @@ import { popularDishes } from '../FetchLoaders/Fetchingdata';
 import { loadBreakFast } from '../FetchLoaders/Fetchingdata'
 import { loadLunch } from '../FetchLoaders/Fetchingdata'
 import { loadDinner } from '../FetchLoaders/Fetchingdata'
-import AddNewButton from '../Componets/AdminHomePage/AddNewButton';
-import FoodCard from '../Componets/AdminHomePage/FoodCard';
 import BreakFastFoodCard from '../Componets/AdminHomePage/BreakFastFoodCard'
 import LunchFoodCard from '../Componets/AdminHomePage/LunchFoodCard'
 import DinnerFoodCard from '../Componets/AdminHomePage/DinnerFoodCard'
 import SingleFoodDetails from '../Componets/AdminHomePage/SingleFoodDetails';
+import AddPopularFood from '../Componets/AdminHomePage/AddPopularFood';
+import AddBreakFastFood from '../Componets/AdminHomePage/AddBreakFastFood';
+import AddLunch from '../Componets/AdminHomePage/AddLunch';
+import AddDinner from '../Componets/AdminHomePage/AddDinner';
+import AddFoodForm from '../Componets/AdminHomePage/AddFoodForm';
 
 const AdminHomePage = () => {
   const [popular, setPopular] = useState([]);
@@ -18,6 +21,8 @@ const AdminHomePage = () => {
   const [dinner, setDinner] = useState([]);
 
   const [showDetailsStatus, setShowDetailsStatus] = useState(false);
+  const [AddFoodFormStatus, setAddFoodFormStatus] = useState(false);
+  const [AddFoodCategory, setAddFoodCategory] = useState("");
   const [showDetails, setShowDetails] = useState({
     showid: "",
     showimg: "",
@@ -115,7 +120,7 @@ const AdminHomePage = () => {
 
             </div>
 
-            <AddNewButton />
+            <AddPopularFood setAddFoodFormStatus={setAddFoodFormStatus} setAddFoodCategory={setAddFoodCategory} />
 
           </div>
         </div>
@@ -143,7 +148,7 @@ const AdminHomePage = () => {
 
 
           </div>
-          <AddNewButton />
+          <AddBreakFastFood setAddFoodFormStatus={setAddFoodFormStatus} setAddFoodCategory={setAddFoodCategory} />
         </div>
       </section>
 
@@ -169,7 +174,7 @@ const AdminHomePage = () => {
             }
 
           </div>
-          <AddNewButton />
+          <AddLunch setAddFoodFormStatus={setAddFoodFormStatus} setAddFoodCategory={setAddFoodCategory} />
         </div>
       </section>
 
@@ -194,13 +199,15 @@ const AdminHomePage = () => {
             }
 
           </div>
-          <AddNewButton />
+          <AddDinner setAddFoodFormStatus={setAddFoodFormStatus} setAddFoodCategory={setAddFoodCategory} />
         </div>
       </section>
 
+      {/* it for the edit food  */}
       {showDetailsStatus && <SingleFoodDetails category={showDetails.category} showid={showDetails.showid} showimg={showDetails.showimg} showtitle={showDetails.showtitle} showprice={showDetails.showprice} showdescription={showDetails.showdescription} setShowDetailsStatus={setShowDetailsStatus} />}
 
-
+      {/* it for the add new food  */}
+      {AddFoodFormStatus && <AddFoodForm AddFoodCategory={AddFoodCategory} setAddFoodFormStatus={setAddFoodFormStatus} />}
 
     </div>
   )
