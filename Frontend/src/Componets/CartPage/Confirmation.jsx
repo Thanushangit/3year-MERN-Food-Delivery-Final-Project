@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetAddItems } from '../../Slices/AddItemsSlice'
 import { resetCount } from '../../Slices/CounterSlice'
 import { resetOrderItemQty } from "../../Slices/OrderItemsWithQty";
-import { setOrderStatus } from '../../Slices/OrderStatusSlice'
+
 import emailjs from 'emailjs-com';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from '../../Firebase'
@@ -184,7 +184,7 @@ const Confirmation = () => {
             dispatch(resetAddItems());
             dispatch(resetCount());
             dispatch(resetOrderItemQty());
-            dispatch(setOrderStatus("placed"));
+           
 
             // Navigate to success page
             navigate("/user/cart/orderSuccess", { replace: true });

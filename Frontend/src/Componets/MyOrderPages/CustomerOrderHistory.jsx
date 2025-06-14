@@ -33,7 +33,7 @@ const CustomerOrderHistory = ({ order }) => {
                                     <div className="w-10 h-10">
                                         <img src={items.img} alt="food" className="h-full w-full object-center object-cover " />
                                     </div>
-                                    <p className="sm:max-w-36 w-20 max-w-20 text-sm  text-gray-600 font-semibold">{items.name}</p>
+                                    <p className="sm:max-w-36 w-20  text-sm  text-gray-600 font-semibold">{items.name}</p>
 
                                 </div>
                             </td>

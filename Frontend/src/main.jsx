@@ -2,6 +2,7 @@ import './assets/css/main.css'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { AnimatePresence } from "framer-motion";
 import RootLayout from './Layout/RootLayout.jsx';
 import Home from './Pages/Home.jsx';
 import MyOrder from './Pages/MyOrder.jsx';
@@ -46,10 +47,11 @@ const router = createBrowserRouter([
             element: <MainLayout />,
             children: [
               { index: true, element: <Home /> },
-              { path: 'myorder', element: <MyOrder /> ,
-                children:[
-                  {index:true, element:<CurrentOrder/>},
-                  {path:"History",element:<OrderHistory/>}
+              {
+                path: 'myorder', element: <MyOrder />,
+                children: [
+                  { index: true, element: <CurrentOrder /> },
+                  { path: "History", element: <OrderHistory /> }
                 ]
               },
               { path: 'about', element: <About /> },
@@ -83,10 +85,11 @@ const router = createBrowserRouter([
         errorElement: <AdminErrorPage />,
         children: [
           { index: true, element: <AdminLoginPage /> },
-          { path: "dashboard", element: <AdminDashboard /> ,
-            children:[
-              {index:true, element:<AdminHomePage/>},
-              {path:'orders',element:<AdminOrdersPage/>}
+          {
+            path: "dashboard", element: <AdminDashboard />,
+            children: [
+              { index: true, element: <AdminHomePage /> },
+              { path: 'orders', element: <AdminOrdersPage /> }
             ]
           },
           { path: '*', element: <AdminErrorPage /> }
@@ -107,7 +110,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <AnimatePresence mode="wait">
+      <RouterProvider router={router} />
+    </AnimatePresence>
+
   </Provider>
 )
 
