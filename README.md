@@ -46,9 +46,9 @@ Platezy is a full-stack MERN (MongoDB, Express, React, Node.js) food delivery ap
 
 **Admin**
 
-<img src="./Frontend/public/09.webp" alt="Home Page" width="48%" style="margin-right: 10px; margin-bottom: 10px;">
-  <img src="./Frontend/public/10.webp" alt="Home Page" width="48%" style="margin-right: 10px; margin-bottom: 10px;">
----
+<img src="./Frontend/public/09.webp" alt="Home Page" width="48%" style="margin-right: 10px;">
+  <img src="./Frontend/public/10.webp" alt="Home Page" width="48%" style="margin-right: 10px; ;">
+
 
 ## Tech Stack
 
