@@ -25,6 +25,8 @@ import AdminLoginPage from './Pages/AdminLoginPage.jsx';
 import AdminDashboard from './Layout/AdminDashboard.jsx';
 import AdminHomePage from './Pages/AdminHomePage.jsx';
 import AdminOrdersPage from './Pages/AdminOrdersPage.jsx';
+import CurrentOrder from './Pages/CurrentOrder.jsx';
+import OrderHistory from './Pages/OrderHistory.jsx';
 
 
 const router = createBrowserRouter([
@@ -44,7 +46,12 @@ const router = createBrowserRouter([
             element: <MainLayout />,
             children: [
               { index: true, element: <Home /> },
-              { path: 'myorder', element: <MyOrder /> },
+              { path: 'myorder', element: <MyOrder /> ,
+                children:[
+                  {index:true, element:<CurrentOrder/>},
+                  {path:"History",element:<OrderHistory/>}
+                ]
+              },
               { path: 'about', element: <About /> },
               {
                 path: 'cart',

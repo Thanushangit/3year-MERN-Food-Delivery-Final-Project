@@ -125,6 +125,8 @@ const Confirmation = () => {
             const OrdersDb = orderItemsWithQty.map(item => ({
                 name: item.title,
                 units: item.Qty,
+                img:item.image,
+                price:item.price
             }));
 
 

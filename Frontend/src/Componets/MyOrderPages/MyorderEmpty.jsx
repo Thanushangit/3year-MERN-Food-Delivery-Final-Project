@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const MyorderEmpty = () => {
     return (
-        <div className="container w-full mt-5 h-full flex flex-col items-center justify-center text-center space-y-3">
-            <div className="overflow-hidden p-5">
+        <div className="mycontainer w-full  h-full flex flex-col items-center justify-center text-center space-y-3">
+            <div className="overflow-hidden">
                 <img
                     className="w-72 object-cover object-center scale-x-[-1]"
                     src="https://res.cloudinary.com/thanushan/image/upload/v1747115739/not-order-yet_iqjy8w.webp"

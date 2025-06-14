@@ -92,3 +92,21 @@ export async function loadOrderItems() {
     throw err; 
   }
 }
+
+
+export async function customerOrderHistory(uid) {
+  try {
+    const res = await axios.get(`http://localhost:3000/order/getAllorderByuid/${uid}`); 
+    return res.data;
+  } catch (err) {
+    console.error("DB order Data fetched Error:");
+    if (err.response) {
+      console.error("Status code:", err.response.status);
+    } else if (err.request) {
+      console.error("No response received:", err.request);
+    } else {
+      console.error("Error message:", err.message);
+    }
+    throw err; 
+  }
+}

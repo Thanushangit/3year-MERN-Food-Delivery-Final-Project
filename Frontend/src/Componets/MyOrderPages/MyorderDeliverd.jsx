@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const MyorderDeliverd = () => {
     return (
-        <div className="container  w-full mt-5 h-full flex flex-col items-center justify-center text-center space-y-1">
+        <div className="mycontainer  w-full  h-full flex flex-col items-center justify-center text-center space-y-2">
             <div className="mb-5 w-44 h-44 rounded-full bg-[#f8f1f2] mx-auto flex items-center justify-center">
                 <img
                     src="https://res.cloudinary.com/thanushan/image/upload/v1747115738/order-deliverd_h5hg9p.webp"
@@ -19,7 +19,7 @@ const MyorderDeliverd = () => {
                 Thank you for your order! Your food has been delivered successfully.
                 We hope you enjoyed your meal and look forward to serving you again soon.
             </p>
-            <Link to="/user" title="Go to my order page" className="w-full md:w-64 sm:py-2 py-3 px-6 mb-20 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-8">
+            <Link to="/user" title="Go to my order page" className="w-full md:w-64 sm:py-2 py-3 px-6 mb-20 bg-primary hover:border hover:text-primary hover:bg-transparent duration-300 transition rounded-md mx-auto text-white font-semibold mt-5">
                 Order more
             </Link>
 

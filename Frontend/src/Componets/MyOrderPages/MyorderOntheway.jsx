@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const MyorderOntheway = () => {
     return (
-        <div className="container w-full mt-5 h-full flex flex-col items-center justify-center text-center space-y-1">
-            <div className="bg-[#f7f3ed] overflow-hidden h-44 w-44 rounded-full p-5">
+        <div className="mycontainer w-full  h-full flex flex-col items-center justify-center text-center space-y-3">
+            <div className="bg-[#f7f3ed] overflow-hidden h-44 w-44 rounded-full ">
                 <img
                     className="w-full h-full object-cover object-center scale-x-[-1]"
                     src="https://res.cloudinary.com/thanushan/image/upload/v1747115739/delivery-bike_ncbkil.webp"

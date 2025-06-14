@@ -16,7 +16,7 @@ html {
 }
 
 .mycontainer {
-    @apply py-3.5 px-10;
+    @apply py-2 px-5 md:py-3.5 md:px-10;
 }
 
 .Nav-Link {

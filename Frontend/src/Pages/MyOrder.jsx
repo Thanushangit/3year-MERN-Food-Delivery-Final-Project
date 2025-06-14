@@ -1,71 +1,73 @@
-import { useEffect, useState } from "react";
-import { getAuth } from "firebase/auth";
-import axios from "axios";
-import MyorderEmpty from "../Componets/MyOrderPages/MyorderEmpty";
-import MyorderOntheway from "../Componets/MyOrderPages/MyorderOntheway";
-import MyorderCanceled from "../Componets/MyOrderPages/MyorderCanceled";
-import MyorderDeliverd from "../Componets/MyOrderPages/MyorderDeliverd";
-import MyorderPlaced from "../Componets/MyOrderPages/MyorderPlaced";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { NavLink, Outlet } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+
 
 const MyOrder = () => {
-    const [orderStatus, setOrderStatus] = useState("empty");
+
+    const loginStatus = useSelector(state => state.loginStatus.status);
+
+
 
     useEffect(() => {
-        const fetchOrder = async () => {
-            const auth = getAuth();
-            const user = auth.currentUser;
-
-            if (user) {
-                try {
-                    const res = await axios.get(`http://localhost:3000/order/getSingleorder/${user.uid}`);
-                    const order = res.data;
-                    console.log("the order status", order.OrderStatus);
-
-                    if (!order || !order.OrderStatus) {
-                        setOrderStatus("empty");
-                    } else {
-                        setOrderStatus(order.OrderStatus.toLowerCase());
-                    }
-
-                } catch (err) {
-                    if (err.response && err.response.status === 404) {
-                        console.warn("No order found (probably deleted)");
-                        setOrderStatus("empty");
-                    } else {
-                        console.error("Error fetching user order:", err);
-                        setOrderStatus("empty");
-                    }
-                }
-            }
-        };
-
-        fetchOrder();
-
-        const interval = setInterval(fetchOrder, 500);
-        return () => clearInterval(interval);
-    }, []);
-
-
-    const renderComponent = () => {
-        switch (orderStatus) {
-            case "on-the-way":
-                return <MyorderOntheway />;
-            case "canceled":
-                return <MyorderCanceled />;
-            case "delivered":
-                return <MyorderDeliverd />;
-            case "placed":
-                return <MyorderPlaced />;
-            default:
-                return <MyorderEmpty />;
+        if (!loginStatus) {
+            toast.error('Please log in to view your orders.', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
-    };
+    }, [loginStatus]);
+
+
 
     return (
-        <section className="flex flex-col items-center justify-center mt-20 sm:mt-15">
-            <h1 className="font-ibm text-3xl md:text-4xl sm:mt-12">Your order status</h1>
-            {renderComponent()}
-        </section>
+
+        <>
+            {loginStatus && <section className="mycontainer mt-20 md:mt-15 ">
+
+                <div className="space-x-3 mt-5  flex justify-center bg-gray-200 max-w-96  rounded-lg border-2 border-gray-200">
+                    <NavLink to={"/user/myorder"} end className={({ isActive }) => ` w-1/2 text-center py-2 rounded-lg transition-all duration-300 text-lg ${isActive ? " text-gray-500 bg-white font-semibold" : "text-gray-400 bg-transparent"}`}>Current Order</NavLink>
+
+                    <NavLink to={'/user/myorder/History'} className={({ isActive }) => ` w-1/2 text-center py-2 rounded-lg transition-all duration-300 text-lg ${isActive ? " bg-white text-gray-500 font-semibold" : " bg-transparent text-gray-400"}`}>Order History</NavLink>
+
+                </div>
+
+                <Outlet />
+
+            </section>}
+
+
+            {!loginStatus &&
+
+                <section className="mycontainer min-h-screen mt-5 flex items-center justify-center ">
+                    <h1 className="text-2xl md:text-4xl text-center text-gray-400">You need to log in to view your orders.
+                    </h1>
+
+                </section>
+            }
+
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+
+
+        </>
+
     );
 };
 

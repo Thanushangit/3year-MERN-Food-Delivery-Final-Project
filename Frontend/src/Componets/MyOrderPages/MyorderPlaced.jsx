@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const MyorderPlaced = () => {
     return (
-        <section className=" flex items-center justify-center mt-12 ">
+        <section className=" flex items-center justify-center  ">
             <div
                 className="mycontainer w-full h-ful flex-col items-center justify-center text-center space-y-3"
             >
