@@ -86,15 +86,19 @@ exports.getAllOrderByFirebaseUID = async (req, res) => {
   try {
     const firebaseUID = req.params.uid;
 
-    // Find all orders matching this FirebaseUID
+    // Find all orders matching this FirebaseUID, newest first
     const orders = await Food.find({ FirebaseUID: firebaseUID }).sort({ createdAt: -1 });
 
     if (!orders || orders.length === 0) {
       return res.status(404).json({ message: "No orders found for this user" });
     }
 
-    res.status(200).json(orders);
+    // Remove the first (latest) order
+    const ordersExceptLast = orders.slice(1);
+
+    res.status(200).json(ordersExceptLast);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+

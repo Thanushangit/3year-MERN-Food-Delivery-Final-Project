@@ -38,6 +38,8 @@ const CustomerOrder = new mongoose.Schema({
       {
       name: { type: String },
       units: { type: Number },
+      img: { type: String },
+      price: { type: Number },
     }
 
     ],
