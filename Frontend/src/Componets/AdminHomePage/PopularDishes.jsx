@@ -1,26 +1,22 @@
-
-
 import { formatSrilankaPrice } from "../../Util/PriceSeperator";
 import DeleteButton from "./DeleteButton";
 
-
-
 const PopularDishes = (props) => {
     const { _id, img, name, price, description } = props.item;
-  
+
     const setShowDetailsStatus = props.setShowDetailsStatus;
     const setShowDetails = props.setShowDetails;
 
     function ButtonHandler(_id, img, name, price, description) {
         setShowDetailsStatus(true),
             setShowDetails({
-                showid: {_id},
-                showimg: {img},
-                showtitle:{name},
-                showprice: {price},
-                showdescription: {description},
-                category:"popular"
-                
+                showid: { _id },
+                showimg: { img },
+                showtitle: { name },
+                showprice: { price },
+                showdescription: { description },
+                category: "popular"
+
             })
     }
 
@@ -66,8 +62,6 @@ const PopularDishes = (props) => {
 
                 </div>
             </div>
-            {/* {showDetails && <SingleFoodDetails id={id} img={img} title={title} price={price} description={description}/>} */}
-
 
         </div>
     )

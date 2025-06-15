@@ -16,7 +16,6 @@ import AddFoodForm from '../Componets/AdminHomePage/AddFoodForm';
 import socket from '../socket'
 
 
-
 const AdminHomePage = () => {
 
 
@@ -24,7 +23,6 @@ const AdminHomePage = () => {
   const [breakfast, setBreakfast] = useState([]);
   const [lunch, setLunch] = useState([]);
   const [dinner, setDinner] = useState([]);
-
   const [showDetailsStatus, setShowDetailsStatus] = useState(false);
   const [AddFoodFormStatus, setAddFoodFormStatus] = useState(false);
   const [AddFoodCategory, setAddFoodCategory] = useState("");

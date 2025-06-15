@@ -13,10 +13,9 @@ const FoodMenuTemplate = ({ FoodData }) => {
     const loginStatus = useSelector(state => state.loginStatus.status);
 
     const notify = (tostFood) => toast.success(
-        <div>
-            <p><strong>{tostFood}</strong> added successfully!</p>
-        </div>
-        , {
+        <p><strong>{tostFood}</strong> added successfully!</p>
+        ,
+        {
             position: "top-center",
             autoClose: 2000,
             hideProgressBar: false,

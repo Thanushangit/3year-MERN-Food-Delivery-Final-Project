@@ -24,7 +24,6 @@ const DeleteButton = ({ id, name, category }) => {
                         case "popular":
 
                             await axios.delete(`http://localhost:3000/api/deletepopular/${id}`);
-
                             break;
 
 

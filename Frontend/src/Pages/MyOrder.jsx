@@ -8,8 +8,6 @@ const MyOrder = () => {
 
     const loginStatus = useSelector(state => state.loginStatus.status);
 
-
-
     useEffect(() => {
         if (!loginStatus) {
             toast.error('Please log in to view your orders.', {
@@ -64,7 +62,6 @@ const MyOrder = () => {
                 draggable
                 pauseOnHover
             />
-
 
         </>
 

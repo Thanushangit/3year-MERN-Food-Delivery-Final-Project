@@ -5,8 +5,6 @@ import { useSelector } from "react-redux";
 import AdminFooter from "../Componets/Footer/AdminFooter";
 import { useEffect } from "react";
 
-
-
 const AdminDashboard = () => {
     const adminStatus = useSelector(sta => sta.adminStatus.status)
 

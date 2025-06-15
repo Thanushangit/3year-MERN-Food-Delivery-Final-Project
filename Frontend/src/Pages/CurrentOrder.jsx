@@ -6,6 +6,7 @@ import MyorderOntheway from "../Componets/MyOrderPages/MyorderOntheway";
 import MyorderCanceled from "../Componets/MyOrderPages/MyorderCanceled";
 import MyorderDeliverd from "../Componets/MyOrderPages/MyorderDeliverd";
 import MyorderPlaced from "../Componets/MyOrderPages/MyorderPlaced";
+import socket from "../socket";
 
 
 const CurrentOrder = () => {
@@ -20,7 +21,7 @@ const CurrentOrder = () => {
                 try {
                     const res = await axios.get(`http://localhost:3000/order/getSingleorder/${user.uid}`);
                     const order = res.data;
-                    console.log("the order status", order.OrderStatus);
+
 
                     if (!order || !order.OrderStatus) {
                         setOrderStatus("empty");
@@ -42,8 +43,24 @@ const CurrentOrder = () => {
 
         fetchOrder();
 
-        const interval = setInterval(fetchOrder, 500);
-        return () => clearInterval(interval);
+        socket.on("orderAdded", () => {
+            fetchOrder();
+        });
+
+        socket.on("orderUpdated", () => {
+            fetchOrder();
+        });
+
+        socket.on("orderDeleted", () => {
+            fetchOrder();
+        });
+
+        // Clean up listeners
+        return () => {
+            socket.off("orderAdded");
+            socket.off("orderUpdated");
+            socket.off("orderDeleted");
+        };
     }, []);
 
     const renderComponent = () => {

@@ -5,8 +5,6 @@ import { customerOrderHistory } from "../FetchLoaders/Fetchingdata";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import CustomerOrderHistory from "../Componets/MyOrderPages/CustomerOrderHistory";
 
-
-
 const OrderHistory = () => {
 
     const [customerOrder, setCustomerOrder] = useState([])

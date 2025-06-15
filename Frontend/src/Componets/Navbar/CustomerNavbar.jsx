@@ -9,8 +9,6 @@ import Swal from "sweetalert2"
 import { signOut } from "firebase/auth";
 import { auth } from '../../Firebase'
 
-
-
 const CustomerNavbar = () => {
     const navigate = useNavigate()
     const counterValue = useSelector((sta) => sta.count.count)

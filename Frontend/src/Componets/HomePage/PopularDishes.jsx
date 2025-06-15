@@ -9,8 +9,6 @@ import Swal from 'sweetalert2';
 import socket from '../../socket'
 
 
-
-
 const PopularDishes = () => {
     const dispatch = useDispatch();
     const orderItems = useSelector(sta => sta.addItems)

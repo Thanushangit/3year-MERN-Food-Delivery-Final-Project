@@ -18,7 +18,6 @@ const AdminOrderCard = ({ item, onDelete }) => {
     const formatted = `${datePart} ${timePart}`;
 
 
-
     // delete for the particular order 
     async function ButtonHandler(id) {
         try {
@@ -54,10 +53,9 @@ const AdminOrderCard = ({ item, onDelete }) => {
             setOrderStatus(value)
             await axios.put(`http://localhost:3000/order/updatecustomerOrder/${id}`,
                 { OrderStatus: value }
-                
+
             );
-            
-            console.log("id and value:",value,id)
+
 
         }
         catch (err) {
@@ -99,7 +97,7 @@ const AdminOrderCard = ({ item, onDelete }) => {
                             <input
                                 className="accent-blue-500"
                                 type="radio"
-                                name={`order-status-${item._id}`} // make unique name if used in loop
+                                name={`order-status-${item._id}`}
                                 value="placed"
                                 id={`placed-${item._id}`}
                                 checked={orderStatus === "placed"}

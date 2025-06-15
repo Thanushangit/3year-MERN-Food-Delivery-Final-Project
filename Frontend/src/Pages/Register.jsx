@@ -218,7 +218,7 @@ const Register = () => {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://github.com/Thanushangit/Food-delivery.git"
+          href="https://github.com/Thanushangit/3year-MERN-Food-Delivery-Final-Project"
           className="hover:text-gray-200 transition duration-200 hover:underline underline-offset-4"
         >
           J'boys.

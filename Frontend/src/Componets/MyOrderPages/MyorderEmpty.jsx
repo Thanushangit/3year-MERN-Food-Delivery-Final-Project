@@ -22,10 +22,7 @@ const MyorderEmpty = () => {
             <i className="ri-arrow-left-long-fill"></i>
                 <p>Order Now</p>
             </Link>
-
-            
-                
-           
+                    
         </div>
 
     );

@@ -3,7 +3,6 @@ import ScrollMemory from '../Util/ScrollMemory'
 import { useEffect } from 'react';
 import { toast,ToastContainer } from 'react-toastify';
 
-
 const RootLayout = () => {
   useEffect(() => {
     toast(' Welcome to Platezy!', {

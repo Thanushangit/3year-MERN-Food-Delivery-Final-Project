@@ -13,9 +13,11 @@ const Cart = () => {
   const cartCount = useSelector(sta => sta.count.count)
   const orderItems = useSelector(sta => sta.addItems)
   const OrderItemsWithQty = useSelector(sta => sta.addItemsWithQty)
+
   const subTotal = OrderItemsWithQty.reduce((acc, item) => {
     return acc + (item.Qty * item.price);
   }, 0);
+  
   const Delivey = DeliveryCharge(subTotal);
   const Discount = DiscountCharge(subTotal);
   const Total = (subTotal + Delivey - Discount)

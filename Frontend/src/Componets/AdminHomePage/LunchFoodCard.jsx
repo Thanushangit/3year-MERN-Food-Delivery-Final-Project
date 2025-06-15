@@ -1,4 +1,3 @@
-import React from 'react'
 import DeleteButton from './DeleteButton'
 import { formatSrilankaPrice } from '../../Util/PriceSeperator';
 
@@ -8,14 +7,14 @@ const FoodCard = (props) => {
     const setShowDetails = props.setShowDetails;
 
     function ButtonHandler(_id, img, title, price, description) {
-setShowDetailsStatus(true),
+        setShowDetailsStatus(true),
             setShowDetails({
-                showid: {_id},
-                showimg: {img},
-                showtitle:{title},
-                showprice: {price},
-                showdescription: {description},
-                category:"lunch"
+                showid: { _id },
+                showimg: { img },
+                showtitle: { title },
+                showprice: { price },
+                showdescription: { description },
+                category: "lunch"
             })
     }
 
@@ -54,11 +53,7 @@ setShowDetailsStatus(true),
                         <i className="ri-edit-2-line"></i>
                     </button>
 
-
-                    <DeleteButton id={_id} title={name} category="lunch"/>
-
-
-
+                    <DeleteButton id={_id} title={name} category="lunch" />
 
                 </div>
             </div>

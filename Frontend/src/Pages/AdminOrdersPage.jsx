@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import AdminOrderCard from "../Componets/AdminOrder/AdminOrderCard"
 import { loadOrderItems } from '../FetchLoaders/Fetchingdata'
-import OrderEmpty from "../Componets/AdminOrder/OrderEmpty";
 import { Link } from "react-router-dom";
 import socket from '../socket'
 
@@ -104,7 +103,6 @@ const AdminOrdersPage = () => {
 
                     )
                 }
-
 
             </div>
         </section>

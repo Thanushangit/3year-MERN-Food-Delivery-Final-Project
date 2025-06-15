@@ -15,10 +15,9 @@ const AdminLoginPage = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const [adminDetails] = useState({
-        email: "",
-        // jboys@gmail.com
-        password: "123"
-        // Jboys2025@
+        email: "jboys@gmail.com",
+        password: "Jboys2025@"
+
     })
 
     const schema = z.object({
@@ -35,7 +34,7 @@ const AdminLoginPage = () => {
     })
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
-        // resolver: zodResolver(schema)
+        resolver: zodResolver(schema)
     })
 
 
@@ -167,7 +166,7 @@ const AdminLoginPage = () => {
                         className="hover:text-gray-200 transition duration-200 hover:underline underline-offset-4"
                     ><a
                         target="_blank"
-                        href="https://github.com/Thanushangit/Food-delivery.git"
+                        href="https://github.com/Thanushangit/3year-MERN-Food-Delivery-Final-Project"
                     >J'boys.</a></span>
                 </p>
             </section>

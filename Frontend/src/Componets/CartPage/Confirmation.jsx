@@ -7,12 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetAddItems } from '../../Slices/AddItemsSlice'
 import { resetCount } from '../../Slices/CounterSlice'
 import { resetOrderItemQty } from "../../Slices/OrderItemsWithQty";
-
 import emailjs from 'emailjs-com';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from '../../Firebase'
 import { useEffect, useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -22,9 +21,6 @@ const Confirmation = () => {
     const [loading, setLoading] = useState(false);
 
 
-
-
-
     useEffect(() => {
         const fetchDetails = async () => {
             const user = auth.currentUser;
@@ -32,7 +28,6 @@ const Confirmation = () => {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    // ✅ Add the UID to the user data
                     setUserData({
                         uid: user.uid, // Firebase UID
                         ...docSnap.data(), // Other data from Firestore
@@ -125,8 +120,8 @@ const Confirmation = () => {
             const OrdersDb = orderItemsWithQty.map(item => ({
                 name: item.title,
                 units: item.Qty,
-                img:item.image,
-                price:item.price
+                img: item.image,
+                price: item.price
             }));
 
 
@@ -150,19 +145,6 @@ const Confirmation = () => {
             // );
 
             //this data for the send to the db
-
-            const dbData = {
-                FirstName: data.FirstName,
-                LastName: data.LastName,
-                Email: data.Email,
-                MobileNumber: data.MobileNumber,
-                DeliveryAddress: data.DeliveryAddress,
-                TotalAmount: total,
-                OrderItems: OrdersDb,
-                FirebaseUID: userData.uid,
-                createdAt: new Date(),
-
-            }
             await axios.post(`http://localhost:3000/order/customerOrder/new`, {
                 FirstName: data.FirstName,
                 LastName: data.LastName,
@@ -176,15 +158,11 @@ const Confirmation = () => {
                 createdAt: new Date(),
             });
 
-            console.log("This data for the DB:", dbData)
-
-            // console.log(' Email sent:', response.status, response.text);
-
             // Reset the states
             dispatch(resetAddItems());
             dispatch(resetCount());
             dispatch(resetOrderItemQty());
-           
+
 
             // Navigate to success page
             navigate("/user/cart/orderSuccess", { replace: true });
@@ -207,7 +185,7 @@ const Confirmation = () => {
             <div className="container h-full max-w-4xl flex items-center justify-center mt-10">
                 <div className="relative w-full flex flex-col p-6 gap-1 bg-[#383333] rounded-2xl">
                     <h1 className="text-center font-semibold text-2xl font-ibm text-gray-200 mb-5 flex items-center justify-center gap-5">
-                        <Link to={"/cart"} title="Back" className="text-green-700 text-2xl font-bold hover:text-primary duration-300 transition">
+                        <Link to={"/user/cart"} title="Back" className="text-green-700 text-2xl font-bold hover:text-primary duration-300 transition">
                             <i className="ri-arrow-left-long-line"></i>
                         </Link>
                         confirmation

@@ -1,4 +1,3 @@
-
 const Members = [
     {
         image: "https://res.cloudinary.com/thanushan/image/upload/v1747325338/co-founder_y7kqkr.webp",

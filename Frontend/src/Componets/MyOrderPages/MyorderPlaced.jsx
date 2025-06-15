@@ -22,9 +22,6 @@ const MyorderPlaced = () => {
                     Your food is being prepared! Our team will contact you if needed.
                 </p>
 
-
-
-
                 <Link title="Go to home page" to="/user" >
                     <div
                         className="w-full md:w-sm sm:py-2 py-3 px-6 border border-primary text-primary hover:bg-primary hover:text-white duration-300 transition rounded-md mx-auto font-semibold mt-4 md:mt-8 mb-20"

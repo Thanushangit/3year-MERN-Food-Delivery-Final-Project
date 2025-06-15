@@ -12,8 +12,6 @@ import { useState } from 'react';
 
 const Login = () => {
 
-
-
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
@@ -201,7 +199,7 @@ const Login = () => {
         © 2025. Powered by{" "}
         <a
           className="hover:text-gray-200 underline underline-offset-4"
-          href="https://github.com/Thanushangit/Food-delivery.git"
+          href="https://github.com/Thanushangit/3year-MERN-Food-Delivery-Final-Project"
           target="_blank"
           rel="noopener noreferrer"
         >

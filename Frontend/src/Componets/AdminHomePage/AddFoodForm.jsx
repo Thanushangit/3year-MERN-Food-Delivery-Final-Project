@@ -76,8 +76,6 @@ const AddFoodForm = ({ AddFoodCategory, setAddFoodFormStatus }) => {
             if (result.isConfirmed) {
                 try {
 
-                    console.log("This is the data to db", AddFoodCategory, data.img, data.title, data.price, data.description)
-
                     switch (AddFoodCategory) {
                         case "popular":
 
@@ -87,7 +85,6 @@ const AddFoodForm = ({ AddFoodCategory, setAddFoodFormStatus }) => {
                                 price: data.price,
                                 description: data.description
                             });
-
                             break;
 
 

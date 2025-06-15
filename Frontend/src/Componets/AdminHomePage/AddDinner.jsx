@@ -1,5 +1,3 @@
-
-
 const AddDinner = ({ setAddFoodFormStatus, setAddFoodCategory }) => {
     function ButtonHandler() {
 

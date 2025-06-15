@@ -1,5 +1,3 @@
-import React from 'react'
-
 const OrderEmpty = () => {
     return (
         <div className="container w-full mt-5 h-full flex flex-col items-center justify-center text-center space-y-3">

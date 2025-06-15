@@ -1,4 +1,3 @@
-import React from 'react'
 import DeleteButton from './DeleteButton'
 import { formatSrilankaPrice } from '../../Util/PriceSeperator';
 
@@ -56,9 +55,6 @@ setShowDetailsStatus(true),
 
 
                     <DeleteButton id={_id} title={name} category="breakfast"/>
-
-
-
 
                 </div>
             </div>
