@@ -30,7 +30,7 @@ const Lunch = () => {
       socket.off("lunchUpdated");
       socket.off("lunchDeleted");
     };
-    
+
   }, []);
 
   return (

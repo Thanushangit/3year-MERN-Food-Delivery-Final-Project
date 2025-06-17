@@ -32,7 +32,7 @@ const BreakFast = () => {
       socket.off("breakfastDeleted");
     };
 
-  }, []);
+  }, [FoodData]);
 
   return (
     <div>

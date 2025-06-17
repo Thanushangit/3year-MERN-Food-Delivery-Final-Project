@@ -7,6 +7,7 @@ import { addItem } from '../../Slices/AddItemsSlice';
 import { formatSrilankaPrice } from '../../Util/PriceSeperator'
 import Swal from 'sweetalert2';
 import socket from '../../socket'
+import Loader from '../Loader/Loader';
 
 
 const PopularDishes = () => {
@@ -23,7 +24,9 @@ const PopularDishes = () => {
         const fetchData = async () => {
             try {
                 const data = await popularDishes();
-                setFoodData(data);
+                setInterval(() => {
+                    setFoodData(data);
+                }, 2000);
             } catch (error) {
                 console.error("Error fetching popular dishes:", error);
             }
@@ -49,7 +52,7 @@ const PopularDishes = () => {
             socket.off("popularDeleted");
         };
 
-    }, []);
+    }, [FoodData]);
 
 
     // it for the new food added 
@@ -119,8 +122,9 @@ const PopularDishes = () => {
 
 
     return (
-        <section id='PopularDishes' className="my-10 sm:my-20 bg-[#e9ecef]">
-            <div className="mycontainer">
+        <section id='PopularDishes' className="my-10 sm:my-20 bg-[#e9ecef] flex items-center justify-center min-h-screen min-w-[100%]">
+           {FoodData.length <= 0 && <Loader/>}
+           {FoodData.length > 0 && <div className="mycontainer">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl mb-5 sm:mb-8 font-bold font-ibm">
                     Popular Dishes
                 </h1>
@@ -165,7 +169,7 @@ const PopularDishes = () => {
                         ))}
                     </div>
                 </div>
-            </div>
+            </div>}
         </section>
     );
 };

@@ -10,6 +10,7 @@ const Dinner = () => {
     const fetchData = async () => {
       const data = await loadDinner();
       setFoodData(data);
+
     };
     fetchData();
     socket.on("dinnerAdded", () => {
@@ -30,7 +31,7 @@ const Dinner = () => {
       socket.off("dinnerUpdated");
       socket.off("dinnerDeleted");
     };
-    
+
   }, []);
 
   return (

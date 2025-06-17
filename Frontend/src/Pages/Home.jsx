@@ -12,6 +12,7 @@ import MobileAppSection from '../Componets/HomePage/MobileAppSection';
 import FoodMenuButtons from '../Componets/FoodMenu/FoodMenuButtons';
 import NewsLetter from '../Componets/HomePage/NewsLetter';
 
+
 const Home = () => {
     return (
         <div>
@@ -56,6 +57,7 @@ const Home = () => {
 
             <NewsLetter />
 
+          
 
             {/* footer  */}
             <Footer />

@@ -2,6 +2,7 @@ import { useState } from "react";
 import BreakFast from "../../Pages/BreakFast"
 import Dinner from "../../Pages/Dinner"
 import Lunch from "../../Pages/Lunch"
+import Loader from "../Loader/Loader";
 
 
 const buttonDetails = [
@@ -36,6 +37,16 @@ const buttonDetails = [
 
 const FoodMenuButtons = () => {
     const [selectedMeal, setSelectedMeal] = useState('breakfast');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleMealChange = (key) => {
+        if (selectedMeal === key) return; 
+        setIsLoading(true);
+        setTimeout(() => {
+            setSelectedMeal(key);
+            setIsLoading(false);
+        }, 600); 
+    };
 
     const renderMealComponent = () => {
         switch (selectedMeal) {
@@ -54,7 +65,7 @@ const FoodMenuButtons = () => {
                 <div className="mycontainer w-full flex items-center my-5 sm:my-8 justify-between gap-4 sm:gap-6 shadow-lg">
                     {buttonDetails.map((detail) => (
                         <div key={detail.id}>
-                            <button className={`relative cursor-pointer hover:bg-primary/20 p-2 rounded-md transition-all duration-400 ${selectedMeal === detail.key ? "bg-primary/20" : "bg-transparent"}`} onClick={() => setSelectedMeal(detail.key)}>
+                            <button className={`relative cursor-pointer hover:bg-primary/20 p-2 rounded-md transition-all duration-400 ${selectedMeal === detail.key ? "bg-primary/20" : "bg-transparent"}`} onClick={() => handleMealChange(detail.key)}>
                                 <div className="flex flex-col md:flex-row items-center gap-3">
                                     <div>
                                         <svg
@@ -83,8 +94,8 @@ const FoodMenuButtons = () => {
 
 
             {/* food menu items  */}
-            <div className="mycontainer my-5 md:my-10">
-                {renderMealComponent()}
+            <div className="mycontainer my-5 md:my-10 min-h-screen min-w-[100%] flex items-center justify-center">
+                {isLoading ? <Loader /> : renderMealComponent()}
             </div>
         </section>
 
