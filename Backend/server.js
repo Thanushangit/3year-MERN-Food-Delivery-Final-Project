@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
+const Food = require("./Models/Breakfast");
 
 // Route imports
 const breakfast = require("./Routes/breakfastroutes");
@@ -35,9 +36,19 @@ app.set("io", io);
 // app.use("/api", popular);
 // app.use("/order", Order);
 
-app.use("/",(req,res)=>{
-  return(res.json({message:"this is wrok successfully..."}))
-})
+app.get("/api/breakfast", async (req, res) => {
+  try {
+    const data = await Food.find();
+    if (!data || data.length === 0) {
+      return res.status(404).json({ message: "Breakfast Food Not Found" });
+    }
+
+    res.status(200).json({ message: data });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 const MongoConnection = async () => {
   try {
