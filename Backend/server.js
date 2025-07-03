@@ -35,8 +35,8 @@ app.set("io", io);
 // app.use("/api", popular);
 // app.use("/order", Order);
 
-app.use("/",()=>{
-  console.log("it is work successfully...")
+app.use("/",(req,res)=>{
+  return(res.json({message:"this is wrok successfully..."}))
 })
 
 const MongoConnection = async () => {
