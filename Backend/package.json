@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "license": "ISC",
-  "author": "J'boys",
+  "author": "Thanushan",
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
