@@ -35,9 +35,9 @@ app.use("/api", breakfast);
 // app.use("/api", popular);
 // app.use("/order", Order);
 
-app.use("/",(req,res)=>{
-  return(res.json({message:"this is wrok successfully..."}))
-})
+// app.use("/",(req,res)=>{
+//   return(res.json({message:"this is wrok successfully..."}))
+// })
 
 const MongoConnection = async () => {
   try {
