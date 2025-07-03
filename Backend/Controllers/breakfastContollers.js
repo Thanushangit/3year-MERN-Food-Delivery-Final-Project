@@ -19,7 +19,7 @@ exports.getAllBreakfast = async (req, res) => {
   try {
     const data = await Food.find();
     if (!data || data.length === 0) {
-      return res.status(404).json({ message: "Food Not Found" });
+      return res.status(404).json({ message: "Breakfast Food Not Found" });
     }
 
     res.status(200).json({ message: data });

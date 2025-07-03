@@ -29,7 +29,7 @@ app.use(cors());
 app.set("io", io);
 
 // Routes
-// app.use("/api", breakfast);
+app.use("/api", breakfast);
 // app.use("/api", lunch);
 // app.use("/api", dinner);
 // app.use("/api", popular);
