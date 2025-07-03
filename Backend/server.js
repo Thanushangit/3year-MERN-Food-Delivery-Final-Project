@@ -29,11 +29,15 @@ app.use(cors());
 app.set("io", io);
 
 // Routes
-app.use("/api", breakfast);
-app.use("/api", lunch);
-app.use("/api", dinner);
-app.use("/api", popular);
-app.use("/order", Order);
+// app.use("/api", breakfast);
+// app.use("/api", lunch);
+// app.use("/api", dinner);
+// app.use("/api", popular);
+// app.use("/order", Order);
+
+app.use("/",()=>{
+  console.log("it is work successfully...")
+})
 
 const MongoConnection = async () => {
   try {
