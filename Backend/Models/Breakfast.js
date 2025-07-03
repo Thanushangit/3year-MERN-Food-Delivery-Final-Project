@@ -24,5 +24,6 @@ const breakfast = new mongoose.Schema({
   },
 });
 
-const Brakfastmodel = mongoose.model("BreakFast", breakfast);
+const Brakfastmodel = mongoose.model("Brakfastmodel", breakfast,"BreakFast"
+);
 module.exports = Brakfastmodel;
