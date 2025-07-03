@@ -23,6 +23,8 @@ const io = new Server(server, {
     }
 });
 
+
+
 // Middleware
 app.use(express.json());
 app.use(cors());
@@ -35,14 +37,19 @@ app.use('/api', dinner);
 app.use('/api', popular);
 app.use('/order', Order);
 
-// MongoDB connection
-mongoose.connect('mongodb://localhost:27017/Platezy')
-    .then(() => {
-        console.log("Database is successfully connected");
-    })
-    .catch((err) => {
-        console.log("Database connection failed:", err.message);
-    });
+
+const MongoConnection = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_ATLAS);
+    console.log("mongodb connected succesfully...");
+  } catch (err) {
+    console.log("mongodb connection is fail...", err.message);
+    process.exit(1);
+  }
+};
+
+MongoConnection()
+
 
 // Socket.IO logic
 io.on('connection', (socket) => {
@@ -62,8 +69,10 @@ io.on('connection', (socket) => {
     });
 });
 
+const PORT=process.env.PORT || 3000;
+
 // Start HTTP server instead of app.listen
-server.listen(process.env.PORT, () => {
-    console.log(`Server is listening on port ${process.env.PORT}`);
+server.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
 });
 
