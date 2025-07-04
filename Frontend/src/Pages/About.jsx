@@ -3,7 +3,7 @@ import HealthyFoodSection from "../Componets/About/HealthyFoodSection"
 import MemberCard from "../Componets/About/MemberCard"
 import MissionandVision from "../Componets/About/MissionandVision"
 import ServicesSection from "../Componets/About/ServicesSection"
-import WelcomeSection from "../Componets/About/welcomeSection"
+import WelcomeSection from "../Componets/About/WelcomeSection"
 import Footer from '../Componets/Footer/Footer'
 
 
