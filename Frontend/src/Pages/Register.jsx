@@ -6,7 +6,7 @@ import { z } from 'zod';
 import Swal from 'sweetalert2';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from '../Firebase';
+import { auth, db } from '../Firebase.js';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
