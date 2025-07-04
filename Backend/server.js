@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
-const Food = require("./Models/Breakfast");
+const Food = require("./Models/Dinner");
 
 // Route imports
 const breakfast = require("./Routes/breakfastroutes");
