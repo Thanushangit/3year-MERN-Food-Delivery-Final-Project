@@ -35,7 +35,7 @@ const AdminOrderCard = ({ item, onDelete }) => {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     Swal.fire("Deleted!", `The "${id}" has been deleted successfully.`);
-                    await axios.delete(`http://localhost:3000/order/deletecustomerOrder/${id}`);
+                    await axios.delete(`https://platezybackedcode.up.railway.app/order/deletecustomerOrder/${id}`);
                     onDelete(id)
                 }
             });
@@ -51,7 +51,7 @@ const AdminOrderCard = ({ item, onDelete }) => {
         try {
             const value = e.target.value
             setOrderStatus(value)
-            await axios.put(`http://localhost:3000/order/updatecustomerOrder/${id}`,
+            await axios.put(`https://platezybackedcode.up.railway.app/order/updatecustomerOrder/${id}`,
                 { OrderStatus: value }
 
             );

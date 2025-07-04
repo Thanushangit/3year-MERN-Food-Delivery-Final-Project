@@ -15,8 +15,8 @@ const AdminLoginPage = () => {
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
     const [adminDetails] = useState({
-        email: "jboys@gmail.com",
-        password: "Jboys2025@"
+        email: "thanu@gmail.com",
+        password: "Thanu2002@"
 
     })
 

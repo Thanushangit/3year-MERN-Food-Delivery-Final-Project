@@ -16,30 +16,30 @@ const DeleteButton = ({ id, name, category }) => {
                 customClass: {
                     confirmButton: "custom-delete-button"
                 }
-            }).then(async(result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
                     Swal.fire("Deleted!", `The "${name}" has been deleted successfully.`);
 
                     switch (category) {
                         case "popular":
 
-                            await axios.delete(`http://localhost:3000/api/deletepopular/${id}`);
+                            await axios.delete(`https://platezybackedcode.up.railway.app/api/deletepopular/${id}`);
                             break;
 
 
                         case "breakfast":
 
-                            await axios.delete(`http://localhost:3000/api/deletebreakfast/${id}`);
+                            await axios.delete(`https://platezybackedcode.up.railway.app/api/deletebreakfast/${id}`);
                             break;
 
                         case "lunch":
 
-                            await axios.delete(`http://localhost:3000/api/deletelunch/${id}`);
+                            await axios.delete(`https://platezybackedcode.up.railway.app/api/deletelunch/${id}`);
                             break;
 
                         case "dinner":
 
-                            await axios.delete(`http://localhost:3000/api/deletedinner/${id}`);
+                            await axios.delete(`https://platezybackedcode.up.railway.app/api/deletedinner/${id}`);
                             break;
 
                         default:

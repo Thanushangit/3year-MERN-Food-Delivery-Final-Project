@@ -79,7 +79,7 @@ const AddFoodForm = ({ AddFoodCategory, setAddFoodFormStatus }) => {
                     switch (AddFoodCategory) {
                         case "popular":
 
-                            await axios.post(`http://localhost:3000/api/popular/new`, {
+                            await axios.post(`https://platezybackedcode.up.railway.app/api/popular/new`, {
                                 img: data.img,
                                 name: data.title,
                                 price: data.price,
@@ -90,7 +90,7 @@ const AddFoodForm = ({ AddFoodCategory, setAddFoodFormStatus }) => {
 
                         case "breakfast":
 
-                            await axios.post(`http://localhost:3000/api/breakfast/new`, {
+                            await axios.post(`https://platezybackedcode.up.railway.app/api/breakfast/new`, {
                                 image: data.img,
                                 name: data.title,
                                 price: data.price,
@@ -100,7 +100,7 @@ const AddFoodForm = ({ AddFoodCategory, setAddFoodFormStatus }) => {
 
                         case "lunch":
 
-                            await axios.post(`http://localhost:3000/api/lunch/new`, {
+                            await axios.post(`https://platezybackedcode.up.railway.app/api/lunch/new`, {
                                 image: data.img,
                                 name: data.title,
                                 price: data.price,
@@ -110,7 +110,7 @@ const AddFoodForm = ({ AddFoodCategory, setAddFoodFormStatus }) => {
 
                         case "dinner":
 
-                            await axios.post(`http://localhost:3000/api/dinner/new`, {
+                            await axios.post(`https://platezybackedcode.up.railway.app/api/dinner/new`, {
                                 image: data.img,
                                 name: data.title,
                                 price: data.price,

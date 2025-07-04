@@ -96,7 +96,7 @@ const SingleFoodDetails = ({
                     switch (category) {
                         case "popular":
 
-                            await axios.put(`http://localhost:3000/api/updatepopular/${showid._id}`, {
+                            await axios.put(`https://platezybackedcode.up.railway.app/api/updatepopular/${showid._id}`, {
                                 img: data.img,
                                 name: data.name,
                                 price: data.price,
@@ -108,7 +108,7 @@ const SingleFoodDetails = ({
 
                         case "breakfast":
 
-                            await axios.put(`http://localhost:3000/api/updatebreakfast/${upid}`, {
+                            await axios.put(`https://platezybackedcode.up.railway.app/api/updatebreakfast/${upid}`, {
                                 img: data.img,
                                 name: data.name,
                                 price: data.price,
@@ -118,7 +118,7 @@ const SingleFoodDetails = ({
 
                         case "lunch":
 
-                            await axios.put(`http://localhost:3000/api/updatelunch/${upid}`, {
+                            await axios.put(`https://platezybackedcode.up.railway.app/api/updatelunch/${upid}`, {
                                 img: data.img,
                                 name: data.name,
                                 price: data.price,
@@ -128,7 +128,7 @@ const SingleFoodDetails = ({
 
                         case "dinner":
 
-                            await axios.put(`http://localhost:3000/api/updatedinner/${upid}`, {
+                            await axios.put(`https://platezybackedcode.up.railway.app/api/updatedinner/${upid}`, {
                                 img: data.img,
                                 name: data.name,
                                 price: data.price,
