@@ -1,12 +1,13 @@
 import axios from "axios";
 
-
 export async function popularDishes() {
   try {
-    const res = await axios.get("http://localhost:3000/api/allpopular"); 
+    const res = await axios.get(
+      "https://platezybackedcode.up.railway.app/api/allpopular"
+    );
     return res.data.message;
   } catch (err) {
-    console.error("Popular Dishes Data fetched Error  ")
+    console.error("Popular Dishes Data fetched Error  ");
     if (err.response) {
       console.error("Status code:", err.response.status);
     } else if (err.request) {
@@ -14,15 +15,15 @@ export async function popularDishes() {
     } else {
       console.error("Error message:", err.message);
     }
-    throw err; 
+    throw err;
   }
 }
 
-
-
 export async function loadBreakFast() {
   try {
-    const res = await axios.get("http://localhost:3000/api/allbreakfast"); 
+    const res = await axios.get(
+      "https://platezybackedcode.up.railway.app/api/allbreakfast"
+    );
     return res.data.message;
   } catch (err) {
     console.error("Breakfast Data fetched Error:");
@@ -33,15 +34,15 @@ export async function loadBreakFast() {
     } else {
       console.error("Error message:", err.message);
     }
-    throw err; 
+    throw err;
   }
 }
 
-
-
 export async function loadLunch() {
   try {
-    const res = await axios.get("http://localhost:3000/api/AllLunch"); 
+    const res = await axios.get(
+      "https://platezybackedcode.up.railway.app/api/AllLunch"
+    );
     return res.data.message;
   } catch (err) {
     console.error("lunch Data fetched Error:");
@@ -52,14 +53,15 @@ export async function loadLunch() {
     } else {
       console.error("Error message:", err.message);
     }
-    throw err; 
+    throw err;
   }
 }
 
-
 export async function loadDinner() {
   try {
-    const res = await axios.get("http://localhost:3000/api/alldinner"); 
+    const res = await axios.get(
+      "https://platezybackedcode.up.railway.app/api/alldinner"
+    );
     return res.data.message;
   } catch (err) {
     console.error("Dinner Data fetched Error:");
@@ -70,15 +72,15 @@ export async function loadDinner() {
     } else {
       console.error("Error message:", err.message);
     }
-    throw err; 
+    throw err;
   }
 }
 
-
-
 export async function loadOrderItems() {
   try {
-    const res = await axios.get("http://localhost:3000/order/allcustomerOrder"); 
+    const res = await axios.get(
+      "https://platezybackedcode.up.railway.app/order/allcustomerOrder"
+    );
     return res.data.message;
   } catch (err) {
     console.error("DB order Data fetched Error:");
@@ -89,14 +91,15 @@ export async function loadOrderItems() {
     } else {
       console.error("Error message:", err.message);
     }
-    throw err; 
+    throw err;
   }
 }
 
-
 export async function customerOrderHistory(uid) {
   try {
-    const res = await axios.get(`http://localhost:3000/order/getAllorderByuid/${uid}`); 
+    const res = await axios.get(
+      `https://platezybackedcode.up.railway.app/order/getAllorderByuid/${uid}`
+    );
     return res.data;
   } catch (err) {
     console.error("DB order Data fetched Error:");
@@ -107,6 +110,6 @@ export async function customerOrderHistory(uid) {
     } else {
       console.error("Error message:", err.message);
     }
-    throw err; 
+    throw err;
   }
 }
