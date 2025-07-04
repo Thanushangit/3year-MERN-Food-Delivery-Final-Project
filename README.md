@@ -12,6 +12,7 @@ Platezy is a full-stack MERN (MongoDB, Express, React, Node.js) food delivery ap
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
+- [API Documentation](#api-documentation)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -48,7 +49,6 @@ Platezy is a full-stack MERN (MongoDB, Express, React, Node.js) food delivery ap
 
 <img src="./Frontend/public/09.webp" alt="Home Page" width="48%" style="margin-right: 10px;">
   <img src="./Frontend/public/10.webp" alt="Home Page" width="48%" style="margin-right: 10px; ;">
-
 
 ## Tech Stack
 
@@ -136,6 +136,13 @@ Frontend/
 
 ---
 
+## API Documentation
+
+You can find the full API documentation and test endpoints using Postman:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.postman.com/collections)  
+
+
 ## Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
@@ -148,4 +155,4 @@ This project is licensed under the MIT License. See the [LICENCE](LICENCE) file 
 
 ---
 
-> © 2025 Platezy. Powered by [S.Thanushan.](https://github.com/Thanushangit/3year-MERN-Food-Delivery-Final-Project.git)
+> © 2025 Platezy. Powered by [S.Thanushan.](https://thanushan-dev.vercel.app/)
