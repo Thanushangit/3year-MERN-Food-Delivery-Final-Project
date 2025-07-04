@@ -24,5 +24,5 @@ const dinner = new mongoose.Schema({
   },
 });
 
-const Dinnermodel = mongoose.model("Dinner", dinner);
+const Dinnermodel = mongoose.model("Dinnermodel", dinner,"Dinner");
 module.exports = Dinnermodel;

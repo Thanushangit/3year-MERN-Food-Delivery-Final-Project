@@ -24,5 +24,5 @@ const lunch = new mongoose.Schema({
   },
 });
 
-const Lunchrmodel = mongoose.model("Lunch", lunch);
+const Lunchrmodel = mongoose.model("Lunchmodel", lunch,"Lunch");
 module.exports = Lunchrmodel;

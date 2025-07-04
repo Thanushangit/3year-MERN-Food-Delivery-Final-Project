@@ -24,5 +24,5 @@ const popular = new mongoose.Schema({
   },
 });
 
-const Popularmodel = mongoose.model("popular", popular);
+const Popularmodel = mongoose.model("popularmodel", popular, "Popular");
 module.exports =Popularmodel ;
