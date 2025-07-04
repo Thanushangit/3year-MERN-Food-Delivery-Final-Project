@@ -140,8 +140,7 @@ Frontend/
 
 You can find the full API documentation and test endpoints using Postman:
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.postman.com/collections)  
-
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/41049800/2sB34bM3wF)
 
 ## Contributing
 

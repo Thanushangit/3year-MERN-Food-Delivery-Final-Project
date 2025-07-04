@@ -2,18 +2,18 @@ const express=require('express');
 const { addCustomerOrder, getAllCustomerOrder, upDateCustomerOrder, deleteCustomerOrder, getOrderByFirebaseUID, getAllOrderByFirebaseUID } = require('../Controllers/customerOrder');
 const router=express.Router();
 
-// http://localhost:3000/order/customerOrder/new
+// https://platezybackedcode.up.railway.app/order/customerOrder/new
 router.post('/customerOrder/new',addCustomerOrder);
-// http://localhost:3000/order/allcustomerOrder
+// https://platezybackedcode.up.railway.app/order/allcustomerOrder
 router.get('/allcustomerOrder',getAllCustomerOrder);  
-// http://localhost:3000/order/updatecustomerOrder/:id
+// https://platezybackedcode.up.railway.app/order/updatecustomerOrder/:id
 router.put('/updatecustomerOrder/:id',upDateCustomerOrder);
-// http://localhost:3000/order/deletecustomerOrder/:id
+// https://platezybackedcode.up.railway.app/order/deletecustomerOrder/:id
 router.delete('/deletecustomerOrder/:id',deleteCustomerOrder);  
-// http://localhost:3000/order/getSingleorder/:uid
+// https://platezybackedcode.up.railway.app/order/getSingleorder/:uid
 router.get('/getSingleorder/:uid', getOrderByFirebaseUID);
 
-// http://localhost:3000/order/getAllorderByuid/:uid
+// https://platezybackedcode.up.railway.app/order/getAllorderByuid/:uid
 router.get('/getAllorderByuid/:uid', getAllOrderByFirebaseUID);
 module.exports=router;
 

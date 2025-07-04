@@ -3,12 +3,12 @@ const { addLunch, getAllLunch, upDateLunch, deleteLunch } = require('../Controll
 
 const router=express.Router();
 
-// http://localhost:3000/api/lunch/new
+// https://platezybackedcode.up.railway.app/api/lunch/new
 router.post('/lunch/new',addLunch);
-// http://localhost:3000/api/AllLunch
+// https://platezybackedcode.up.railway.app/api/AllLunch
 router.get('/AllLunch',getAllLunch);  
-// http://localhost:3000/api/updatelunch/:id
+// https://platezybackedcode.up.railway.app/api/updatelunch/:id
 router.put('/updatelunch/:id',upDateLunch);
-// http://localhost:3000/api/deletelunch/:id
+// https://platezybackedcode.up.railway.app/api/deletelunch/:id
 router.delete('/deletelunch/:id',deleteLunch);  
 module.exports=router;
