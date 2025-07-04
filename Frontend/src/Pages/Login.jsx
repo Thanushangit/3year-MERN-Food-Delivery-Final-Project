@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { setLoginStatus } from '../Slices/LoginConfirmation';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../Firebase'
+import { auth } from '../Firebase';
 import { useState } from 'react';
 
 const Login = () => {
