@@ -29,5 +29,5 @@ SofarDid.txt
 .env
 
 # Firebase config 
-src/Firebase.js
+
 
