@@ -100,10 +100,7 @@ const router = createBrowserRouter([
       { path: '*', element: <MainErrorPage /> }
     ]
   }
-],
-  {
-    basename: "/3year-MERN-Food-Delivery-Final-Project"
-  });
+]);
 
 
 
